@@ -21,7 +21,10 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
 <!-- datepicker 끝 -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6c40d5c98c3c9d61a21e495fe1d2695e6e7345c7
 
 <style>
 table{
@@ -176,7 +179,6 @@ $("#paybtn").click(function(){
 </form>
 <input type="button" value="test" id="test">
 <input type="button" value="호스트랑 채팅하기" id="chat">
-<input type="button" value="리뷰 작성하기" id="review_form">
 <!-- hidden -->
 <input type="hidden" value="${sessionScope.login_id }" id="login_id">
 
@@ -341,12 +343,6 @@ $(".scrap").click(function() {
 $("#chat").click(function() {
 	var num = '${dto.num}';
 	location.href = "../chat/ch_room.do?num="+num;
-});
-
-$("#review_form").click(function() {
-	var login_id = $("#login_id").val();
-	var h_num = '${dto.num}';
-	location.href = "../review/review_form.do?h_num="+h_num+"&id="+login_id;
 });
 
 </script>

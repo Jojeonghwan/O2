@@ -87,6 +87,8 @@ public class main_controller {
 			model.addObject("person", person);
 			model.addObject("from_main", from_main);
 			model.addObject("end", end);
+			tag = "|";
+			model.addObject("tag", tag);
 			
 		}else{ // from_main 이 2일때
 			System.out.println("2 시작");
@@ -110,6 +112,7 @@ public class main_controller {
 				//System.out.println(tag_substr);
 				dto.setTag(tag_substr);				
 			}else{
+				tag = "|";
 				dto.setTag(tag);
 			}
 			

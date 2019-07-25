@@ -13,14 +13,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://bootstraptema.ru/plugins/2018/irs/ion.rangeSlider.css" />
 <link rel="stylesheet" href="http://bootstraptema.ru/plugins/2018/irs/ion.rangeSlider.skin.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- datepicker start -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/ko.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
+<script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
+<!-- datepicker 끝 -->
+<!-- rangeSlide -->
 <script src="http://bootstraptema.ru/plugins/2018/irs/ion.rangeSlider.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.js">
-</script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/datetimepickerstyle.css" />
-<!-- 끝 -->
 
 <style>
 .text {
@@ -63,7 +67,7 @@
 	<input type="hidden" id="person_id" name="person" value="${person}">
 	<input type="hidden" id="price_from_id" name="price_from" value="0">
 	<input type="hidden" id="price_to_id" name="price_to" value="1000000">
-	<input type="hidden" id="tag_id" name="tag" value="|">
+	<input type="hidden" id="tag_id" name="tag" value="${tag}">
 	<input type="hidden" id="checkin_id" name="checkin" value="${checkin}">
 	<input type="hidden" id="checkout_id" name="checkout" value="${checkout}">
 	<input type="hidden" name="end" value="${end}">
@@ -110,7 +114,9 @@
 </div>
 
 <!-- 달력 -->
-<div class="col-sm-9">
+<div class="form-group">
+    <br><br><br>
+    <div class="col-sm-9">
        <div class='col-sm-5'>
             <div class="form-group">
                 <div class='input-group date dateTimePicker' id="datepicker1">
@@ -134,8 +140,11 @@
                 </div>
             </div>
         </div>
-	<input type="button" id="date_val" value="저장">
+        <input type="button" id="date_val" value="저장">
+    </div>
 </div>
+
+	
 <script type="text/javascript">
 $(document).ready(function(){
     $('.dateTimePicker').datetimepicker({

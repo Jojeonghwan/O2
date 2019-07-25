@@ -363,7 +363,7 @@ public class board_controller {
 		
 		String imgname = request.getParameter("upfile");
 		System.out.println(imgname);
-		if(imgname == null){
+		if(imgname == null){ // 사진을 선택하지 않았을 때 noimg 저장
 			h_re_dto.setImg_name("noimg");
 		}else{
 			h_re_dto.setImg_name(imgname);
