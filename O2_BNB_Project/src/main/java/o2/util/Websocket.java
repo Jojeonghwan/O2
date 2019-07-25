@@ -125,6 +125,7 @@ public class Websocket extends TextWebSocketHandler{
 			
 			// 3. 채팅 내용 인설트 하기
 			chat_content_dto ch_con_dto = new chat_content_dto();
+			System.out.println("채팅 내용 : "+msgArr[0]);
 			ch_con_dto.setContent(msgArr[0]);
 			ch_con_dto.setWriter(id);
 			ch_con_dto.setIp(ip);

@@ -41,10 +41,10 @@ $( function () {
     // 클릭시 해당 집 상세 페이지로 이동
     $("body").on("click", "div#result div#rtime_dto_1", function() {
     	var h_num = $(this).attr("h_num");
-    	location.href = "board/content?num="+h_num;
+    	location.href = "board/content.do?num="+h_num;
     });
     $("body").on("click", "div#result div.rtime_dto", function() {
     	var h_num = $(this).attr("h_num");
-    	location.href = "board/content?num="+h_num;
+    	location.href = "board/content.do?num="+h_num;
     });
 });
