@@ -13,18 +13,26 @@
 <body>
 <div>
 		<hr align="left" width="400" size="5" color="gray">
-		<c:forEach var="dto" items="${host_list}">
-			<b>no.${no}</b>
+		<c:forEach var="dto" items="${host_list}" varStatus="status">
+			<b>no.${status.index}</b>
 			<br>
-			<c:set var="no" value="${no-1}" />
 			<table class="table table-bordered" style="width: 500px;">
 				<tr>
 					<td>
 					<a href="../board/content.do?num=${dto.num}&pageNum=${currentPage}">Home_Name: ${dto.home_name}</a><br>
 					Host: ${dto.host_name}<span style="margin-left: 200px;"><br>
 					Intro: ${dto.intro}<br>
-					Location:<input type="text" id="addr_result" style="background-color:transparent;border:0 solid black;text-align:left;"> 
+					<!-- Location:<input type="text" id="addr_result" style="background-color:transparent;border:0 solid black;text-align:left;">  -->
 						<input type=hidden class="addr" value="${dto.addr}">
+						<!-- <script>
+							$("#addr_result")
+							var addr = '${dto.addr}';
+							var addr_arr = addr.split('/');
+							var addr_arr_arr = addr_arr[1].split(' ');
+							var addr_result=addr_arr_arr[0]+" "+addr_arr_arr[1];
+							$(this).("#addr_result").val(addr_result);
+							console.log(addr_result);
+						</script> -->
 					</span> <br>
 					<br> <pre></pre> <br> 
 					<c:if test="${dto.img!='noimage'}">
@@ -35,13 +43,6 @@
 								<!-- img-thumbnail,img-circle,img-rounded -->
 							</c:forTokens>
 						</c:if>
-						<script>
-							var addr = $(".addr").val();
-							var addr_arr = addr.split(',');
-							var addr_arr_arr = addr_arr[1].split(' ');
-							var addr_result=addr_arr_arr[0]+" "+addr_arr_arr[1];
-							$("#addr_result").val(addr_result);
-						</script>
 					</td>
 				</tr>
 			</table>
