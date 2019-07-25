@@ -55,7 +55,7 @@ $(function(){
 <body>
 
 <form action="update.do" method="post" enctype="multipart/form-data" >
-집이름:<input type="text"  name="home_name" value="${dto.home_name}"><br>
+집이름:<input type="text"  name="home_name" value="${dto.home_name}" required="required"><br>
 호스트이름:<input type="text" name="host_name" value="${dto.host_name}" readonly="readonly"><br>
 
 <!--Start Map-->
@@ -68,19 +68,19 @@ $(function(){
          <h4>Address</h4>
          <div class="form-group">
             <input type="text" id="postcode" name="repostcode"
-               class="form-control cst-form-control" placeholder="우편번호">
+               class="form-control cst-form-control" placeholder="우편번호" required="required">
             <input type="button" style="height: 40px;" name="postcode" onClick="execDaumPostcode(); return false;" class="btn btn-lg btn-success" value="우편번호 찾기">
          </div>
       </div>
       <div class="cst-form-group">
          <div class="form-group">
-            <input type="text" id="address" name="address" class="cst-form-control form-control" placeholder="주소"> 
-            <input type="text" id="extraAddress" name="extraAddress" class="cst-form-control form-control" placeholder="참고항목">
+            <input type="text" id="address" name="address" class="cst-form-control form-control" placeholder="주소" required="required"> 
+            <input type="text" id="extraAddress" name="extraAddress" class="cst-form-control form-control" placeholder="참고항목" required="required">
          </div>
       </div>
       <div class="cst-form-group">
          <div class="form-group">
-            <input type="text" id="detailAddress" name="detailAddress" class="cst-form-width form-control" placeholder="상세주소">
+            <input type="text" id="detailAddress" name="detailAddress" class="cst-form-width form-control" placeholder="상세주소" required="required">
          </div>
       </div>
    </div>
@@ -243,10 +243,10 @@ $(function(){
       <button type="button" id="inc">+</button>
 </div>
 <br>
-연락처:<input type="text"  name="hp" value="${dto.hp}"><br>
-비상연락처:<input type="text"  name="emer_hp" value="${dto.emer_hp}"><br>
+연락처:<input type="text"  name="hp" value="${dto.hp}" required="required"><br>
+비상연락처:<input type="text"  name="emer_hp" value="${dto.emer_hp}" required="required"><br>
 소개:<br>
-<textarea rows="10" cols="40" name="intro">${dto.intro}</textarea><br>
+<textarea rows="10" cols="40" name="intro" required="required">${dto.intro}</textarea><br>
 해시태그:<br>
 <table>
 	<tr>
@@ -265,7 +265,7 @@ $(function(){
 			야경이 좋은<input type="checkbox" name="hashtag" value="야경이 좋은">
 			<br>
 			<br>
-			서브 해시태그<input type="text" name="sub_tag" required="required" value="${dto.sub_tag}">
+			서브 해시태그<input type="text" name="sub_tag"  value="${dto.sub_tag}">
 		</td>
 	</tr>
 </table>
@@ -285,7 +285,7 @@ $(function(){
 			침대<input type="checkbox" name="goods" value="침대">
 			<br>
 			<br>
-			서브 구비품목<input type="text" name="sub_facilities" required="required" value="${dto.sub_facilities}">
+			서브 구비품목<input type="text" name="sub_facilities" value="${dto.sub_facilities}">
 		</td>
 	</tr>
 </table>
