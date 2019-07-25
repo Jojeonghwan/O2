@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+	<!-- email로 계정 존재하는지 확인 -->
+	<select id="select_ch" resultType="int" parameterType="String">
+		select count(*)
+		from o2_user
+		where email = #{email}
+	</select>
+
+	<!-- email로 해당 dto 출력 : id 찾을라고-->
+	<select id="select_id" resultType="m_dto" parameterType="String">
+		select * from o2_user 
+		where email = #{email}
+	</select>
+	
+	<!-- 기존 pw를 임시 비밀번호로 변경 -->
+	<update id="update_pw" parameterType="HashMap">
+		update o2_user 
+		set password = #{tempo_pw}
+		where email = #{email}
+	</update>
+	
+	<!-- 스크랩 되어 있는지 확인 -->
+	<select id="scrap_ch" resultType="int" parameterType="HashMap">
+		select count(*)
+		from o2_scrap
+		where id = #{id}
+		and h_num = #{h_num}
+	</select>
+	
+	<!-- 리뷰가 있는지 확인 -->
+	<select id="home_review_ch" resultType="int" parameterType="String">
+		select count(*)
+		from o2_review
+		where h_num = #{h_num}
+	</select>
+	
+	<!-- 스크랩 dto 가져오기 -->
+	<select id="scrap_dto" resultType="sc_dto" parameterType="HashMap">
+		select *
+		from o2_scrap
+		where h_num = #{h_num}
+		and id = #{id}
+	</select>
+	
+	<!-- 스크랩하는 해당 집의 평점 가져오기 -->
+	<select id="sc_ho_av_sc" resultType="int" parameterType="String">
+		select avg(score) score
+		from o2_review
+		where h_num = #{h_num}
+	</select>
+	
+	<!-- 스크랩 insert 하기 -->
+	<insert id="scrap_insert" parameterType="sc_dto">
+		insert into o2_scrap
+		values(scrap_seq.nextval, #{h_num}, #{id}, #{home_name}, #{img_name}, #{score})
+	</insert>
+	
+	<!-- 스크랩 리스트 갯수 가져오기 -->
+	<select id="scrap_cnt" resultType="int" parameterType="String">
+		select count(*)
+		from o2_scrap
+		where id = #{id}
+	</select>
+	
+	<!-- 스크랩 리스트 가져오기 -->
+	<select id="scrap_list" resultType="sc_dto" parameterType="HashMap">
+    	select * 
+    	from (select rownum rnum, b.* 
+    		  from (select * 
+    		  		from o2_scrap 
+    		  		where id = #{id}
+    		  		order by num desc
+    		  	   ) b
+    		 ) a 
+    	<![CDATA[
+    	where rnum >= #{startNum} and rnum <= #{endNum} 
+    	]]>
+	</select>
+	
+	<delete id="scrap_delete" parameterType="String">
+		delete from o2_scrap
+		where num = #{num}
+	</delete>
+	
+	<!-- sy : 멤버추가 -->
+	<insert id="member_insert" parameterType="m_dto">
+		insert into o2_user 
+		values (user_seq.nextval, #{id}, #{password}, #{name},
+		#{tel}, #{email}, #{thumb_nail}, #{user_type})
+	</insert>
+	
+	<!-- sy : id로 계정 중복 확인 -->
+	<select id="member_id" resultType="int" parameterType="String">
+		select count(*)
+		from o2_user
+		where id = #{id}
+	</select>
+	
+	<!-- sy : id로 비밀번호 확인 -->
+	<select id="select_pw" parameterType="String" resultType="String">
+		select password 
+		from o2_user 
+		where id = #{id}
+	</select>
+	
+	<!-- sy : user_type 반환 -->
+	<select id="select_user_type" parameterType="String" resultType="String">
+		select user_type
+		from o2_user
+		where id = #{id}
+	</select>
+	
+	<!-- sy : 일반회원 계정삭제 -->
+	<delete id="delete_member" parameterType="String">
+		delete from o2_user 
+		where id = #{id} 
+	</delete>
+	
+	<!-- sy : id로 계정 dto 반환 -->
+	<select id="select_dto" parameterType="String" resultType="m_dto">
+		select * 
+		from o2_user 
+		where id = #{id}
+	</select>
+	
+	
+	<!-- sy : 회원정보 수정 -->
+	<update id="update_member" parameterType="m_dto">
+		update o2_user 
+		set 
+		name = #{name}, 
+		password = #{password}, 
+		tel = #{tel}, 
+		email = #{email}, 
+		thumb_nail = #{thumb_nail} 
+		where id = #{id}  
+	</update>
+	
+	<!-- jj : name 반환 -->	
+	<select id="select_name" parameterType="String" resultType="String">
+      select name
+      from o2_user
+      where id = #{id}
+	</select>
+	
+	<!-- bb : user list 반환 -->
+	<select id="user_list" resultType="m_dto" parameterType="HashMap">
+		select *
+		from(
+				select rownum as rNum , u.*
+    			from o2_user u
+    			where 1=1
+				and 
+				(
+				id like '%' || #{keyword} || '%' or
+				password like '%' || #{keyword} || '%' or
+				name like '%' || #{keyword} || '%' or
+				tel like '%' || #{keyword} || '%' or
+				email like '%' || #{keyword} || '%' or
+				user_type like '%' || #{keyword} || '%'
+				)
+    			order by num desc
+        )
+        where rNum between #{preItems} and #{items}
+	</select>
+	
+	<!-- bb : user dto 반환 -->
+	<select id="user_dto" resultType="m_dto" parameterType="String">
+		select * 
+		from o2_user
+		where num = #{num}
+	</select>
+</mapper>

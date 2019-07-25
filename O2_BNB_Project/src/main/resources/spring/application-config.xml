@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+	<!-- db 셋팅은 여기서 하기 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>WEB-INF/db_properties.properties</value>
+		</property>
+	</bean>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${DRIVER}"/>
+		<property name="url" value="${URL}"/>
+		<property name="username" value="${USERNAME}"/>
+		<property name="password" value="${PASSWORD}"/>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 위에서 선언한 dataSource를 값으로 받음 -->
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation">
+			<value>classpath:mybatis/setting/db_setting.xml</value>
+		</property>
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<!-- 위에서 선언한 sqlSessionFactory를 값으로 받음 -->
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+</beans>

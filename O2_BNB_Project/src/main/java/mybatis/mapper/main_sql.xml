@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+	<select id="get_rtime_list" resultType="rt_dto">
+	<![CDATA[
+		select h.home_name, b.h_num, b.avg_score
+		from o2_home h,
+			(select rownum r_num, a.*
+			 from
+				(select  h_num
+		        		,avg(score) as avg_score
+				 from o2_review
+				 group by h_num
+				 order by avg_score desc
+				 ) a
+			 ) b
+		where h.num = b.h_num
+		and r_num >= 1 and r_num <= 10
+		order by avg_score desc
+	]]>
+	</select>
+	<select id="search_data_list" parameterType="se_dto" resultType="ho_dto">
+		<![CDATA[
+		select 
+		    h.*
+		from 
+		    o2_home h
+		where 
+		    h.num not in (
+		        select distinct h_num 
+		        from o2_home_guest
+		        where (
+		            checkin  between to_date(#{checkin})   and to_date(#{checkout})-1 or 
+		            checkout between to_date(#{checkin})+1 and to_date(#{checkout}) 
+		        )
+		    )
+		    and addr LIKE '%'||#{addr}||'%' 
+		    AND person >= #{person} 
+		    ]]>
+	<!-- <![CDATA[
+		select *
+		from(select *
+		from (select h.*, decode(nvl(g.num, -1), -1, 'no', 'yes') as ch
+				from o2_home h, o2_home_guest g
+				where h.num=g.h_num(+) 
+		) where ch = 'no'
+		union
+		select num,home_name, host_name, person, addr, hp, emer_hp, intro, tag, id, img, select_goods, price, u_num, ch
+		from (select h.*, g.checkin, g.checkout,
+		      decode(nvl(g.num, -1), -1, 'no', 'yes') as ch
+				from o2_home h, o2_home_guest g
+				where h.num=g.h_num(+) 
+		) where ch = 'yes'
+		and '2019-07-24' not between checkin and checkout
+		and '2019-07-26' not between checkin and checkout
+		)
+		where addr like '%강남%'	
+		and person >= 3 
+		]]>
+		select h.* 
+		from o2_home h, o2_home_guest g
+		where h.num=g.h_num 
+		and h.addr like '%'||#{addr}||'%'
+		<![CDATA[ 
+		and h.person >= #{person}
+		]]>
+		and #{checkin} not between checkin and checkout
+		and #{checkout} not between checkin and checkout -->
+	</select>
+	<select id="search_data_list_filter" parameterType="se_dto" resultType="ho_dto">
+		SELECT *
+		FROM (
+		    SELECT A.*, ROWNUM AS RNUM 
+		    FROM (		
+					select 
+					    h.*
+					from 
+					    o2_home h
+					where 1=1
+					    and h.num not in (
+					        select distinct h_num 
+					        from o2_home_guest 
+					        where (
+					            checkin  between to_date(#{checkin})   and to_date(#{checkout})-1 or 
+					            checkout between to_date(#{checkin})+1 and to_date(#{checkout}) 
+					        )
+					    )
+					    and addr LIKE '%'||#{addr}||'%'
+					   <if test="person != null"> 
+					    <![CDATA[
+					    AND person >= #{person} 
+					    ]]>
+					    </if>
+					    <if test='!tag.equals("|")'> 
+					    AND REGEXP_LIKE (tag, #{tag})  
+					    </if>
+					    <if test="price_from != 0"> 
+					    AND price BETWEEN #{price_from} AND #{price_to}  
+					    </if> 
+					    ORDER BY price  
+					    ) A
+				<![CDATA[
+				WHERE ROWNUM <= 3 
+				)
+		WHERE RNUM > 0	
+		]]>								  
+	</select>
+	<select id="search_tag" parameterType="String" resultType="ho_dto">
+		select * 
+		from o2_home
+		where
+		tag like '%'||#{tag}||'%'
+	</select>
+</mapper>

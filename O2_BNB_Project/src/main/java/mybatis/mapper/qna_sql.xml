@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	<!-- 문의게시판 글 작성 -->
+	<insert id="qna_insert" parameterType="q_dto">
+		insert into o2_qna values ( 
+		qna_seq.nextval, 
+		#{q_type},
+		#{content},
+		sysdate,
+		#{subject},
+		#{id},
+		#{pw}
+		)
+	</insert>
+	<!-- 문의게시판 페이징 , 관리자는 모든 글 다 뜸 -->
+	<select id="qna_paginglist" parameterType="HashMap"  resultType="q_dto">
+	   	select a.* 
+	   	from (select ROWNUM as RNUM,b.* 
+	   		  from (select * 
+	   		  		from o2_qna 
+	   		  		<if test='id != null'>
+	   		  		where id = #{id} 
+	   		  		</if>
+	   		  		order by num desc 
+	   		  		)b 
+	   		  )a 
+	   	<![CDATA[
+		where a.RNUM>=#{start} and a.RNUM<=#{end}
+		 ]]>		
+	</select>
+
+	<!-- num에 해당하는 문의글dto 한개 반환 -->
+	<select id="qna_getData" parameterType="int" resultType="q_dto">
+		select * from o2_qna 
+		where num = #{num}
+	</select>
+	
+	<!-- id당 문의글 총갯수 -->
+	<select id="qna_cnt_by_id" parameterType="String" resultType="int">
+		select count(*) from o2_qna 
+		<if test=" value != null">
+  			where id = #{value}
+  		</if>
+	</select>
+
+	<!-- 문의글 수정 -->
+	<update id="qna_update" parameterType="q_dto">
+		update o2_qna 
+		set subject = #{subject} 
+		, content = #{content} 
+		where num = #{num}
+	</update>
+	
+	<insert id="reboard_insert" parameterType="qr_dto">
+		insert into 
+		o2_qna 
+		values (
+				qna_seq.nextval,
+				#{id}, 
+				#{pw}, 
+				#{subject}, 
+				#{content}, 
+				sysdate, 
+				#{groupno}, 
+				#{restep}, 
+				#{relevel}, 
+				#{q_num}
+				)
+	</insert>
+	
+	<!-- 문의글 num 받아서 dto상의 비번 확인 -->
+	<select id="select_qna_pw" parameterType="int" resultType="String">
+		select pw 
+		from o2_qna 
+		where num = #{num}
+	</select>
+	
+	<!-- 문의글 삭제하기 -->
+	<delete id="qna_delete" parameterType="int">
+		delete from o2_qna 
+		where num = #{num}
+	</delete>
+	
+	<!-- 공지사항 글 불러오기 -->
+	<select id="qna_noticelist"  resultType="q_dto">
+	   	select * 
+	   	from o2_qna 
+	   	where q_type = 1
+	</select>
+	
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+	<typeAlias alias="m_dto" type="o2.data.member_dto"/>
+	<typeAlias alias="rt_dto" type="o2.data.main_rtime_dto"/>
+	<typeAlias alias="sc_dto" type="o2.data.scrap_dto"/>
+	<typeAlias alias="ho_dto" type="o2.data.home_dto"/>
+	<typeAlias alias="us_pay_dto" type="o2.data.user_pay_dto"/>
+    <typeAlias alias="ch_room_dto" type="o2.data.chat_room_dto"/>
+    <typeAlias alias="ch_con_dto" type="o2.data.chat_content_dto"/>
+	<typeAlias alias="q_dto" type="o2.data.qna_dto"/>
+	<typeAlias alias="qr_dto" type="o2.data.qna_reply_dto"/>
+	<typeAlias alias="ho_gu_dto" type="o2.data.home_guest_dto"/>
+	<typeAlias alias="h_re_dto" type="o2.data.home_review_dto"/>
+	<typeAlias alias="ho_re_dto" type="o2.data.host_review_dto"/>
+	<typeAlias alias="se_dto" type="o2.data.search_dto"/>
+</typeAliases>
+<mappers>
+	<mapper resource="mybatis/mapper/member_sql.xml"/>
+	<mapper resource="mybatis/mapper/main_sql.xml"/>
+	<mapper resource="mybatis/mapper/host_sql.xml"/>
+	<mapper resource="mybatis/mapper/chat_sql.xml"/>
+	<mapper resource="mybatis/mapper/board_sql.xml"/>
+	<mapper resource="mybatis/mapper/qna_sql.xml"/>
+	<mapper resource="mybatis/mapper/qna_reply_sql.xml"/>
+</mappers>
+</configuration>

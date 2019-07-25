@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+   	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+<!-- /WEB-INF/layout/layout.jsp를 layout이라는 이름으로 접근-->
+<!-- /WEB-INF/layout/layout.jsp 안에 put-attribute를 가지고 각각의 파일들을
+    인클루드 하고  있음-->
+	<definition name="layout" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="top" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="bottom" value="/WEB-INF/layout/bottom.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+		<put-attribute name="leftmenu" value="/WEB-INF/layout/leftmenu.jsp"/>
+	</definition>
+	
+	<!-- 위에서 지정한 layout이름의 인클루드 형태의 디자인 파일을 상속받겠다는 의미 -->
+<!-- 	<definition name="main.tiles" extends="layout">
+		계속 화면이 바뀔 위치를 지정 즉 main이라고 되어 있는 인클루드 부분이
+		     value에서 지정한 값으로 바뀔 것이라는 것을 의미 이렇게 하면 바뀔 부분을
+		     태그로 다 지정해야 하는 번거로움이 있기 때문에 이를 좀 더 수월하게 하기 
+		     위해서 macro를 이용 그 예가 아래
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition> -->
+	
+	<!-- 위의 방법을 좀 더 쉽게 하는 경우 : macro사용 -->
+	<definition name="/*/*" extends="layout">
+		<!-- 위의 name에서 /*->1/*->2 파일 단계를 의미
+		     그래서 아래의 태그를 보면 main이라는 이름의 인클루드 위치는 저렇게 두개의
+		     단개의 폴더에 위치하는 jsp파일로 바꿀 것이라는 의미 -->
+		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
+</tiles-definitions>

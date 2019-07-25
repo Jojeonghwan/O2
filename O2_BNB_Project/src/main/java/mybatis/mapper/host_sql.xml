@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="host">
+	<insert id="homeinsert" parameterType="ho_dto">
+		insert into o2_home values
+		(home_seq.nextval,#{home_name},#{host_name},#{person},
+		#{addr},#{hp},#{emer_hp},#{intro},#{tag},#{sub_tag},#{id},
+		#{img},#{facilities},#{sub_facilities},#{price},#{u_num})
+	</insert>
+	<select id="home_paginglist" parameterType="HashMap"  resultType="ho_dto">
+	  	 <![CDATA[
+	   	select a.* from (select ROWNUM as RNUM,
+		b.* from (select * from o2_home order by num desc)b )a 
+		where a.RNUM>=#{start} and a.RNUM<=#{end}
+		 ]]>		
+	</select>
+	<select id="home_totalcount" resultType="int">
+		select count(*) from o2_home
+	</select>
+	<select id="host_homelist" parameterType="String" resultType="ho_dto">
+		select h.* from o2_home h, o2_user u where h.u_num=u.num and u.id=#{id}
+	</select>
+	<select id="home_select_data" parameterType="int" resultType="ho_dto" >
+		select * from o2_home where num=#{num}
+	</select>
+	<delete id="home_delete_data" parameterType="int">
+		delete from o2_home where num=#{num}
+	</delete>
+	<update id="home_update_data" parameterType="ho_dto">
+		update o2_home set 
+		home_name=#{home_name}, addr=#{addr}, hp=#{hp}, person=#{person}, 
+		emer_hp=#{emer_hp}, intro=#{intro}, tag=#{tag}, sub_tag=#{sub_tag},
+		img=#{img}, facilities=#{facilities}, sub_facilities=#{sub_facilities}, 
+		price=${price} where num=#{num}
+	</update>
+	
+	<!-- 위에까지는 home관련 -->
+	<!-- 아래부터는 home_guest -->
+	<insert id="home_guest_insert" parameterType="ho_gu_dto">
+		insert into o2_home_guest values 
+		(guest_seq.nextval,#{host_id}, #{h_num},
+		#{guest_name},#{guest_person},sysdate,
+		#{checkin},#{checkout},#{guest_hp},#{guest_email})
+	</insert>
+	<select id="home_guest_select" parameterType="ho_dto" resultType="ho_gu_dto">
+		select g.* from o2_home_guest g, o2_home h where g.h_num=h.num 
+		and g.host_id=#{id} 
+  		<if test="num != 0">
+			and g.h_num=#{num}
+  		</if>
+		 order by g.num asc
+	</select>
+	<select id="host_review_paginglist" parameterType="HashMap"   resultType="ho_re_dto">
+	  	 <![CDATA[
+	   	select a.* from (select ROWNUM as RNUM,
+		b.* from (select * from o2_host_review order by num desc)b )a 
+		where a.RNUM>=#{start} and a.RNUM<=#{end}
+		 ]]>		
+	</select>
+	<delete id="host_delete_home_guest" parameterType="ho_gu_dto">
+		delete  from
+		o2_home_guest 
+		where
+		h_num=#{h_num}
+		and checkin=#{checkin}
+		and checkout=#{checkout}
+	</delete>
+	<delete id="host_delete_user_pay" parameterType="us_pay_dto">
+		delete  from
+		o2_user_pay 
+		where
+		h_num=#{h_num}
+		and checkin=#{checkin}
+		and checkout=#{checkout}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+

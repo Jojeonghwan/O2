@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+	<!-- 1. 채팅방 존재하는지 확인 -->
+	<select id="chat_room_dto" parameterType="String" resultType="ch_room_dto">
+		select *
+		from o2_chat_room
+		where room_name = #{room_name}
+	</select>
+	
+	<!-- 2. 채팅방 만들기 -->
+	<insert id="chat_room_in" parameterType="String">
+		insert into o2_chat_room
+		values(#{room_name}, 2, 1, null)
+	</insert>
+	
+	<!-- 3. 채팅방 리스트 불러오기 -->
+	<select id="chat_room_list" parameterType="String" resultType="ch_room_dto">
+		select *
+		from o2_chat_room
+		where validity = 1
+		and room_name like '%' || #{id} || '%'
+		and (exit_id is null or exit_id != #{id})
+	</select>
+	
+	<!-- 4. 채팅방 내용 인설트 -->
+	<insert id="chat_con_in" parameterType="ch_con_dto">
+		insert into o2_chat_content
+		values(ch_con_seq.nextval, #{writer}, #{content}, sysdate, #{ip}, null, #{room_name})
+	</insert>
+	
+	<!-- 5. 채팅방 내용 불러오기 -->
+	<select id="chat_con_list" parameterType="HashMap" resultType="ch_con_dto">
+		select * 
+		from o2_chat_content
+		where room_name = #{room_name}
+		and (del_ch is null or (del_ch != #{id} and del_ch != 'all'))
+		order by num
+	</select>
+	
+	<!-- 6. 채팅방 삭제 : 한사람이라도 남아 있는 경우 정보만 변경 -->
+	<update id="chat_room_per_dec" parameterType="HashMap">
+		update o2_chat_room
+		set person = person-1, exit_id = #{id}
+		where room_name = #{room_name}
+	</update>
+	
+	<!-- 7. 채팅방 삭제 : 둘다 나갔을 경우 아예 삭제 -->
+	<update id="chat_room_val_update" parameterType="String">
+		update o2_chat_room
+		set validity = '0', person = person-1, exit_id = 'all'
+		where room_name = #{room_name}
+	</update>
+	
+	<update id="chat_con_del_ch_update" parameterType="HashMap">
+		update o2_chat_content
+		set del_ch = #{del_ch}
+		where room_name = #{room_name}
+		and (del_ch is null or del_ch != 'all')
+	</update>
+	
+	<!-- 8. 채팅방 재생성1 -->
+	<update id="chat_room_per_inc" parameterType="String">
+		update o2_chat_room
+		set person = person+1, exit_id = null
+		where room_name = #{room_name}
+	</update>
+	
+	<!-- 9. 채팅방 재생성2 -->
+	<update id="chat_room_re_in" parameterType="String">
+		update o2_chat_room
+		set validity = '1', person = 2, exit_id = null
+		where room_name = #{room_name}
+	</update>
+</mapper>
