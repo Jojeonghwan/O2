@@ -246,7 +246,7 @@
 	<tr>
 		<td>
 			<br>
-			아이와 함께<input type="checkbox" name="hashtag" value="아이와 함께">
+			아이와 함께<input type="checkbox" name="hashtag" value="아이와 함께" >
 			힐링하기 좋은<input type="checkbox" name="hashtag" value="힐링하기 좋은">
 			혼자서<input type="checkbox" name="hashtag" value="혼자서">
 			가족과 함께<input type="checkbox" name="hashtag" value="가족과 함께">
@@ -259,10 +259,11 @@
 			야경이 좋은<input type="checkbox" name="hashtag" value="야경이 좋은">
 			<br>
 			<br>
-			서브 해시태그<input type="text" name="sub_tag" required="required">
+			서브 해시태그<input type="text" name="sub_tag">
 		</td>
 	</tr>
 </table>
+
 구비 품목 :<br>
 <table>
 	<tr>
@@ -279,7 +280,7 @@
 			침대<input type="checkbox" name="goods" value="침대">
 			<br>
 			<br>
-			서브 구비품목<input type="text" name="sub_facilities" required="required" value="${sub_facilities}">
+			서브 구비품목<input type="text" name="sub_facilities" value="${sub_facilities}">
 		</td>
 	</tr>
 </table>
@@ -320,7 +321,7 @@ $(document).ready(
  
 </script>
 사진
-<input multiple="multiple" id="file" type="file" name="file" class="ct_input_g" style="width:200px; height:19px">
+<input multiple="multiple" id="file" type="file" name="file" class="ct_input_g" style="width:200px; height:19px" required="required">
 <div id="preview">
 </div>
 
