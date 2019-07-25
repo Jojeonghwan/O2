@@ -41,7 +41,6 @@
 			<a href="qna/qna_list.do?id=${sessionScope.login_id}">QnA</a>
 		</div>
 		</c:if>
-		<a href="board/review_form.do">리뷰달기</a>
 		
 	</body>
 </head>

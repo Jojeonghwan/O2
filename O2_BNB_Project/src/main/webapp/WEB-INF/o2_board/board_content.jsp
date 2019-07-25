@@ -176,7 +176,6 @@ $("#paybtn").click(function(){
 </form>
 <input type="button" value="test" id="test">
 <input type="button" value="호스트랑 채팅하기" id="chat">
-<input type="button" value="리뷰 작성하기" id="review_form">
 <!-- hidden -->
 <input type="hidden" value="${sessionScope.login_id }" id="login_id">
 
@@ -341,12 +340,6 @@ $(".scrap").click(function() {
 $("#chat").click(function() {
 	var num = '${dto.num}';
 	location.href = "../chat/ch_room.do?num="+num;
-});
-
-$("#review_form").click(function() {
-	var login_id = $("#login_id").val();
-	var h_num = '${dto.num}';
-	location.href = "../review/review_form.do?h_num="+h_num+"&id="+login_id;
 });
 
 </script>

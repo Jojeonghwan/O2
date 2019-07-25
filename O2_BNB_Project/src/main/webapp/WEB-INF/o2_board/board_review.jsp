@@ -59,8 +59,8 @@
 		
 <label for="file1">사진 첨부</label>
  <div class="files">
- 	<button type="button" style="width: 60px;" class="btn">추가</button>
 	<div><input type="file" name="upfile" id="upfile"></div>
+	<button type="button" style="width: 60px;" class="btn">추가</button>
 </div>
 <textarea style="width: 500px; height: 150px;" name="content" id="content"></textarea>
 <!-- hidden -->
@@ -97,7 +97,6 @@
 		<td style="width: 80px;">
 			<input type="button" value="수정" class="btn_update" r_num="${r_dto.num}" h_num="${num}" pageNum="${pageNum}">
 			<input type="button" value="삭제" class="btn_delete" r_num="${r_dto.num}" h_num="${num}" pageNum="${pageNum}">
-			
 		</td>
 	</tr>
 	</c:forEach>
