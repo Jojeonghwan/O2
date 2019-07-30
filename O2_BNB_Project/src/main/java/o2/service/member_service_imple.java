@@ -108,4 +108,8 @@ public class member_service_imple implements member_service {
 	public member_dto user_dto(String num) throws Exception {
 		return dao.user_dto(num);
 	}
+	
+	public void user_type_change(String id){
+		dao.user_type_change(id);
+	}
 }

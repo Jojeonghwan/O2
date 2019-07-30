@@ -70,14 +70,14 @@ public class home_dao_imple extends SqlSessionDaoSupport implements home_dao {
 		map.put("end",end);
 		return getSqlSession().selectList("host_review_select",map);
 	}
-	public void host_delete_home_guest(home_guest_dto dto)
+	public void host_update_home_guest_cancel_type(home_guest_dto dto)
 	{
-		getSqlSession().delete("host_delete_home_guest",dto);
+		getSqlSession().update("host_update_home_guest_cancel_type",dto);
 	}
 	
-	public void host_delete_user_pay(user_pay_dto dto)
+	public void host_update_user_pay_pay_chcek(user_pay_dto dto)
 	{
-		getSqlSession().delete("host_delete_user_pay",dto);
+		getSqlSession().update("host_update_user_pay_pay_chcek",dto);
 	}
 
 	public List<home_dto> infiniteList(search_dto s_dto)

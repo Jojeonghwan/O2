@@ -137,7 +137,9 @@ public class host_controller {
 			@RequestParam(value="id") String id,
 			@RequestParam(value="person",defaultValue="1") int person,
 			MultipartHttpServletRequest req,
-            @RequestParam("file") MultipartFile[] file
+            @RequestParam("file") MultipartFile[] file,
+            @RequestParam(value="sub_tag",defaultValue="/") String sub_tag,
+            @RequestParam(value="sub_facilities",defaultValue="/") String sub_facilities
 			)throws Exception 
 	{
 		//ModelAndView model = new ModelAndView();
@@ -511,8 +513,8 @@ public class host_controller {
 			
 			mailSender.send(message);
 			model.addObject("result", "1");
-			service.host_delete_home_guest(gdto);
-			service.host_delete_user_pay(udto);
+			service.host_update_home_guest_cancel_type(gdto);
+			service.host_update_user_pay_pay_chcek(udto);
 			model.setViewName("o2_host/home_guest_cancel_result");
 		} catch(Exception e){
 			model.addObject("result", "0");

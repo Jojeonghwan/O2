@@ -10,62 +10,107 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/ko.js"></script>
 ​<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
 <%-- <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.js">
 </script> --%>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js">
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
 <!-- datepicker start -->
+		<style>
+.plus {
+        background-image: url('image/plus.png') ;
+        background-repeat:no-repeat;
+        background-color:transparent;
+        color:red;
+        border: none;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
+.minus {
+        background-image: url('image/minus.png');
+        background-repeat:no-repeat;
+        background-color:transparent;
+        border: none;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
+.search_box{
+		width:300px;
+		height:45px;
+	}
+input[name*="tag"]{
+		height:40px;
+		font-size:13pt;
+		border-radius:10px;
+		background-color: rgba( 255, 90, 95, 0.7 );
+}
+.font{
+font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 <!-- 숙소 검색후 집 리스트로 이동  -->
-<form action="board/list.do">
-	<input type="text" name="addr" placeholder="지역" style="height:30px;"/>
+<form action="board/list.do" class="form-inline">
 	<div class="form-group">
-    <br><br><br>
-    <div class="col-sm-9">
-       <div class='col-sm-5'>
-            <div class="form-group">
-                <div class='input-group date dateTimePicker' id="datepicker1">
-                    <input type='text' class="form-control" placeholder="CheckIn" name="checkin" required="required" autocomplete="off"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class='col-sm-2'>
-            <h4 align="center"><b>~</b></h4>
-        </div>
-        <div class='col-sm-5'>
-            <div class="form-group">
-                <div class='input-group date dateTimePicker' id="datepicker2">
-                    <input type='text' class="form-control" placeholder="CheckOut" name="checkout" required="required" autocomplete="off"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<br><br>
-<button type="button" id="dec">-</button>
-<input id="person" name="person" type="text" value="1">
-<button type="button" id="inc">+</button>
-<br><br>
+		<input type="text" name="addr" placeholder="Location" style="width:300px; height:45px;" class="form-control search_box font" />
+	</div>
+	<div class="form-group">
+		<div class='input-group date dateTimePicker' id="datepicker1">
+			<input type='text' class="form-control font" style="width:150px; height:45px;" placeholder="CheckIn" name="checkin" autocomplete="off" />
+			<span class="input-group-addon" style="color:#ff5a5f;">
+				<span class="glyphicon glyphicon-calendar" ></span>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class='input-group date dateTimePicker' id="datepicker2">
+			<input type='text' class="form-control font" style="width:150px; height:45px;" placeholder="CheckOut" name="checkout" autocomplete="off"/>
+			<span class="input-group-addon" style="color:#ff5a5f;">
+				<span class="glyphicon glyphicon-calendar" ></span>
+			</span>
+		</div>
+	 </div>
+	 <div class="form-group">
+	 	<select id="people" class="font" style="width:100px; height:45px; border-radius:3px; ">
+	 		<option value="1" class="font">1명</option>
+	 		<option value="2" class="font">2명</option>
+	 		<option value="3" class="font">3명</option>
+	 		<option value="4" class="font">4명</option>
+	 		<option value="5" class="font">5명</option>
+	 		<option value="6" class="font">6명</option>
+	 	</select>
+	 </div>
+	<!-- <div class="form-group">
+		<input type=button id="dec" class="minus"></button>
+	</div>
+	<div class="form-group">
+		<input id="person" name="person" type="text search_box" value="1" class="form-control" readonly="readonly" style="width:100px; height:30px;">
+	</div>
+	<div class="form-group">
+		<input type="button" id="inc" class="plus"></button>
+	</div> -->
 	<!-- startday('YYYY-MM-DD')+" "+endday('YYYY-MM-DD') 이런 형식으로 저장 띄어쓰기로 구분자이다. -->
 	<input type="hidden" name="from_main" value="1"> 
-	<input type="submit" value="숙소 검색">
+	<input type="hidden" id="person" name="person" value="">
+	<div class="form-group">
+		<input type="submit" value="Search" class="btn-default font"style="height:45px; width:100px; border-radius:10px;background-color:#ff5a5f">
+	</div>
 </form>
-<div>
-해시태그 
 <br>
-<input type="button" name="tag" value="가족과 함께" onclick="location.href='main/tag.do?tag=가족과 함께'">
-<input type="button" name="tag" value="계곡" onclick="location.href='main/tag.do?tag=계곡'">
-<input type="button" name="tag" value="친구와 함께" onclick="location.href='main/tag.do?tag=친구와 함께'">
-<input type="button" name="tag" value="야경이 좋은" onclick="location.href='main/tag.do?tag=야경이 좋은'">
-<input type="button" name="tag" value="힐링하기 좋은" onclick="location.href='main/tag.do?tag=힐링하기 좋은'">
+<div>
+<input type="button" name="tag" value="#가족과 함께" class="font" onclick="location.href='main/tag.do?tag=가족과 함께'">
+&nbsp;&nbsp;
+<input type="button" name="tag" value="#계곡" class="font" onclick="location.href='main/tag.do?tag=계곡'">
+&nbsp;&nbsp;
+<input type="button" name="tag" value="#친구와 함께" class="font" onclick="location.href='main/tag.do?tag=친구와 함께'">
+&nbsp;&nbsp;
+<input type="button" name="tag" value="#야경이 좋은" class="font" onclick="location.href='main/tag.do?tag=야경이 좋은'">
+&nbsp;&nbsp;
+<input type="button" name="tag" value="#힐링하기 좋은" class="font" onclick="location.href='main/tag.do?tag=힐링하기 좋은'">
 </div>
 <script>
 $(document).ready(function(){
@@ -92,7 +137,9 @@ $("#datepicker2").on("dp.change", function (e) {
 
 //datepicker end
 //person start
-$("#inc").click(function(){
+$("#person").val($("#people option:selected").val());
+
+/* $("#inc").click(function(){
 	if(parseInt($('#person').val())<6)
 	{
 		$("#person").val(parseInt($('#person').val())+1);
@@ -103,7 +150,8 @@ $("#dec").click(function(){
 	{
 		$("#person").val(parseInt($('#person').val())-1);
 	}
-	});
+	}); */
+
 //person end
 </script>
 

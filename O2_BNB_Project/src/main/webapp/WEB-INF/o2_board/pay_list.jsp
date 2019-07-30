@@ -83,6 +83,9 @@ ${dto.checkout}
 </c:if>
 </td>
 <td>
+<c:if test="${dto.pay_check eq '4'}">
+예약 취소
+</c:if>
 <c:if test="${dto.pay_check eq '3'}">
 예약 확정
 </c:if>
@@ -92,7 +95,9 @@ ${dto.checkout}
 </td>
 <td>
 <c:if test="${dto.send_ticket_ch=='1'}">
-	<input type="button" value="보내기" num="${dto.num}" class="send_ticket">
+	<c:if test="${dto.pay_check != '4'}">
+		<input type="button" value="보내기" num="${dto.num}" class="send_ticket">
+	</c:if>
 </c:if>
 </td>
 </tr>

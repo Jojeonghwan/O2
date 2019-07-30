@@ -116,4 +116,8 @@ public class member_dao_imple extends SqlSessionDaoSupport implements member_dao
     public member_dto user_dto(String num) {
     	return getSqlSession().selectOne("user_dto", num);
     }
+    
+    public void user_type_change(String id){
+    	getSqlSession().update("user_type_change",id);
+    }
 }

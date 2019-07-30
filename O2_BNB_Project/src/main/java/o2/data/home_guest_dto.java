@@ -14,9 +14,17 @@ public class home_guest_dto {
 	private String guest_hp;
 	private String guest_email;
 	private String host_id;
+	private int cancel_type;
 	
 	
 	
+	
+	public int getCancel_type() {
+		return cancel_type;
+	}
+	public void setCancel_type(int cancel_type) {
+		this.cancel_type = cancel_type;
+	}
 	public String getHost_id() {
 		return host_id;
 	}

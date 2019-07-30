@@ -20,7 +20,7 @@
 	]]>
 	</select>
 	<select id="search_data_list" parameterType="se_dto" resultType="ho_dto">
-		<![CDATA[
+		
 		select 
 		    h.*
 		from 
@@ -29,12 +29,18 @@
 		    h.num not in (
 		        select distinct h_num 
 		        from o2_home_guest
-		        where (
+		        where 
+		        <if test="checkin != null || chcekin.equals('')">
+		        <if test="checkout != null || chcekout.equals('')">
+		        (
 		            checkin  between to_date(#{checkin})   and to_date(#{checkout})-1 or 
 		            checkout between to_date(#{checkin})+1 and to_date(#{checkout}) 
 		        )
-		    )
-		    and addr LIKE '%'||#{addr}||'%' 
+		        </if>
+		        </if>
+		    ) 
+		    and addr LIKE '%'||#{addr}||'%'
+		    <![CDATA[
 		    AND person >= #{person} 
 		    ]]>
 	<!-- <![CDATA[

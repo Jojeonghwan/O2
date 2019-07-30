@@ -64,13 +64,13 @@ public interface home_dao {
 	 * 생 성 자 : 조정환
 	 * 용    도 : home_guest delete 예약취소용
 	 */
-	public void host_delete_home_guest(home_guest_dto dto);
+	public void host_update_home_guest_cancel_type(home_guest_dto dto);
 	
 	/* 생성일자 : 2019.07.23
 	 * 생 성 자 : 조정환
 	 * 용    도 : user_pay delete 예약취소용
 	 */
-	public void host_delete_user_pay(user_pay_dto dto);
+	public void host_update_user_pay_pay_chcek(user_pay_dto dto);
 	
 	
 	public List<home_dto> infiniteList(search_dto s_dto);

@@ -8,41 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript">
-$(function() {
-	$(".cancel").click(function() {
-		var h_num = $(this).attr("h_num");
-		var checkin =$(this).attr("checkin")
-		var checkout = $(this).attr("checkout");
-		var guest_email = $(this).attr("guest_email");
-		var guest_name = $(this).attr("guest_name");
-		var reserveday = $(this).attr("reserveday");
-		$.ajax({
-			type : "post",
-			url : "cancel.aj",
-			data : {
-				h_num : h_num,
-				checkin : checkin,
-				checkout : checkout,
-				guest_email : guest_email,
-				guest_name : guest_name,
-				reserveday : reserveday
-			},
-			dataType : "xml",
-			success : function(redata) {
-				var ch = $(redata).find("result").text();
-				if(ch=='1') {
-					alert("예약 취소가 완료되었습니다.");
-					location.reload();
-				}
-			},
-			error : function() {
-				alert("에러");
-			}
-		});
-	});
-});
-</script>
+<script src="${pageContext.request.contextPath}/js/home_guest_list_jh.js"></script>
 <style>
 table{
 	width:300px;
@@ -55,6 +21,7 @@ border:1px solid gray;
 </head>
 <body>
 <c:forEach var="dto" items="${list}">
+<c:if test="${dto.cancel_type eq '1'}">
 <table>
 	<tr>
 		<td>
@@ -151,9 +118,104 @@ border:1px solid gray;
 		</td>
 	</tr>
 </table>
+
 <br><br>
 
 <br><br><br>
+</c:if>
+<c:if test="${dto.cancel_type eq '2'}">
+<table>
+	<tr>
+		<td>
+			num:
+		</td>
+		<td>
+			${dto.num}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			host_id:
+		</td>
+		<td>
+			${dto.host_id}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			h_num:
+		</td>
+		<td>
+			${dto.h_num}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			guest_name:
+		</td>
+		<td>
+			${dto.guest_name}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			guest_person:
+		</td>
+		<td>
+			${dto.guest_person}
+		</td>	
+	</tr>
+	<tr>
+		<td>
+			reserveday:
+		</td>
+		<td>
+			${dto.reserveday}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			checkin:
+		</td>
+		<td>
+			${dto.checkin}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			checkout:
+		</td>
+		<td>
+			${dto.checkout}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			guest_hp:
+		</td>
+		<td>
+			${dto.guest_hp}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			guest_email:
+		</td>
+		<td>
+			${dto.guest_email}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			취소 처리된 예약입니다.
+		</td>
+	</tr>
+</table>
+
+<br><br>
+
+<br><br><br>
+</c:if>
 </c:forEach> 
 
 </body>
