@@ -2,49 +2,78 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8c8c41484005696a06aceab619299c52&libraries=services,clusterer,drawing"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
+<style>
+.font{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.ellip {
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+.image{
+	width:200px;
+	height:200px;
+}
+</style>
 </head>
 <body>
-<div>
+<div class="container margin_60">
+	<h1 class="my-5 font">
+		Room List
+	</h1>
+	<div class="row">
 		<c:forEach var="dto" items="${host_list}" varStatus="status">
-			<b>no.${status.index+1}</b>
-			<br>
-			<table class="table table-bordered" style="width: 500px;">
-				<tr>
-					<td>
-					<a href="../board/content.do?num=${dto.num}&pageNum=${currentPage}">Home_Name: ${dto.home_name}</a><br>
-					Host: ${dto.host_name}<span style="margin-left: 200px;"><br>
-					Intro: ${dto.intro}<br>
-					</span> <br>
-					<br> <pre></pre> <br> 
-					<c:if test="${dto.img!='noimage'}">
-							<c:forTokens var="myimg" items="${dto.img}" delims=",">
-								<a href="../save/${myimg}" target="_new"> <img
-									src="../save/${myimg}" style="width: 400px;"
-									class="img-thumbnail"></a>
-								<!-- img-thumbnail,img-circle,img-rounded -->
-							</c:forTokens>
-						</c:if>
-					</td>
-				</tr>
-			</table>
-			<span style="margin-left: 200px;">
-				<button type="button" class="btn btn-danger btn-sm"
-					style="width: 60px;"onclick="location.href='delete.do?num=${dto.num}&pageNum=${currentPage}'">삭제</button>
-				<button type="button" class="btn btn-info btn-sm"
-					style="width: 60px;"onclick="location.href='updateform.do?num=${dto.num}&pageNum=${currentPage}'">수정</button>
-			</span>
-			<br> 
-			<br>
-			<br>
+			<div class="col-3 rounded border my-3 mx-4">
+				<div class="form-group">
+					<label class="font">no.${status.index+1}</label>
+				</div>
+				<div class="form-group">
+					<a class="font ellip" href="../board/content.do?num=${dto.num}&pageNum=${currentPage}">
+					<label class="font">Home_Name :</label> 
+					<pre class="font">${dto.home_name}</pre>
+					</a>
+				</div>
+				<div class="form-group">
+					<label class="font">Host :</label>
+					<pre class="font ellip">${dto.host_name}</pre>
+				</div>
+				<div class="form-group">
+					<label class="font">Intro :</label>
+					<pre class="font ellip">${dto.intro}</pre>
+				</div>
+				<div class="form-group">
+					<c:set var="img" value="${dto.img}"/>
+					<img class="image" src="../save/${fn:split(img,',')[0]}">
+				</div>
+				<div class="form-group">
+					<button type="button" class="btn btn-danger btn-sm font"
+						style="width: 60px;"onclick="location.href='delete.do?num=${dto.num}&pageNum=${currentPage}'">삭제</button>
+					<button type="button" class="btn btn-info btn-sm font"
+						style="width: 60px;"onclick="location.href='updateform.do?num=${dto.num}&pageNum=${currentPage}'">수정</button>
+				</div>
+			</div>
 		</c:forEach>
-</div>
+	</div>
 </div>
 </body>
 </html>

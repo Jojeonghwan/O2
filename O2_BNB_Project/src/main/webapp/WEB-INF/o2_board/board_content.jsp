@@ -244,7 +244,7 @@ function popup(){
 	var person=$('input[name="person"]').val();
 	var pay_type=$("input:radio[name=pay]:checked").val();
     var url="pay_popup.do?num="+${dto.num}+"&checkin="+checkin+"&checkout="+checkout+"&pay_type="+pay_type+"&person="+person+"&id=${sessionScope.login_id}";
-    var option="width=500, height=700, top=200 left=800"
+    var option="width=500, height=350, top=200 left=800"
     window.open(url, "", option);
 
 }
