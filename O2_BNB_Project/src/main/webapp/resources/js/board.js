@@ -20,3 +20,18 @@ $(function() {
 		});
 	});
 });
+
+
+// board list에서 로그인했으면 content.do로 아니면 login.do로 보내기
+$(function(){
+	$(".loginConfirm").click(function(){
+		 var name = $('input[name=login_id]').val();
+		 var num = $('input[name=h_num]').val();
+		  if ( name == "") {
+		   alert("로그인을 해주세요. 확인을 누르시면 로그인페이지로 이동합니다");
+		   location.href="../member/login.do";
+		  }else{
+			  location.href="../board/content.do?num="+num;
+		  }
+	});
+});

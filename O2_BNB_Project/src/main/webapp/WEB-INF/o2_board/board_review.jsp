@@ -7,60 +7,71 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-
 </head>
 <body>
 
-<div>
-** 숙소 후기 ** <br>
+<div class="container margin_60">
 
-숙소 총 평점 : (
-스코어가 없을때
-		<fmt:formatNumber value="${starRating}" pattern="0.00"/>점, 
-		<span style="zoom: 0.5;">
-		<span class="star-rating">
-		<span style="width:${starRating*20}%"></span>
-		</span>
-		</span>
-		)
-
-<hr>
 <!-- 댓글입력 시작 -->
 <form id="uploadForm" enctype="multipart/form-data" method="POST" action="review_insert.do">
-	
-		<div class="starRev">
-		  <span class="starR1 on">0.5</span>
-		  <span class="starR2 no">1.0</span>
-		  <span class="starR1 no">1.5</span>
-		  <span class="starR2 no">2.0</span>
-		  <span class="starR1 no">2.5</span>
-		  <span class="starR2 no">3.0</span>
-		  <span class="starR1 no">3.5</span>
-		  <span class="starR2 no">4.0</span>
-		  <span class="starR1 no">4.5</span>
-		  <span class="starR2 no">5.0</span>
+<div class="container margin_60">
+	<div class="row">
+		<div class="col-sm-4 col-sm-8 form-group">
+			<div class="form-group">
+				<b class="font">숙소 후기</b>
+				
+				<div class="font" style="color: gray;">
+				총 평점 : (
+						<fmt:formatNumber value="${starRating}" pattern="0.00"/>점, 
+						<span style="zoom: 0.5;">
+						<span class="star-rating">
+						<span style="width:${starRating*20}%"></span>
+						</span>
+						</span>
+						)
+				</div>
+			</div>
+			<div class="form-group">
+				<span id="startext">평가하기</span>
+				<div class="starRev">
+				  <span class="starR1 on">0.5</span>
+				  <span class="starR2 no">1.0</span>
+				  <span class="starR1 no">1.5</span>
+				  <span class="starR2 no">2.0</span>
+				  <span class="starR1 no">2.5</span>
+				  <span class="starR2 no">3.0</span>
+				  <span class="starR1 no">3.5</span>
+				  <span class="starR2 no">4.0</span>
+				  <span class="starR1 no">4.5</span>
+				  <span class="starR2 no">5.0</span>
+				</div>		
+			</div>
+			<div class="form-group">
+				<div class="filebox">
+				    <label for="file1" class="font">사진 등록</label> 
+				    <input type="file" name="upfile" id="upfile">
+				</div>
+			</div>
+		</div><!-- form-group 끝 -->
+
+	<div class="col-sm-4 col-sm-8 form-group">
+		<div class="form-group">
+		<textarea name="content" id="reContent" required="required" class="form-control" style="resize:none;"></textarea>
+		<input type="button" class="insert_btn" id="insert_btn" value="댓글등록">
 		</div>
-		<br><br>
-		<span id="startext">평가하기</span>
-		
-<label for="file1">사진 등록</label>
-<div class="files">
-	<div><input type="file" name="upfile" id="upfile"></div>
-</div>
-<textarea style="width: 500px; height: 150px;" name="content" id="reContent" required="required"></textarea>
+	</div>
 <!-- hidden -->
 <input type="hidden" name="score" id="star_score" value="0.5">
 <input type="hidden" name="id" value="${sessionScope.login_id}">
 <input type="hidden" name="h_num" value="${num}">
-<input type="button" id="insert_btn" value="댓글등록">
+</div><!--  row 끝  -->
+</div><!-- form container 끝 -->
+
 </form>
 <!-- 댓글입력 끝 -->
-</div>
+
+
+
 	
 <!-- ///////////////////////////////////////////////////////////댓글리스트 출력!!! -->
 <div id="review_here">

@@ -26,6 +26,7 @@
 <!-- rangeSlide -->
 <script src="http://bootstraptema.ru/plugins/2018/irs/ion.rangeSlider.min.js"></script>
 <script type="text/javascript" src="../js/board_list_sy.js"></script>
+<script type="text/javascript" src="../js/board.js"></script>
 
 <style>
 .text {
@@ -66,6 +67,7 @@
 	<input type="hidden" id="checkin_id" name="checkin" value="${checkin}">
 	<input type="hidden" id="checkout_id" name="checkout" value="${checkout}">
 	<input type="hidden" name="end" value="${end}">
+	<input type="hidden" value="${sessionScope.login_id }" name="login_id">
 	<div id="search_total"></div>
 </div>
 </form>
@@ -186,7 +188,9 @@
 				<img src="../save/${fn:split(img,',')[0]}" width="100">
 			</div>	
 <br><br><br>			
-			<a href="../board/content.do?num=${dto.num}">${dto.home_name}</a>
+			<a href="#" class="loginConfirm">${dto.home_name}</a>
+			<!-- hidden -->
+			<input type="hidden" name="h_num" value="${dto.num}"> 
 <br><br>			
 			<!-- 평점, 리뷰갯수 출력// -->
 		</div>
