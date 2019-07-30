@@ -46,7 +46,8 @@ public class admin_controller {
 	@RequestMapping(value="/member/userUpdate.do", method=RequestMethod.POST)
 	@CrossOrigin
 	public @ResponseBody void userUpdate(@RequestBody member_dto dto) throws Exception {
-		m_service.update_member(dto);
+		System.out.println(dto.getUser_type());
+		m_service.update_member_admin(dto);
 	}
 	
 	@RequestMapping(value="/member/upload.do",consumes = {"multipart/form-data"},method=RequestMethod.POST)

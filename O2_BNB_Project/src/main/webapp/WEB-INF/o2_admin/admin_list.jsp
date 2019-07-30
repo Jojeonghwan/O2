@@ -9,7 +9,7 @@
 <body>
 <a href="../index.jsp">Main</a>
 <div id="admin_page_list" style="text-align: center;">
-	<embed src="http://localhost:3000" style="width: 50%; height: 500px;">
+	<embed src="http://localhost:3000" style="width: 1000px; height: 500px;">
 </div>
 </body>
 </html>

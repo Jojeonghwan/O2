@@ -113,6 +113,7 @@ public class member_controller {
 			session.setAttribute("u_num", u_num);				// 세션에 num 저장
 			session.setAttribute("login_id", login_id);			// 세션에 아이디 저장
 			session.setAttribute("user_type", user_type);		// 세션에 유저타입 저장
+			session.setAttribute("thumb_nail", service.select_dto(login_id).getThumb_nail());
 			System.out.println(u_num);
 			System.out.println(login_id);
 			System.out.println(user_type);

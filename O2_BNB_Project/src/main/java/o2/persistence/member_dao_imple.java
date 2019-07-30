@@ -120,4 +120,8 @@ public class member_dao_imple extends SqlSessionDaoSupport implements member_dao
     public void user_type_change(String id){
     	getSqlSession().update("user_type_change",id);
     }
+    
+    public void update_member_admin(member_dto dto) {
+    	getSqlSession().update("update_member_admin", dto);
+    }
 }

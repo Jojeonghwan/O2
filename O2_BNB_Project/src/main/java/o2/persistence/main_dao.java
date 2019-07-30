@@ -11,7 +11,7 @@ public interface main_dao {
 	 * 생 성 자 : 김보애
 	 * 용    도 : 위치에 따른 평점 높은순 10순위 리스트 불러오기
 	 * */
-	public List<main_rtime_dto> get_rtime_list();
+	public List<main_rtime_dto> get_rtime_list(String addr);
 	/* 생성일자 : 2019.07.16
 	 * 생 성 자 : 조정환
 	 * 용    도 : 메인 검색기능

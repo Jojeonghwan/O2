@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main">
-	<select id="get_rtime_list" resultType="rt_dto">
+	<select id="get_rtime_list" resultType="rt_dto" parameterType="String">
 	<![CDATA[
-		select h.home_name, b.h_num, b.avg_score
+		select h.home_name, b.h_num
 		from o2_home h,
 			(select rownum r_num, a.*
 			 from
-				(select  h_num
-		        		,avg(score) as avg_score
+				(select h_num,
+                        avg(score) as avg_score
 				 from o2_review
 				 group by h_num
 				 order by avg_score desc
 				 ) a
 			 ) b
 		where h.num = b.h_num
+        and h.addr like '%'|| #{addr} ||'%'
 		and r_num >= 1 and r_num <= 10
 		order by avg_score desc
 	]]>

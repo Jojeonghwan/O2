@@ -9,7 +9,6 @@
 			<list>
 				<homename>${dto.home_name}</homename>
 				<hnum>${dto.h_num}</hnum>
-				<avgcore>${dto.avg_acore}</avgcore>
 			</list>
 		</c:forEach>
 	</lists>

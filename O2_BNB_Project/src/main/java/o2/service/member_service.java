@@ -29,4 +29,5 @@ public interface member_service {
 	public List<member_dto> user_list(String keyword, String preItems, String items) throws Exception;
 	public member_dto user_dto(String num)throws Exception;
 	public void user_type_change(String id);
+	public void update_member_admin(member_dto dto);
 }

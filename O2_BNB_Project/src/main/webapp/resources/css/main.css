@@ -1,15 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
 
 #rtime_dto_1 {
 	border: 1px solid black;
 	width: 200px;
-	height: 288px;
+	height: 30px;
 }
-
-.rtime_dtos {
-	display: inline-block;
-	float: left;
-}
-
 .rtime_dto {
 	border: 1px solid black;
 	width: 200px;
@@ -24,4 +19,116 @@
 	border: 1px solid black;
 	height: 300px;
 	height: i
+}
+
+#main_top,#on_header_div{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#on_header_div {
+	height: 50px;
+}
+
+.not_login {
+	margin-right: 70px;
+    padding-top: 30px;
+	height: 50px;
+}
+
+.not_login a{
+	text-decoration : none;
+	color : white;
+}
+
+.not_login a:hover {
+	text-decoration : none;
+	color : white;
+	font-weight: 500;
+}
+
+hr#header_hr {
+	border : solid 0.5px white;
+	align : center;
+	width: 90%;
+}
+
+.login {
+	margin-right: 70px;
+    padding-top: 30px;
+	height: 50px;
+	color: white;
+}
+
+img#noimg {
+	width: 30px;
+	height: 30px;
+}
+
+.login a{
+	text-decoration : none;
+	color : white;
+}
+
+.login a:hover{
+	text-decoration : none;
+	color : white;
+	font-weight: 500;
+}
+
+img#thumb_nail{
+	width:40px; 
+	height:30px; 	
+	border-radius:400px; 
+	margin:0 auto; 
+}
+
+.on_header_not_login {
+	padding-top: 30px;
+	margin-right : 70px;
+	height: 30px;
+	text-align: right;
+	color: #484848;
+}
+
+.on_header_login {
+	padding-top: 30px;
+	margin-left : 135px;
+	height: 30px;
+	text-align: left;
+	color: #484848;
+}
+
+hr#on_header_hr {
+	border : solid 0.5px #484848;
+	align : center;
+	width: 80%;
+}
+
+img#on_header_menu {
+	width: 25px;
+	height: 25px;
+}
+
+#on_header_menu_bar {
+	background-color : white;
+	text-align: left;
+	width: 150px;
+	height: 150px;
+}
+
+#on_header_menu_bar a{
+	text-decoration : none;
+	color : #484848;
+}
+
+#on_header_menu_bar a:hover {
+	text-decoration : none;
+	color : #ff5a5f;
+	font-weight: 500;
+}
+
+#real {
+	float: right;
+	padding-top : 10px;
+	margin-right: 25%;
 }

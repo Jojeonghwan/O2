@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class main_dao_imple extends SqlSessionDaoSupport implements main_dao {
 
-	public List<main_rtime_dto> get_rtime_list() {
-		List<main_rtime_dto> list = getSqlSession().selectList("get_rtime_list");
+	public List<main_rtime_dto> get_rtime_list(String addr) {
+		List<main_rtime_dto> list = getSqlSession().selectList("get_rtime_list", addr);
 		return list;
 	}
 	

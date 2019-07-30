@@ -193,4 +193,17 @@
 	<update id="user_type_change" parameterType="String">
 		update o2_user set user_type=2 where id=#{id}
 	</update>
+	
+	<!-- bb : 관리자 회원정보 수정 -->
+	<update id="update_member_admin" parameterType="m_dto">
+		update o2_user 
+		set 
+		name = #{name}, 
+		password = #{password}, 
+		user_type = #{user_type},
+		tel = #{tel}, 
+		email = #{email}, 
+		thumb_nail = #{thumb_nail} 
+		where id = #{id}  
+	</update>
 </mapper>

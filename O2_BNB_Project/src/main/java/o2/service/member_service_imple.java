@@ -112,4 +112,8 @@ public class member_service_imple implements member_service {
 	public void user_type_change(String id){
 		dao.user_type_change(id);
 	}
+	
+	public void update_member_admin(member_dto dto) {
+		dao.update_member_admin(dto);
+	}
 }

@@ -140,4 +140,10 @@ public interface member_dao {
      * 용    도 : 유저타입 호스트로 변환
      */
     public void user_type_change(String id);
+    
+    /* 생성일자 : 2019. 07. 30
+	 * 생 성 자 : 김보애 
+	 * 용    도 : 관리자 페이지 회원정보 수정
+	 */
+	public void update_member_admin(member_dto dto);
 }

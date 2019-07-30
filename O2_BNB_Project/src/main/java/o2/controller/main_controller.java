@@ -31,6 +31,27 @@ public class main_controller {
 	@Autowired
 	main_service_imple service;
 	
+	// 메인 페이지 로딩
+	@RequestMapping("/main.do") 
+	public String main(){
+		return "/o2_main/main";
+	}
+	
+	// 헤더 - main
+	@RequestMapping("/header.do")
+	public String header() {
+		return "/o2_main/header";
+	}
+	
+	// 헤더 - main 제외
+	@RequestMapping("/on_header.do") 
+	public ModelAndView on_header(@RequestParam String adr) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("adr", adr);
+		model.setViewName("/o2_main/on_header");
+		return model;
+	}
+	
 	// 실시간 인기 순위 결과 뿌릴 페이지
 	@RequestMapping("/main2.do")
 	public String main2_page() {
@@ -39,9 +60,9 @@ public class main_controller {
 	
 	// 실시간 인기 순위 처리
 	@RequestMapping("/main2/real_time.aj")
-	public ModelAndView real_tile_list() {
+	public ModelAndView real_tile_list(@RequestParam String addr) {
 		ModelAndView model = new ModelAndView();
-		model.addObject("list", service.get_rtime_list());
+		model.addObject("list", service.get_rtime_list(addr));
 		model.setViewName("/o2_main/real_time_result");
 		return model;
 	}

@@ -51,6 +51,7 @@
 </style>
 </head>
 <body>
+<c:import url="/on_header.do?adr=${addr}" charEncoding="utf-8"/>
 <form action="../board/list.do" method="post">
 <!-- 검색창 -->
 <div class="search_bar">
@@ -69,8 +70,6 @@
 	<div id="search_total"></div>
 </div>
 </form>
-
-
 <div class="o2bnb_search">
 	<div class="o2bnb_sel">
 		<span><a href="#" onclick="return_date()">날짜</a></span>
@@ -165,8 +164,6 @@
 	</script>
 </div>
 	
-
-
 &nbsp;&nbsp;&nbsp;&nbsp;<br><br><br><br><br><br><br><br><br>
 <!-- 출력부 %로 바꾸자-->
 <div id="map" style="width:500px; height:500px; float:right;"></div>

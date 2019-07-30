@@ -15,8 +15,8 @@ public class main_service_imple implements main_service{
 	@Autowired
 	main_dao_imple dao;
 	
-	public List<main_rtime_dto> get_rtime_list() {
-		return dao.get_rtime_list();
+	public List<main_rtime_dto> get_rtime_list(String addr) {
+		return dao.get_rtime_list(addr);
 	}
 	
 	public List<home_dto> search_data_list(search_dto dto){
