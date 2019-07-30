@@ -507,6 +507,23 @@ public class member_controller {
 
 		return "redirect:/member/mypage.do";
 	}
+	
+	
+	@RequestMapping("member/user_type_change.do")
+	public String user_type(){
+		return "/o2_member/user_type_change";
+	}
+	
+	@RequestMapping("member/change.do")
+	public String change(
+			HttpServletRequest request
+			){
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("login_id");
+		service.user_type_change(id);
+		
+		return "redirect:/member/mypage.do";
+	}
 }
 
 

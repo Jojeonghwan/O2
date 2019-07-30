@@ -70,13 +70,13 @@ public class host_service_imple {
 		return dao.host_review_select(start,end);
 	}
 	
-	public void host_delete_home_guest(home_guest_dto dto)
+	public void host_update_home_guest_cancel_type(home_guest_dto dto)
 	{
-		dao.host_delete_home_guest(dto);
+		dao.host_update_home_guest_cancel_type(dto);
 	}
 	
-	public void host_delete_user_pay(user_pay_dto dto)
+	public void host_update_user_pay_pay_chcek(user_pay_dto dto)
 	{
-		dao.host_delete_user_pay(dto);
+		dao.host_update_user_pay_pay_chcek(dto);
 	}
 }

@@ -21,15 +21,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
 <!-- datepicker 끝 -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 6c40d5c98c3c9d61a21e495fe1d2695e6e7345c7
-=======
-
->>>>>>> a4596312d4dedb4923b3a49eecba356178f805f3
-
 <style>
 table{
 border:1px inset gray;
@@ -158,6 +149,7 @@ ${dto.facilities}
 ${dto.price}
 </td>
 </tr>
+<c:if test="${login_id != dto.id}">
 <tr>
 <td>
 결제 타입 :
@@ -178,11 +170,15 @@ $("#paybtn").click(function(){
 });
 </script>
 </td>
+</tr>
+</c:if>
 </table>
 <!-- 방 소개 창 끝 -->
 </form>
+<c:if test="${login_id != dto.id}">
 <input type="button" value="test" id="test">
 <input type="button" value="호스트랑 채팅하기" id="chat">
+</c:if>
 <!-- hidden -->
 <input type="hidden" value="${sessionScope.login_id }" id="login_id">
 
@@ -220,6 +216,7 @@ dateArr = dateArr.concat(getDateArray(startDate, endDate));
 
 </script>
 </c:forEach>
+<script src="${pageContext.request.contextPath}/js/board_content_jh.js"></script>
 <script>
 //person start
 $("#inc").click(function(){
@@ -237,67 +234,6 @@ $("#dec").click(function(){
 $("#person").val($('#people').val()); 
 
 //person end
-//datepicker start
-// 부트스트랩 datetimepicker 셋팅과 두개씩 링크
-    // minDate : 오늘 이후의 날짜값만 셋팅될 수 있도록
- $(document).ready(function(){
-    $('.dateTimePicker').datetimepicker({
- 		format:"YYYY-MM-DD",
- 		minDate : moment(),
-        useCurrent: false,
-        disabledDates: dateArr
-    });
-     $('.dateTimePicker input[type="text"]').focus(function(){
-    	$(this).parent().data("DateTimePicker").show();
-    }) ; 
-
-    $("#datepicker1").on("dp.change", function (e) {
-        $('#datepicker2').data("DateTimePicker").minDate(e.date.add(1, 'days'));
-    });
-   
-    $("#datepicker2").on("dp.change", function (e) {
-        $('#datepicker1').data("DateTimePicker").maxDate(e.date.add(-1, 'days'));
-    });
-}); 
-
- 
- 
-
-//datepicker end
-//daterangepicker start
-/* 	var today = new Date(); 
-	var dd = today.getDate(); 
-	var mm = today.getMonth()+1; //January is 0! 
-	var yyyy = today.getFullYear(); 
-	if(dd<10){ dd='0'+dd } 
-	if(mm<10){ mm='0'+mm } 
-	var today = mm+'/'+dd+'/'+yyyy;
-	function getFormatDate(d){
-	    return d.getMonth()+12 + '/' + d.getDate() + '/' + d.getFullYear()
-	}
-	var reserve_date="";
-	  $('input[name="daterange"]').daterangepicker({
-	    opens: 'left'
-	    
-	  }, function(start, end, label) {
-	    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-	  });
-	  $(document).ready(function() {
-		  mdTemp = new Date(),
-		  maxDate = getFormatDate(new Date(mdTemp.setDate(mdTemp.getDate() + 365)));
-		$('input[name="daterange"]').daterangepicker({ 
-			minDate: today,
-			maxDate: maxDate
-			});
-	  });
-		  */
-//daterangepicker end
-
-//pay start
-$(document).ready(function(){
-	$("#paybtn").hide();
-});
-
 function popup(){
 	
 	var checkin=$("input[name='checkin']").val();
@@ -309,14 +245,6 @@ function popup(){
     window.open(url, "", option);
 
 }
-$("input[name='pay']").click(function(){
-	if($("input:radio[name=pay]:checked").val()=="3"){
-		$("#paybtn").show();
-	}else if($("input:radio[name=pay]:checked").val()=="2"){
-		$("#paybtn").show();
-	}
-})
-
 $(".scrap").click(function() {
 		var h_num = '${dto.num}';
 		var sc_num = $("#scrap_n").val();
@@ -349,9 +277,7 @@ $("#chat").click(function() {
 	location.href = "../chat/ch_room.do?num="+num;
 });
 
-</script>
 <!-- -----------//////////////////////////////////////리뷰관련 제이쿼리/////// -->
-<script type="text/javascript">
 // 별점 평가
 $('.starRev span').click(function(){
 	  $(this).parent().children('span').removeClass('on');

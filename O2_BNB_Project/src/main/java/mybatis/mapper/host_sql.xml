@@ -40,7 +40,7 @@
 		insert into o2_home_guest values 
 		(guest_seq.nextval,#{host_id}, #{h_num},
 		#{guest_name},#{guest_person},sysdate,
-		#{checkin},#{checkout},#{guest_hp},#{guest_email})
+		#{checkin},#{checkout},#{guest_hp},#{guest_email},#{cancel_type})
 	</insert>
 	<select id="home_guest_select" parameterType="ho_dto" resultType="ho_gu_dto">
 		select g.* from o2_home_guest g, o2_home h where g.h_num=h.num 
@@ -57,22 +57,24 @@
 		where a.RNUM>=#{start} and a.RNUM<=#{end}
 		 ]]>		
 	</select>
-	<delete id="host_delete_home_guest" parameterType="ho_gu_dto">
-		delete  from
+	<update id="host_update_home_guest_cancel_type" parameterType="ho_gu_dto">
+		update
 		o2_home_guest 
+		set cancel_type = 2
 		where
 		h_num=#{h_num}
 		and checkin=#{checkin}
 		and checkout=#{checkout}
-	</delete>
-	<delete id="host_delete_user_pay" parameterType="us_pay_dto">
-		delete  from
+	</update>
+	<update id="host_update_user_pay_pay_chcek" parameterType="us_pay_dto">
+		update 
 		o2_user_pay 
+		set pay_check = 4
 		where
 		h_num=#{h_num}
 		and checkin=#{checkin}
 		and checkout=#{checkout}
-	</delete>
+	</update>
 
 </mapper>
 

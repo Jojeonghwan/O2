@@ -144,40 +144,7 @@
     </div>
 </div>
 
-	
-<script type="text/javascript">
-$(document).ready(function(){
-    $('.dateTimePicker').datetimepicker({
- 		format:"YYYY-MM-DD",
- 		minDate : moment(),
-        useCurrent: false,
-        disabledDates: [new Date(2013, 11 - 1, 21)]//의미 없지만 없으면 안되는 코드
-    });
-     $('.dateTimePicker input[type="text"]').focus(function(){
-    	$(this).parent().data("DateTimePicker").show();
-    }) ; 
-// 함수 호출 순서가 4,3,2 순서이다.
-// 4가 바뀌어야 3이 바뀌고 3이 바뀌어야 2가 바뀐다.
 
-$("#datepicker1").on("dp.change", function (e) {
-    $('#datepicker2').data("DateTimePicker").minDate(e.date.add(1, 'days'));
-});
-
-$("#datepicker2").on("dp.change", function (e) {
-    $('#datepicker1').data("DateTimePicker").maxDate(e.date.add(-1, 'days'));
-});
-}); 
-//datepicker end
-
-$("#date_val").click(function(){
-	var checkin = $('.dateTimePicker input[name=checkin]').val();
-	var checkout = $('.dateTimePicker input[name=checkout]').val();
-	
-	$("#checkin_id").val(checkin);
-	$("#checkout_id").val(checkout);
-	$(".col-sm-9").css("display","none");
-});
-</script>
 
 
 
@@ -219,25 +186,7 @@ $("#date_val").click(function(){
 	<input id="person" type="text" value="1" size="10">
 	<button type="button" id="inc">+</button>
 	<input type="button" id="person_value" value="저장">
-	<script type="text/javascript">
-		$("#inc").click(function(){ //6까지 증가
-			if(parseInt($('#person').val())<6)
-			{
-				$("#person").val(parseInt($('#person').val())+1);
-			}
-			});
-		$("#dec").click(function(){ //1까지 감소
-			if(parseInt($('#person').val())>1)
-			{
-				$("#person").val(parseInt($('#person').val())-1);
-			}
-			});
-		$("#person_value").click(function(){
-			var person_val= $("#person").val();
-			$("#person_id").val(person_val);
-			$(".person_cnt").css("display","none");
-		});
-	</script>
+
 </div>
 	
 <!-- 가격 -->
@@ -282,7 +231,7 @@ $("#date_val").click(function(){
 <!-- ////////////////////////////////////////////////////무한스크롤 시작 -->
 <div id="infinite_list">
 <c:forEach var="dto" items="${list}">
-<c:set var="ho_addr" value="${ho_addr},${dto.addr}"/>
+<c:set var="ho_addr" value="${ho_addr}/${dto.addr}"/>
 <c:set var="home_name" value="${home_name},${dto.home_name}"/>
 <c:set var="price" value="${price},${dto.price}"/>
 <c:set var="num" value="${num},${dto.num}"/>
@@ -364,7 +313,9 @@ $("#date_val").click(function(){
 <!-- ////////////////////////////////////////////////////무한스크롤 끝 -->
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8c8c41484005696a06aceab619299c52&libraries=services"></script>
-<script>
+<script type="text/javascript">
+//map start
+
 //console.log('${ho_addr}');
 var searchaddr= '${ho_addr}'.substring(1).split("/");
 var searchhome_name='${home_name}'.substring(1).split(",");
@@ -394,241 +345,141 @@ console.log(searchaddr.length);
 console.log(searchaddr[1]);
 console.log(searchaddr[5]); */
 var addr=new Array();
- for(var i=1; i<searchaddr.length; i=i+4){
+for(var i=1; i<searchaddr.length; i=i+4){
 	 addr.push(searchaddr[i]);		  
 }
+console.log('${ho_addr}');
+console.log("searchaddr0:"+searchaddr[0]);
+console.log("searchaddr1:"+searchaddr[1]);
+console.log("searchaddr2:"+searchaddr[2]);
+console.log("searchaddr3:"+searchaddr[3]);
+console.log("searchaddr4:"+searchaddr[4]);
+console.log("searchaddr5:"+searchaddr[5]);
 console.log("addr :    "+addr);
- for(var i=0; i<searchhome_name.length; i++){
+for(var i=0; i<searchhome_name.length; i++){
 	 console.log(searchhome_name[i]);
- }
+}
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 6 // 지도의 확대 레벨
-    };  
+  mapOption = {
+      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+      level: 6 // 지도의 확대 레벨
+  };  
 
-// 지도를 생성합니다    
+//지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
 //일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 var mapTypeControl = new kakao.maps.MapTypeControl();
 
-// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+//지도에 컨트롤을 추가해야 지도위에 표시됩니다
+//kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
 map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
-// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+//지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-// 주소-좌표 변환 객체를 생성합니다
+//주소-좌표 변환 객체를 생성합니다
 
 var geocoder = new kakao.maps.services.Geocoder();
 
-// 주소로 좌표를 검색합니다
+//주소로 좌표를 검색합니다
 addr.forEach(function(addr,index){
 geocoder.addressSearch(addr, function(result, status) {
 	console.log(result[0]);
 	//alert(i);
-    // 정상적으로 검색이 완료됐으면  
-     if (status === kakao.maps.services.Status.OK) {
+  // 정상적으로 검색이 완료됐으면  
+   if (status === kakao.maps.services.Status.OK) {
 			
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        //alert(coords);
-        var redstar1 = '../image/redstar1.png'; // 마커이미지의 주소입니다
-        var redstar2 = '../image/redstar2.png'; // 마커이미지의 주소입니다
-        var redstar3 = '../image/redstar3.png'; // 마커이미지의 주소입니다
-        var bluestar1 = '../image/bluestar1.png'; // 마커이미지의 주소입니다
-        var bluestar2 = '../image/bluestar2.png'; // 마커이미지의 주소입니다
-        var bluestar3 = '../image/bluestar3.png'; // 마커이미지의 주소입니다
-        var avgstar = '../image/avgstar.png';
-        var imageSize = new kakao.maps.Size(45, 45); // 마커이미지의 크기입니다
-        var imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-        if(searchprice[index]>=veryveryveryhighprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(redstar1, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[index]+"vvvhp:"+veryveryveryhighprice);
-        }
-        else if(searchprice[index]>=veryveryhighprice && searchprice[index]<veryveryveryhighprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(redstar2, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[index]+"vvhp:"+veryveryhighprice);
-        }
-        else if(searchprice[index]>=veryhighprice && searchprice[index]<veryveryhighprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(redstar3, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[index]+"vhp:"+veryhighprice);
-        }else if(searchprice[index]>=avgprice && searchprice[index]<veryhighprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(avgstar, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[index]+"avgprice:"+avgprice);
-        }
-        else if(searchprice[index]<avgprice && searchprice[index]>=verylowprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(avgstar, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[index]+"avgprice:"+avgprice);	
-        }
-        else if(searchprice[index]<verylowprice && searchprice[index]>=veryverylowprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(bluestar1, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[index]+"vlp:"+verylowprice);
-        }
-        else if(searchprice[index]<veryverylowprice && searchprice[index]>=veryveryverylowprice){
-        	var markerImage = new kakao.maps.MarkerImage(bluestar2, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[index]+"vvlp:"+veryverylowprice);
-        }
-        else if(searchprice[index]<veryveryverylowprice){
-        	var markerImage = new kakao.maps.MarkerImage(bluestar3, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[index]+"vvvlp:"+veryveryverylowprice);
-        }
-        
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        console.log("집이름:"+searchhome_name[index]);
+      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      //alert(coords);
+      var redstar1 = '../image/redstar1.png'; // 마커이미지의 주소입니다
+      var redstar2 = '../image/redstar2.png'; // 마커이미지의 주소입니다
+      var redstar3 = '../image/redstar3.png'; // 마커이미지의 주소입니다
+      var bluestar1 = '../image/bluestar1.png'; // 마커이미지의 주소입니다
+      var bluestar2 = '../image/bluestar2.png'; // 마커이미지의 주소입니다
+      var bluestar3 = '../image/bluestar3.png'; // 마커이미지의 주소입니다
+      var avgstar = '../image/avgstar.png';
+      var imageSize = new kakao.maps.Size(45, 45); // 마커이미지의 크기입니다
+      var imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      if(searchprice[index]>=veryveryveryhighprice)
+      {
+      	var markerImage = new kakao.maps.MarkerImage(redstar1, imageSize, imageOption);
+      	console.log("searchprice:"+searchprice[index]+"vvvhp:"+veryveryveryhighprice);
+      }
+      else if(searchprice[index]>=veryveryhighprice && searchprice[index]<veryveryveryhighprice)
+      {
+      	var markerImage = new kakao.maps.MarkerImage(redstar2, imageSize, imageOption);
+      	console.log("searchprice:"+searchprice[index]+"vvhp:"+veryveryhighprice);
+      }
+      else if(searchprice[index]>=veryhighprice && searchprice[index]<veryveryhighprice)
+      {
+      	var markerImage = new kakao.maps.MarkerImage(redstar3, imageSize, imageOption);
+      	console.log("searchprice:"+searchprice[index]+"vhp:"+veryhighprice);
+      }else if(searchprice[index]>=avgprice && searchprice[index]<veryhighprice)
+      {
+      	var markerImage = new kakao.maps.MarkerImage(avgstar, imageSize, imageOption);
+      	console.log("searchprice:"+searchprice[index]+"avgprice:"+avgprice);
+      }
+      else if(searchprice[index]<avgprice && searchprice[index]>=verylowprice)
+      {
+      	var markerImage = new kakao.maps.MarkerImage(avgstar, imageSize, imageOption);
+      	console.log("searchprice:"+searchprice[index]+"avgprice:"+avgprice);	
+      }
+      else if(searchprice[index]<verylowprice && searchprice[index]>=veryverylowprice)
+      {
+      	var markerImage = new kakao.maps.MarkerImage(bluestar1, imageSize, imageOption);
+      	console.log("searchprice:"+searchprice[index]+"vlp:"+verylowprice);
+      }
+      else if(searchprice[index]<veryverylowprice && searchprice[index]>=veryveryverylowprice){
+      	var markerImage = new kakao.maps.MarkerImage(bluestar2, imageSize, imageOption);
+      	console.log("searchprice:"+searchprice[index]+"vvlp:"+veryverylowprice);
+      }
+      else if(searchprice[index]<veryveryverylowprice){
+      	var markerImage = new kakao.maps.MarkerImage(bluestar3, imageSize, imageOption);
+      	console.log("searchprice:"+searchprice[index]+"vvvlp:"+veryveryverylowprice);
+      }
+      
+      // 결과값으로 받은 위치를 마커로 표시합니다
+      console.log("집이름:"+searchhome_name[index]);
 		console.log("지역:"+addr[index]);
 		
 		
-         var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords,
-            image:markerImage
-        });
-        var cc = index;
-      	kakao.maps.event.addListener(marker, 'click', function() {
-              // 이곳에 작성하면 됩니다.
-              // 여기서 infoWindow.getContent() 로 내용을 가져올 수 있습니다.
-               location.href="content.do?num="+num[cc]; 
-          }); 
+       var marker = new kakao.maps.Marker({
+          map: map,
+          position: coords,
+          image:markerImage
+      });
+      var cc = index;
+    	kakao.maps.event.addListener(marker, 'click', function() {
+            // 이곳에 작성하면 됩니다.
+            // 여기서 infoWindow.getContent() 로 내용을 가져올 수 있습니다.
+             location.href="content.do?num="+num[cc]; 
+        }); 
 
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
+      // 인포윈도우로 장소에 대한 설명을 표시합니다
 		 for(j=0;j<searchhome_name.length;j++){
-        if(index==j){
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div id="home_name" style="width:150px;text-align:center;padding:6px 0;">'+searchhome_name[j]+'</div>'
-        });
-        }
-        }
-        
-        infowindow.open(map, marker);
-		
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords); 
-        
+      if(index==j){
+      var infowindow = new kakao.maps.InfoWindow({
+          content: '<div id="home_name" style="width:150px;text-align:center;padding:6px 0;">'+searchhome_name[j]+'</div>'
+      });
+      }
+      }
       
-    } 
+      infowindow.open(map, marker);
+		
+      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+      map.setCenter(coords); 
+      
     
+  } 
+  
 });    
 });
- 
 
 
-
-
-
-
-
-
-
-
-
-
-/*  for(var i=0; i<addra.length; i++){
-	console.log(addr[i]);
-//var vv=0;
-geocoder.addressSearch(addr[i], function(result, status) {
-	console.log(result[0]);
-	//alert(i);
-    // 정상적으로 검색이 완료됐으면  
-     if (status === kakao.maps.services.Status.OK) {
-    		console.log("addr:"+addr[i]);
-			
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        //alert(coords);
-        var redstar1 = '../image/redstar1.png'; // 마커이미지의 주소입니다
-        var redstar2 = '../image/redstar2.png'; // 마커이미지의 주소입니다
-        var redstar3 = '../image/redstar3.png'; // 마커이미지의 주소입니다
-        var bluestar1 = '../image/bluestar1.png'; // 마커이미지의 주소입니다
-        var bluestar2 = '../image/bluestar2.png'; // 마커이미지의 주소입니다
-        var bluestar3 = '../image/bluestar3.png'; // 마커이미지의 주소입니다
-        var avgstar = '../image/avgstar.png';
-        var imageSize = new kakao.maps.Size(45, 45); // 마커이미지의 크기입니다
-        var imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-        if(searchprice[cnt]>=veryveryveryhighprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(redstar1, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[cnt]+"vvvhp:"+veryveryveryhighprice);
-        }
-        else if(searchprice[cnt]>=veryveryhighprice && searchprice[cnt]<veryveryveryhighprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(redstar2, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[cnt]+"vvhp:"+veryveryhighprice);
-        }
-        else if(searchprice[cnt]>=veryhighprice && searchprice[cnt]<veryveryhighprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(redstar3, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[cnt]+"vhp:"+veryhighprice);
-        }else if(searchprice[cnt]>=avgprice && searchprice[cnt]<veryhighprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(avgstar, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[cnt]+"avgprice:"+avgprice);
-        }
-        else if(searchprice[cnt]<avgprice && searchprice[cnt]>=verylowprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(avgstar, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[cnt]+"avgprice:"+avgprice);	
-        }
-        else if(searchprice[cnt]<verylowprice && searchprice[cnt]>=veryverylowprice)
-        {
-        	var markerImage = new kakao.maps.MarkerImage(bluestar1, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[cnt]+"vlp:"+verylowprice);
-        }
-        else if(searchprice[cnt]<veryverylowprice && searchprice[cnt]>=veryveryverylowprice){
-        	var markerImage = new kakao.maps.MarkerImage(bluestar2, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[cnt]+"vvlp:"+veryverylowprice);
-        }
-        else if(searchprice[cnt]<veryveryverylowprice){
-        	var markerImage = new kakao.maps.MarkerImage(bluestar3, imageSize, imageOption);
-        	console.log("searchprice:"+searchprice[cnt]+"vvvlp:"+veryveryverylowprice);
-        }
-        
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        console.log("집이름:"+searchhome_name[cnt]);
-		console.log("지역:"+addr[cnt]);
-		
-		
-         var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords,
-            image:markerImage
-        });
-        var cc = cnt;
-      	kakao.maps.event.addListener(marker, 'click', function() {
-              // 이곳에 작성하면 됩니다.
-              // 여기서 infoWindow.getContent() 로 내용을 가져올 수 있습니다.
-               location.href="content.do?num="+num[cc]; 
-          }); 
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		 for(j=0;j<searchhome_name.length;j++){
-        if(cnt==j){
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div id="home_name" style="width:150px;text-align:center;padding:6px 0;">'+searchhome_name[j]+'</div>'
-        });
-        }
-        }
-        
-        infowindow.open(map, marker);
-		
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords); 
-        
-        cnt++;
-    } 
-    vv++;
-});    
-
-}; 
- */
+//map end
 </script>
 <!-- /////////////////////무한스크롤 시작////////////////// -->
-
+<script src="${pageContext.request.contextPath}/js/board_list_jh.js"></script>
 </body>
 </html>

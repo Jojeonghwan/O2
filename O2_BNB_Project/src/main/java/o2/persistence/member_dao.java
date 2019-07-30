@@ -134,4 +134,10 @@ public interface member_dao {
      * 용    도 : user dto 반환
      */
     public member_dto user_dto(String num);
+    
+    /* 생성일자 : 2019. 07. 26
+     * 생 성 자 : 조정환
+     * 용    도 : 유저타입 호스트로 변환
+     */
+    public void user_type_change(String id);
 }

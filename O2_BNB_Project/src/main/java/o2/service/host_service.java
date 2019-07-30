@@ -18,6 +18,6 @@ public interface host_service {
 	public void home_guest_insert(home_guest_dto dto);
 	public List<home_guest_dto> home_guest_select(home_dto dto);
 	public List<host_review_dto> host_review_select(int start,int end);
-	public void host_delete_home_guest(home_guest_dto dto);
-	public void host_delete_user_pay(user_pay_dto dto);
+	public void host_update_home_guest_cancel_type(home_guest_dto dto);
+	public void host_update_user_pay_pay_chcek(user_pay_dto dto);
 }

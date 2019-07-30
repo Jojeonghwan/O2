@@ -115,6 +115,7 @@ public class board_controller {
 		List<home_guest_dto> list = h_service.home_guest_select(dto);
 		
 		model.addObject("list",list);
+		model.addObject("login_id",id);
 		model.addObject("num", num);
 		//////////////////////////////////////////////////////////////////
 
@@ -155,7 +156,8 @@ public class board_controller {
 	@RequestMapping("board/pay_save.aj")
 	public void paySave(
 			HttpServletRequest request,
-	        HttpServletResponse response
+	        HttpServletResponse response,
+	        @RequestParam int cancel_type
 			) throws Exception
 	{
 		String checkin=request.getParameter("checkin").toString();
@@ -205,6 +207,7 @@ public class board_controller {
 		gdto.setGuest_hp(mdto.getTel());
 		gdto.setGuest_email(mdto.getEmail());
 		gdto.setHost_id(String.valueOf(hdto.getId()));
+		gdto.setCancel_type(cancel_type);
 		h_service.home_guest_insert(gdto);
 		//h_service.
 	    try {
