@@ -12,33 +12,25 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-<style type="text/css">
-.starR1{
-    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
-    background-size: auto 100%;
-    width: 15px;
-    height: 30px;
-    float:left;
-    text-indent: -9999px;
-    cursor: pointer;
-}
-.starR2{
-    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-    background-size: auto 100%;
-    width: 15px;
-    height: 30px;
-    float:left;
-    text-indent: -9999px;
-    cursor: pointer;
-}
-.starR1.on{background-position:0 0;}
-.starR2.on{background-position:-15px 0;}
-</style>
+
 </head>
 <body>
 
 <div>
 ** 숙소 후기 ** <br>
+
+숙소 총 평점 : (
+스코어가 없을때
+		<fmt:formatNumber value="${starRating}" pattern="0.00"/>점, 
+		<span style="zoom: 0.5;">
+		<span class="star-rating">
+		<span style="width:${starRating*20}%"></span>
+		</span>
+		</span>
+		)
+
+<hr>
+<!-- 댓글입력 시작 -->
 <form id="uploadForm" enctype="multipart/form-data" method="POST" action="review_insert.do">
 	
 		<div class="starRev">
@@ -56,53 +48,76 @@
 		<br><br>
 		<span id="startext">평가하기</span>
 		
-		
-<label for="file1">사진 첨부</label>
- <div class="files">
+<label for="file1">사진 등록</label>
+<div class="files">
 	<div><input type="file" name="upfile" id="upfile"></div>
-	<button type="button" style="width: 60px;" class="btn">추가</button>
 </div>
-<textarea style="width: 500px; height: 150px;" name="content" id="content"></textarea>
+<textarea style="width: 500px; height: 150px;" name="content" id="reContent" required="required"></textarea>
 <!-- hidden -->
 <input type="hidden" name="score" id="star_score" value="0.5">
 <input type="hidden" name="id" value="${sessionScope.login_id}">
 <input type="hidden" name="h_num" value="${num}">
 <input type="button" id="insert_btn" value="댓글등록">
 </form>
-
+<!-- 댓글입력 끝 -->
 </div>
 	
 <!-- ///////////////////////////////////////////////////////////댓글리스트 출력!!! -->
 <div id="review_here">
-<table class="table " style="width: 600px;">
-	<c:forEach var="r_dto" items="${list}">
-	<tr>
-		<td>
+<c:forEach var="r_dto" items="${list}">
+<!-- <div class="listReview" style="width: 600px;"> -->
+		<!-- 이미지출력 -->
+			<c:if test="${r_dto.img_name != 'noimg' }">
+				<img src="../save/${r_dto.img_name}" style="height: 100px;">
+			</c:if>
+			<br>
+		<!-- 썸네일, 별점 -->
+		<div>
 			<c:if test="${r_dto.thumb_nail == 'noimg' }">
-				<img src="../image/user.png" style="width: 50px;">
+				<img src="../image/user.png" style="width: 30px;">
+				${r_dto.id} <span style="color: gray; font-size: 9pt;">${r_dto.writeday}</span>
+				(
+				<fmt:formatNumber value="${r_dto.score}" pattern="0.00"/>점, 
+				<span style="zoom: 0.5;">
+				<span class="star-rating">
+				<span style="width:${r_dto.score*20}%"></span>
+				</span>
+				</span>
+				)
 			</c:if>
 			<c:if test="${r_dto.thumb_nail != 'noimg' }">
-				<img src="/save/${r_dto.thumb_nail}" style="width: 50px;">
+				<img src="/save/${r_dto.thumb_nail}" style="width: 30px;">
+				${r_dto.id} <span style="color: gray; font-size: 9pt;">${r_dto.writeday}</span>
+				(
+				<fmt:formatNumber value="${r_dto.score}" pattern="0.00"/>점, 
+				<span style="zoom: 0.5;">
+				<span class="star-rating">
+				<span style="width:${r_dto.score*20}%"></span>
+				</span>
+				</span>
+				)
 			</c:if>
-		</td>
-		<td style="width: 400px;">
-			${r_dto.id} <span style="color: gray; font-size: 9pt;">${r_dto.writeday}</span>
-			<span>${r_dto.score}</span>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			${r_dto.content}
-		</td>
-		<td style="width: 80px;">
-			<input type="button" value="수정" class="btn_update" r_num="${r_dto.num}" h_num="${num}" pageNum="${pageNum}">
-			<input type="button" value="삭제" class="btn_delete" r_num="${r_dto.num}" h_num="${num}" pageNum="${pageNum}">
-		</td>
-	</tr>
-	</c:forEach>
-</table>
-
-</div> 
+		</div>
+<br>
+		<c:set var="myid" value="${r_dto.id}" />
+		<c:if test="${sessionScope.login_id != myid }">
+			<!-- 내용출력 -->
+			<input type="text" name="content" class="reviewCon" id="reviewCon" value="${r_dto.content}" readonly="readonly">
+		</c:if>
+		
+		<c:if test="${sessionScope.login_id == myid }">
+			<!-- 내용출력 -->
+			<input type="text" name="content" class="reviewCon" id="reviewCon" value="${r_dto.content}" readonly="readonly">
+			<!-- 수정, 삭제 버튼  -->
+			<input type="button" value="수정" name="btn_update" class="btn_update" r_num="${r_dto.num}" h_num="${num}" pageNum="${pageNum}">
+			<input type="button" value="삭제" name="btn_delete" class="btn_delete" r_num="${r_dto.num}" h_num="${num}" pageNum="${pageNum}"
+			onclick="return confirm('리뷰를 삭제하시겠습니까?');">
+		</c:if>
+		<br>
+		<hr>
+<!-- </div> -->
+</c:forEach>
+</div> <!-- review_here -->
 
 <!--  //////////////////////////////////////////////////////////////댓글 끝 -->
 </body>

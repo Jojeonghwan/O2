@@ -11,35 +11,34 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/qna_sy.js"></script>
 <script type="text/javascript">
-	function checkform(){
-		var user_type = "<%=(String)session.getAttribute("user_type")%>";
-		var pass = $("#pass").val();
-		var num = $("#dto_num").val();
-		var rtn="";
-		
-		$.ajax({
+function checkform(){
+	var user_type = "<%=(String)session.getAttribute("user_type")%>";
+	var pass = $("#pass").val();
+	var num = $("#dto_num").val();
+	var rtn="";
+	
+	$.ajax({
 
-			url : 'pass_right.aj',
-			data : {'pass': pass, 'num': num},
-			type : 'get',
-			async:false,
-			dataType : 'json',
-			//contentType: 'application/json; charset=utf-8',
-			success : function(redata){
-				alert(typeof(redata));
-				if(redata==1)// dto의 pw와 입력한 pw가 같을 때 1 반환
-				{
-					alert("pass_right = 1");
-					rtn=true;
-				}else if(redata==2){
-					alert("pass_right = 2");
-					rtn=false;
-				}
+		url : 'pass_right.aj',
+		data : {'pass': pass, 'num': num},
+		type : 'get',
+		async:false,
+		dataType : 'json',
+		//contentType: 'application/json; charset=utf-8',
+		success : function(pass_right){
+			if(pass_right==1)// dto의 pw와 입력한 pw가 같을 때 1 반환
+			{
+				rtn=true;
+			}else if(pass_right==2){
+				alert("비번이 일치하지 않습니다");
+				rtn=false;
 			}
-		});
-		return rtn;
-	}
+		}
+	});
+	return rtn;
+}
 </script>
 </head>
 <body>

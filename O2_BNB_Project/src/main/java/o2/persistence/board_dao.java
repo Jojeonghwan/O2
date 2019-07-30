@@ -33,4 +33,19 @@ public interface board_dao {
 	 * */
 	public void delete_review(int num);
 	
+	/* 생성일자 : 2019.07.27
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 리뷰 dto 한개  가져오기
+	 * */
+	public home_review_dto selectReview_dto(int num);
+	
+	/* 생성일자 : 2019.07.28
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 리뷰 수정하기
+	 * */
+	public void update_review(home_review_dto dto);
+	
+	public double review_starRating(int h_num);
+	
+	public int beStarRating(int h_num);
 }

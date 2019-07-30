@@ -11,8 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="delete_member.do">회원탈퇴</a><br>
-<a href="update_member.do">회원정보수정</a><br>
+<a href="delete_member.do" onclick="return confirm('모든 게시물과 결제내역 등이 사라집니다. 정말 탈퇴하시겠습니까?');">회원탈퇴</a><br>
+<a href="update.do">회원정보수정</a><br>
 <a href="../index.jsp">메인페이지</a><br>
 <a href="scrap_list">스크랩</a><br>
 <!-- <button id="send_ticket">표받기</button> -->

@@ -9,19 +9,10 @@
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript">
-
-function checkform(){
-	if($("#q_select option:selected").val() == 0){
-		alert("주제를 선택해주세요");
-		return false;
-	}
-}
-
-</script>
+<script type="text/javascript" src="../js/qna_sy.js"></script>
 </head>
 <body>
-<form action="qna_action.do" method="post" onsubmit="return checkform()">
+<form action="qna_action.do" method="post" onsubmit="return qnaInsertCheckform()">
 	<table style="width: 600px;" class="table table-bordered">
 		<caption><b>문의글 등록</b></caption>
 		<tr>

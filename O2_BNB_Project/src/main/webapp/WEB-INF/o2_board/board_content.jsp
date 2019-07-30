@@ -20,7 +20,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/ko.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="../js/review.js"></script>
+<link rel="stylesheet" href="../css/review_sy.css">
 <!-- datepicker 끝 -->
+
 <style>
 table{
 border:1px inset gray;
@@ -59,7 +62,7 @@ border:1px inset gray;
 숙소명:
 </td>
 <td>
-${dto.home_name}
+${dto.home_name}(${dto.num})
 </td>
 </tr>
 <tr>
@@ -187,7 +190,7 @@ $("#paybtn").click(function(){
 <!-- review 출력 ////////////////////////////-->
 <div id="board_review">
 	<c:import url="/board/board_review.do" charEncoding="utf-8">
-		<c:param name="num" value="${dto.num}" />
+		<c:param name="num" value="${dto.num}"/>
 	</c:import>
 </div>
 <!-- review 출력끝//////////////////////////// -->
@@ -275,98 +278,7 @@ $("#chat").click(function() {
 	location.href = "../chat/ch_room.do?num="+num;
 });
 
-<!-- -----------//////////////////////////////////////리뷰관련 제이쿼리/////// -->
-// 별점 평가
-$('.starRev span').click(function(){
-	  $(this).parent().children('span').removeClass('on');
-	  $(this).addClass('on').prevAll('span').addClass('on');
-	  var star_score =  $(this).text();
-	  $("#star_score").val(star_score);
-	  alert($("#star_score").val());
-	  return false;
-	});
-
-//이미지 3개까지만 추가가능
-$(function(){ 
-	let cnt=1;
-	$(document).on("click", "div.files button.btn", function(){
-		cnt++;
-		if(cnt>3){
-			alert("이미지첨부의 최대갯수는 3개입니다");
-			return false;
-		}
-		var s='<input type="file" name="upfile">';
-		//s+='<button type="button" style="width: 60px;" class="photo_upfile">추가</button>';
-		//s+='<br>';
-		$("div.files").append(s);					
-	});
-});//여러개가 한번에 알아서 들어가는지 확인하자
-
-// 리뷰목록불러오는 함수
-function listReview(){
-	var num = '${dto.num}';
-	$.ajax({
-		type : 'post',
-		url : '/board/review_list.do',
-		data : {"num" : num },
-		dataType: 'json',
-		async: false,
-		success : function(list){
-			$("#review_here").html(list);
-		}
-		
-	});
-}
-
-//페이지 로딩시 댓글 목록 출력 
-$(document).ready(function(){
-	listReview(); 
-});
-
-//리뷰 등록
-$(function() { 
-	$("#insert_btn").on("click", function(){ //댓글 등록 버튼 클릭시 
-		var form = new FormData(document.getElementById('uploadForm'));
-		var num = '${dto.num}';
-	    $.ajax({
-		      url: "review_insert.do", //컨트롤러 URL
-		      data: form,
-		      dataType: 'json',
-		      processData: false,
-		      contentType: false,
-		      type: 'POST',
-		      success: function (response) {		   
-		    	  alert("success");
-		    	  console.log(response);
-		    	  location.reload();
-		      },error: function (jqXHR) {
-		    	  alert(jqXHR.responseText);
-		      }
-	   });
-	});	
-});
-
-//리뷰 삭제
-$(function() { 
-	$(".btn_delete").on("click", function(){ //댓글 삭제 버튼 클릭시 
-		var r_num = $(this).attr('r_num');
-	
-	    $.ajax({
-		      url: "review_delete.do", //컨트롤러 URL
-		      data: {"r_num":r_num },	
-		      dataType: 'json',
-		      type: 'POST',
-		      success: function (a,b,c) {		   
-		    	  alert("삭제 success");
-		    	  location.reload();
-		      },error: function (jqXHR) {
-		    	  alert(jqXHR.responseText);
-		      }
-	   }); 
-	   
-	});
-	
-});
-
 </script>
+
+
 </html>

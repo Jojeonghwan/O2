@@ -9,10 +9,11 @@
 </head> 
 <body>
 <form action="login_action.do" method="post">
-<div style="width:200px;">id : <input type="text" name="id"><br></div>
-<div style="width:200px;">pw : <input type="password" name="pw"><br></div>
-		<input type="submit" value="submit">
-	</form>
+
+<div style="width:200px;">id : <input type="text" name="id" required="required"><br></div>
+<div style="width:200px;">pw : <input type="password" name="pw" required="required"><br></div>
+	<input type="submit" value="submit">
+</form>
 
 <a href="id_find">아이디</a>·<a href="pw_find">비밀번호 찾기</a>
 </body>

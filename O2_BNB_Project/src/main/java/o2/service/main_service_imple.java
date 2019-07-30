@@ -24,12 +24,35 @@ public class main_service_imple implements main_service{
 	}
 	
 	
-	public List<home_dto> search_tag(String tag){
-		return dao.search_tag(tag);
-	}
+//	public List<home_dto> search_tag(String tag){
+//		return dao.search_tag(tag);
+//	}
 	
 	public List<home_dto> infiniteList(search_dto s_dto){
-		System.out.println("서비스");
 		return dao.infiniteList(s_dto);
+	}
+	
+	public int boardList_totalCount(search_dto s_dto){
+		return dao.boardList_totalCount(s_dto);
+	}
+	
+	public List<home_dto> board_pagingList(search_dto s_dto){
+		return dao.board_pagingList(s_dto);
+	}
+	
+	public int searchList_totalCount(search_dto s_dto){
+		return dao.searchList_totalCount(s_dto);
+	}
+	
+	public List<home_dto> search_data_pagingList(search_dto s_dto){
+		return dao.search_data_pagingList(s_dto);
+	}
+	
+	public int searchTagTotalCount(String tag){
+		return dao.searchTagTotalCount(tag);
+	}
+	
+	public List<home_dto> search_tag_paging(search_dto s_dto){
+		return dao.search_tag_paging(s_dto);
 	}
 }

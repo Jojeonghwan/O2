@@ -28,7 +28,7 @@
 		)
 	</insert>
 	
-	<!-- 리뷰 가져오기 -->
+	<!-- 리뷰 list 가져오기 -->
 	<select id="select_review_list" parameterType="int" resultType="h_re_dto">
 		select * from o2_review 
 		where h_num = #{h_num}
@@ -41,11 +41,35 @@
 		where num = #{num}
 	</delete>
 	
+	<!-- 리뷰 dto 한개 가져오기 -->
+	<select id="select_review_dto" parameterType="int" resultType="h_re_dto">
+		select * from o2_review 
+		where num = #{num}
+	</select>
 	<!-- 리뷰 수정하기 -->
 	<update id="review_update" parameterType="h_re_dto">
-		update o2_review 
-		set 
+		UPDATE	o2_review 
+		SET		content = #{content} 
+			,	score = #{score}
+			<if test="img_name != null">
+			, 	img_name = #{img_name}
+			</if> 
+		WHERE	num = #{num} 
 	</update>
+	<!-- 집 별점평균 구하기 -->
+	<select id="review_starRating" parameterType="int" resultType="double">
+		SELECT AVG(score) as score
+		FROM o2_review
+		WHERE h_num = #{h_num}
+		group by h_num
+	</select>
+	<!-- 별점이 있는지 확인 -->
+	<select id="beStarRating" parameterType="int" resultType="int">
+		SELECT COUNT(avg(score))
+		FROM o2_review
+		WHERE h_num = #{h_num}
+		GROUP BY h_num
+	</select>
 </mapper>
 
 

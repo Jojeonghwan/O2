@@ -147,7 +147,9 @@
 		update o2_user 
 		set 
 		name = #{name}, 
+		<if test=" password != null "> 
 		password = #{password}, 
+		</if>
 		tel = #{tel}, 
 		email = #{email}, 
 		thumb_nail = #{thumb_nail} 

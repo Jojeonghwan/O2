@@ -2,7 +2,9 @@ package o2.service;
 
 import java.util.List;
 
+import o2.data.home_dto;
 import o2.data.home_review_dto;
+import o2.data.search_dto;
 import o2.data.user_pay_dto;
 import o2.persistence.board_dao_imple;
 
@@ -38,6 +40,22 @@ public class board_service_imple implements board_service{
 	
 	public void delete_review(int num){
 		dao.delete_review(num);
+	}
+	
+	public home_review_dto selectReview_dto(int num){
+		return dao.selectReview_dto(num);
+	}
+	
+	public void update_review(home_review_dto dto){
+		dao.update_review(dto);
+	}
+	
+	public double review_starRating(int h_num){
+		return dao.review_starRating(h_num);
+	}
+	
+	public int beStarRating(int h_num){
+		return dao.beStarRating(h_num);
 	}
 	
 }

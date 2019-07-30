@@ -36,4 +36,26 @@ public class board_dao_imple extends SqlSessionDaoSupport implements board_dao
 		getSqlSession().delete("review_delete", num);
 	}
 	
+	public home_review_dto selectReview_dto(int num){
+		return getSqlSession().selectOne("select_review_dto", num);
+	}
+	
+	public void update_review(home_review_dto dto){
+		getSqlSession().update("review_update", dto);
+	}
+	
+	public double review_starRating(int h_num){
+		double score = 0;
+		double beRating = getSqlSession().selectOne("review_starRating", h_num);
+		if(beRating != 0.0) {
+			score = getSqlSession().selectOne("review_starRating", h_num);
+		} else {
+			score = 0.0;
+		}
+		return score;
+	}
+	
+	public int beStarRating(int h_num){
+		return getSqlSession().selectOne("beStarRating", h_num);
+	}
 }

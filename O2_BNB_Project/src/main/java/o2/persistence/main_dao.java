@@ -22,7 +22,7 @@ public interface main_dao {
 	 * 생 성 자 : 조정환
 	 * 용    도 : 메인 해쉬태그 검색기능
 	 * */
-	public List<home_dto> search_tag(String tag);
+//	public List<home_dto> search_tag(String tag);
 	
 	/* 생성일자 : 2019.07.24
 	 * 생 성 자 : 박소윤
@@ -30,4 +30,39 @@ public interface main_dao {
 	 */
 	public List<home_dto> infiniteList(search_dto s_dto);
 	
+	/* 생성일자 : 2019.07.30
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 리뷰 리스트 totalCount
+	 */
+	public int boardList_totalCount(search_dto s_dto);
+	
+	/* 생성일자 : 2019.07.30
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 리뷰 pagination
+	 */
+	public List<home_dto> board_pagingList(search_dto s_dto);
+	
+	/* 생성일자 : 2019.07.30
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 메인->리뷰 totalCount
+	 */
+	public int searchList_totalCount(search_dto s_dto);
+	
+	/* 생성일자 : 2019.07.30
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 메인->리뷰 pagination
+	 */
+	public List<home_dto> search_data_pagingList(search_dto s_dto);
+	
+	/* 생성일자 : 2019.07.30
+	 * 생 성 자 : 박소윤
+	 * 용    도 : tag검색 totalCount
+	 */
+	public int searchTagTotalCount(String tag);
+	
+	/* 생성일자 : 2019.07.23
+	 * 생 성 자 : 조정환
+	 * 용    도 : 메인 해쉬태그 페이징
+	 * */
+	public List<home_dto> search_tag_paging(search_dto s_dto);
 }
