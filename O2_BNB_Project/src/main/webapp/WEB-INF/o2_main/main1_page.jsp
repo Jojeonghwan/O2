@@ -17,26 +17,7 @@
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
 <!-- datepicker start -->
-		<style>
-.plus {
-        background-image: url('image/plus.png') ;
-        background-repeat:no-repeat;
-        background-color:transparent;
-        color:red;
-        border: none;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-      }
-.minus {
-        background-image: url('image/minus.png');
-        background-repeat:no-repeat;
-        background-color:transparent;
-        border: none;
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-      }
+<style>
 .search_box{
 		width:300px;
 		height:45px;
@@ -44,10 +25,14 @@
 input[name*="tag"]{
 		height:40px;
 		font-size:13pt;
-		border-radius:10px;
+		border-radius:30px;
 		background-color: rgba( 255, 90, 95, 0.7 );
 }
 .font{
+color: white;
+font-family: 'Noto Sans KR', sans-serif;
+}
+.font_black{
 font-family: 'Noto Sans KR', sans-serif;
 }
 </style>
@@ -56,11 +41,11 @@ font-family: 'Noto Sans KR', sans-serif;
 <!-- 숙소 검색후 집 리스트로 이동  -->
 <form action="board/list.do" class="form-inline">
 	<div class="form-group">
-		<input type="text" name="addr" placeholder="Location" style="width:300px; height:45px;" class="form-control search_box font" />
+		<input type="text" name="addr" placeholder="Location" style="width:300px; height:45px;" class="form-control search_box font_black" />
 	</div>
 	<div class="form-group">
 		<div class='input-group date dateTimePicker' id="datepicker1">
-			<input type='text' class="form-control font" style="width:150px; height:45px;" placeholder="CheckIn" name="checkin" autocomplete="off" />
+			<input type='text' class="form-control font_black" style="width:150px; height:45px;" placeholder="CheckIn" name="checkin" autocomplete="off" />
 			<span class="input-group-addon" style="color:#ff5a5f;">
 				<span class="glyphicon glyphicon-calendar" ></span>
 			</span>
@@ -68,20 +53,20 @@ font-family: 'Noto Sans KR', sans-serif;
 	</div>
 	<div class="form-group">
 		<div class='input-group date dateTimePicker' id="datepicker2">
-			<input type='text' class="form-control font" style="width:150px; height:45px;" placeholder="CheckOut" name="checkout" autocomplete="off"/>
+			<input type='text' class="form-control font_black" style="width:150px; height:45px;" placeholder="CheckOut" name="checkout" autocomplete="off"/>
 			<span class="input-group-addon" style="color:#ff5a5f;">
 				<span class="glyphicon glyphicon-calendar" ></span>
 			</span>
 		</div>
 	 </div>
 	 <div class="form-group">
-	 	<select id="people" class="font" style="width:100px; height:45px; border-radius:3px; ">
-	 		<option value="1" class="font">1명</option>
-	 		<option value="2" class="font">2명</option>
-	 		<option value="3" class="font">3명</option>
-	 		<option value="4" class="font">4명</option>
-	 		<option value="5" class="font">5명</option>
-	 		<option value="6" class="font">6명</option>
+	 	<select id="people" class="font_black" style="width:100px; height:45px; border-radius:3px; ">
+	 		<option value="1" class="font_black">1명</option>
+	 		<option value="2" class="font_black">2명</option>
+	 		<option value="3" class="font_black">3명</option>
+	 		<option value="4" class="font_black">4명</option>
+	 		<option value="5" class="font_black">5명</option>
+	 		<option value="6" class="font_black">6명</option>
 	 	</select>
 	 </div>
 	<!-- <div class="form-group">
@@ -102,15 +87,17 @@ font-family: 'Noto Sans KR', sans-serif;
 </form>
 <br>
 <div>
-<input type="button" name="tag" value="#가족과 함께" class="font" onclick="location.href='main/tag.do?tag=가족과 함께'">
-&nbsp;&nbsp;
-<input type="button" name="tag" value="#계곡" class="font" onclick="location.href='main/tag.do?tag=계곡'">
-&nbsp;&nbsp;
-<input type="button" name="tag" value="#친구와 함께" class="font" onclick="location.href='main/tag.do?tag=친구와 함께'">
-&nbsp;&nbsp;
-<input type="button" name="tag" value="#야경이 좋은" class="font" onclick="location.href='main/tag.do?tag=야경이 좋은'">
-&nbsp;&nbsp;
-<input type="button" name="tag" value="#힐링하기 좋은" class="font" onclick="location.href='main/tag.do?tag=힐링하기 좋은'">
+	<label class="font" style="font-size:15pt;">해시태그 :</label>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" name="tag" value="#가족과 함께" class="font" onclick="location.href='main/tag.do?tag=가족과 함께'">
+	&nbsp;&nbsp;
+	<input type="button" name="tag" value="#계곡" class="font" onclick="location.href='main/tag.do?tag=계곡'">
+	&nbsp;&nbsp;
+	<input type="button" name="tag" value="#친구와 함께" class="font" onclick="location.href='main/tag.do?tag=친구와 함께'">
+	&nbsp;&nbsp;
+	<input type="button" name="tag" value="#야경이 좋은" class="font" onclick="location.href='main/tag.do?tag=야경이 좋은'">
+	&nbsp;&nbsp;
+	<input type="button" name="tag" value="#힐링하기 좋은" class="font" onclick="location.href='main/tag.do?tag=힐링하기 좋은'">
 </div>
 <script>
 $(document).ready(function(){

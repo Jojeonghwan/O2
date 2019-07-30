@@ -73,7 +73,9 @@ border-radius: .25em;
 .font{
 font-family: 'Noto Sans KR', sans-serif;
 }
-
+.resize{
+resize:none;
+}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -297,7 +299,7 @@ $(function(){
 			<label class="font">소개</label>
 		</div>
 		<div class="form-group">
-			<textarea rows="10" cols="40" name="intro" class="form-control my-3 font" >${dto.intro}</textarea>
+			<textarea rows="10" cols="40" name="intro" class="form-control my-3 font resize" >${dto.intro}</textarea>
 		</div>
 		<hr>
 		<div class="form-group">

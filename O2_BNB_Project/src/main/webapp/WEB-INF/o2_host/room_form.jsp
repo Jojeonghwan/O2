@@ -42,7 +42,10 @@
     border-radius: 2px;
     margin-bottom: 10px;
 }
-
+.submit{
+	background-color: rgba( 255, 90, 95, 0.7 );
+	color:white;
+}
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -53,7 +56,7 @@ padding: .5em .75em;
 font-size: inherit; 
 line-height: normal; 
 vertical-align: middle; 
-background-color:rgba( 255, 90, 95, 0.7 );
+background-color:#ff5a5f;
 cursor: pointer; 
 border: 1px solid #ebebeb; 
 border-bottom-color: #e2e2e2; 
@@ -72,6 +75,24 @@ border-radius: .25em;
  }
 .font{
 font-family: 'Noto Sans KR', sans-serif;
+font-weight: bold
+}
+.main_font{
+color: rgba( 255, 90, 95, 0.7 );
+}
+.btn_green{
+background-color: rgb(0, 132, 137);
+color:white;
+}
+.btn_gray{
+background-color:#484848;
+color:white;
+}
+.background_color{
+background-color: #fffefc;
+}
+.resize{
+resize:none;
 }
 
 </style>
@@ -134,8 +155,8 @@ $(function(){
 </head>
 <body>
 <form action="form.do" method="post" enctype="multipart/form-data" id="frm" name="frm"  onsubmit="return validate();">
-<div class="container margin_60">
-<h1 class="my-5 font">
+<div class="container margin_60 background_color">
+<h1 class="my-5 font main_font">
 	Accommodation Registration
 </h1>
 <div class="row my-2">
@@ -162,7 +183,7 @@ $(function(){
          			<input type="text" id="postcode" name="repostcode" class="form-control font" placeholder="우편번호" >
          		</div>
          		<div class="col">
-         			<input type="button" name="postcode" onClick="execDaumPostcode(); return false;" class="btn btn-block btn-success font" value="우편번호 찾기">
+         			<input type="button" name="postcode" onClick="execDaumPostcode(); return false;" class="btn btn-block btn_green font" value="우편번호 찾기">
          		</div>
          	</div>
          </div>
@@ -204,7 +225,7 @@ $(function(){
 			<label class="font">소개</label>
 		</div>
 		<div class="form-group">
-			<textarea rows="10" cols="40" name="intro" class="form-control my-3 font" ></textarea>
+			<textarea rows="10" cols="40" name="intro" class="form-control my-3 font resize" ></textarea>
 		</div>
 		<hr>
 		<div class="form-group">
@@ -221,7 +242,7 @@ $(function(){
 		<div class="form-group">
 			<div class="btn-group-toggle my-1" data-toggle="buttons">
   				  <label class="btn btn-secondary ">
-				   	 아이와 함께<input type="checkbox" class="font" name="hashtag" value="아이와 함께" autocomplete="off" >
+				   	 아이와 함께<input type="checkbox" class="font " name="hashtag" value="아이와 함께" autocomplete="off" >
 				  </label>
 				  <label class="btn btn-secondary ">
 				  	힐링하기 좋은<input type="checkbox" class="font" name="hashtag" value="힐링하기 좋은" autocomplete="off">
@@ -303,16 +324,22 @@ $(function(){
 			<input type="text" name="sub_facilities" value=" " class="form-control font">
 		</div>
 		<hr>
+		<div style="display: inline;">
 		<div class="form-group">
-			<label class="font">person</label>
-			<select id="people" class="font form-control" style="width:100px; height:40px; border-radius:3px;" >
+		<ul>
+			<li style="display: inline;">
+				<label class="font">person</label>
+				<select id="people" class="font form-control" style="width:100px; height:40px; border-radius:3px;" >
 		 		<option value="1" class="font">1명</option>
 		 		<option value="2" class="font">2명</option>
 		 		<option value="3" class="font">3명</option>
 		 		<option value="4" class="font">4명</option>
 		 		<option value="5" class="font">5명</option>
 		 		<option value="6" class="font">6명</option>
-			</select>
+		 		</select>
+			</li>
+		</ul>
+		</div>
 		</div>
 	</div>
 </div>
@@ -323,7 +350,7 @@ $(function(){
 		<label class="font">사진</label>
 		<div class="filebox">
 			<label for="file" class="font">업로드</label> 
-			<input multiple="multiple" id="file" type="file" name="file" class="ct_input_g font" style="width:200px; height:19px" ><!-- accept=".gif, .jpg, .png" -->
+			<input multiple="multiple" id="file" type="file" name="file" class="font" style="width:200px; height:19px" ><!-- accept=".gif, .jpg, .png" -->
 		</div>
 	</div>	
 </div>
@@ -340,14 +367,10 @@ $(function(){
 <input type="hidden" id="facilities" name="facilities" value="">
 <!-- unum 넘길곳 --><input type="hidden" id="u_num" name="u_num" value="${u_num}">
 	<div class="col-sm-1 offset-sm-11">
-		<input type="submit" id="submit" value="전송">
+		<input type="submit" class="font btn-lg submit"  id="submit" value="등록">
 	</div>
 </div>
-
-
-<input type="button" id="test">
 </form>
 </body>
 <script src="${pageContext.request.contextPath}/js/room_form_jh.js"></script>
-
 </html>
