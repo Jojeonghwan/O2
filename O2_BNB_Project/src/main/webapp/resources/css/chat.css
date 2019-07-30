@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
+#chat_form {
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: auto;
+	text-align: center;
+}
+
+table {
+	font-family: 'Noto Sans KR', sans-serif;
+	border: 2px solid #484848;
+	margin: auto;
+	text-align: center;
+	display: inline-block;
+}
+
+#buttonMessage {
+	background-color: white;
+	border : 1px solid #484848;
+	border-radius : 10px;
+	color : #484848;
+}
+
+#buttonMessage:hover {
+	background-color: #ff5a5f;
+	border : 1px solid #484848;
+	border-radius : 10px;
+	color : white;
+}
+
+a#chat_exit{
+	position: absolute;
+	left: 67%;
+	font-family: 'Noto Sans KR', sans-serif;
+	text-decoration : none;
+	color : #ff5a5f;
+}
+
+a#chat_exit:hover{
+	position: absolute;
+	left: 67%;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	text-decoration : none;
+	color : #ff5a5f;
+}
+
+#chat_form .chat_con_sender {
+	/* background-image: url( "../image/sender.png" ); */
+	border : 1px solid #ff5a5f;
+	/* text-align: right; */
+}
+
+#chat_form .chat_con_receive {
+	/* background-image: url( "../image/receive.png" ); */
+	border : 1px solid #484848;
+	/* text-align: left; */
+}

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
+
+#scrap_list,#scrap_p{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.scarp_list_img {
+	width: 300px;
+	height: 280px; 
+}
+
+.scrap_delete{
+	background-color: white;
+	color : #484848;
+	border: 1px solid #484848;
+	border-radius : 5px;
+}
