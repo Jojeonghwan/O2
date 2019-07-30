@@ -25,6 +25,7 @@
 <!-- datepicker 끝 -->
 <!-- rangeSlide -->
 <script src="http://bootstraptema.ru/plugins/2018/irs/ion.rangeSlider.min.js"></script>
+<script type="text/javascript" src="../js/board_list_sy.js"></script>
 
 <style>
 .text {
@@ -56,12 +57,6 @@
 	<input type="text" class="search_addr" name="addr" placeholder="지역" value="${addr}" 
 	style="height:30px;" size=50px; autocomplete="off"/>
 	<input type="submit" value="검색">
-	<script type="text/javascript">
-		$(".search_addr").focus(function(){
-			event.preventDefault();
-			$(".o2bnb_search").css("display","block");
-		});
-	</script>
 	<!-- hidden -->
 	<input type="hidden" name="from_main" value="2">
 	<input type="hidden" id="person_id" name="person" value="${person}">
@@ -82,33 +77,6 @@
 		<span><a href="#" onclick="return_theme()">테마별</a></span>
 		<span><a href="#" onclick="return_person()">인원</a></span>
 		<span><a href="#" onclick="return_price()">가격</a></span>
-		
-		<script type="text/javascript">
-			function return_theme(){
-				$(".person_cnt").css("display", "none");
-				$(".price").css("display", "none");
-				$(".col-sm-9").css("display", "none");
-				$(".theme").css("display", "block");
-			}
-			function return_person(){
-				$(".theme").css("display", "none");
-				$(".price").css("display", "none");
-				$(".col-sm-9").css("display", "none");
-				$(".person_cnt").css("display", "block");
-			}
-			function return_price(){
-				$(".theme").css("display", "none");
-				$(".person_cnt").css("display", "none");
-				$(".col-sm-9").css("display", "none");
-				$(".price").css("display", "block");
-			}
-			function return_date(){
-				$(".person_cnt").css("display", "none");
-				$(".price").css("display", "none");
-				$(".theme").css("display", "none");
-				$(".col-sm-9").css("display", "block");
-			}
-		</script>
 	</div>
 
 </div>
@@ -198,15 +166,7 @@ $("#date_val").click(function(){
 </div>
 <input type="button" id="theme_value" value="저장">
 <script type="text/javascript">
-	$("#theme_value").click(function(){
-		var test="";
-		$("input:checkbox[name=theme_sel]:checked").each(function() {// checked값 반복 		
-			if($(this).is(':checked'))
-	            test += "|"+($(this).val());
-		});
-		$("#theme_id").val(test);
-		$(".theme").css("display","none");
-	});
+	
 </script>
 </div>
 	
@@ -220,23 +180,7 @@ $("#date_val").click(function(){
 	<button type="button" id="inc">+</button>
 	<input type="button" id="person_value" value="저장">
 	<script type="text/javascript">
-		$("#inc").click(function(){ //6까지 증가
-			if(parseInt($('#person').val())<6)
-			{
-				$("#person").val(parseInt($('#person').val())+1);
-			}
-			});
-		$("#dec").click(function(){ //1까지 감소
-			if(parseInt($('#person').val())>1)
-			{
-				$("#person").val(parseInt($('#person').val())-1);
-			}
-			});
-		$("#person_value").click(function(){
-			var person_val= $("#person").val();
-			$("#person_id").val(person_val);
-			$(".person_cnt").css("display","none");
-		});
+		
 	</script>
 </div>
 	
@@ -252,24 +196,7 @@ $("#date_val").click(function(){
 	 </div>
 	 <input type="button" id="range_value" value="저장">
 	 <script>
-		 $("#range_03").ionRangeSlider({
-			 type: "double",
-			 grid: true,
-			 min: 0,
-			 max: 300000,
-			 from: 20000,
-			 to: 250000,
-			 postfix: "원"
-		 });
-		 $("#range_value").click(function(){
-			var slider = $("#range_03").data("ionRangeSlider");
-			var from = slider.result.from;
-			var to = slider.result.to;
-			
-			$("#price_from_id").val(from);
-			$("#price_to_id").val(to);
-			$(".price").css("display","none");
-		 });
+		
 	</script>
 </div>
 	
@@ -279,89 +206,58 @@ $("#date_val").click(function(){
 <!-- 출력부 %로 바꾸자-->
 <div id="map" style="width:500px; height:500px; float:right;"></div>
 
-<!-- ////////////////////////////////////////////////////무한스크롤 시작 -->
-<div id="infinite_list">
 <c:forEach var="dto" items="${list}">
 <c:set var="ho_addr" value="${ho_addr},${dto.addr}"/>
 <c:set var="home_name" value="${home_name},${dto.home_name}"/>
 <c:set var="price" value="${price},${dto.price}"/>
 <c:set var="num" value="${num},${dto.num}"/>
-	<div id="infinityList"><!-- 무한스크롤 append -->
-		<div class="infinityClass" style="border: 1px solid gray; width: 300px; height: 200px;">		
+
+	<div id="paging">
+		<div style="border: 1px solid gray; width: 300px; height: 200px;">		
 			<div class="text">
 				<span class="price_tag" style=" border-bottom: 1px solid gray;">${dto.price}</span>
-				<br><br>
+<br><br>
 				<c:set var="img" value="${dto.img}" />
-				<img src="../save/${fn:split(img,',')[0]}" width="200">
-				<br><br>
+				<img src="../save/${fn:split(img,',')[0]}" width="100">
 			</div>	
-			<br>
+<br><br><br>			
 			<a href="../board/content.do?num=${dto.num}">${dto.home_name}</a>
-			<br><br>
-			<!-- hidden -->
-			<input type="hidden" name="end" value="${end}">
+<br><br>			
 			<!-- 평점, 리뷰갯수 출력// -->
 		</div>
 		<br><br>
 	</div>
 </c:forEach>
+
+
+<!-- 페이지 번호 출력 -->
+<div style="width: 600px; text-align: center; " >
+	<ul class="pagination"><!-- 페이징처리 부트스트랩 -->
+	<c:if test="${startPage>1}">
+		<li>
+			<a href="list.do?pageNum=${startPage-1}">◀</a>
+		</li>
+		</c:if>
+		<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+			<c:if test="${pp==currentPage}">
+				<li><a href="list.do?pageNum=${pp}&addr=${addr}&checkin=${checkin}
+				&checkout=${checkout}&person=${person}&price_from=${price_from}
+				&price_to=${price_to}&end=${end}&tag=${tag}&from_main=${from_main}" style="color:red;">${pp}</a></li>
+			</c:if>
+			<c:if test="${pp!=currentPage}">
+				<li><a href="list.do?pageNum=${pp}&addr=${addr}&checkin=${checkin}
+				&checkout=${checkout}&person=${person}&price_from=${price_from}
+				&price_to=${price_to}&end=${end}&tag=${tag}&from_main=${from_main}" style="color:black;">${pp}</a></li>
+			</c:if>
+		</c:forEach>
+		<c:if test="${endPage<totalPage}">
+		<li>
+			<a href="list.do?pageNum=${endPage+1}">▶</a>
+		</li>
+		</c:if>
+	</ul>
 </div>
-<script type="text/javascript"> 
 
-	var lastScrollTop = 0;
-	
-	//1. 스크롤 이벤트 최초 발생
-	$(window).scroll(function(){
-		// 현재 스크롤 좌표
-		var currentScrollTop = $(window).scrollTop();
-		
-		/* =============== 다운스크롤인 상태 ================ */
-		if(currentScrollTop - lastScrollTop > 0){
-			console.log("down-scroll");
-		}
-
-		//2. 현재스크롤의 top 좌표가 > (게시글을 불러온 화면 height - 윈도우창의 height) 되는 순간
-		//2) 현재 스크롤의 위치가 화면에 보이는 위치보다 크다면
-		if ($(window).scrollTop() >= ($(document).height() - $(window).height())){
-			// dto에 저장
-			var addr = $("#checkin_id").val();
-			var person = '${person}';
-			var checkin = '${checkin}';
-			var checkout = '${checkout}';
-			alert(addr+"addr");
-			alert(person+"person");
-			alert(checkin+"checkin");
-			alert(checkout+"checkout");
-			if('${from_main}' != 1){ // 메인에서 온게 아니면
-				var tag = '${tag}';
-				var price_from = '${price_from}';
-				var price_to = '${price_to}';
-				
-				// 3. end값 증가
-				var end = '${end}'+20;
-				alert(addr+"addr");
-				alert(person+"person");
-				alert(checkin+"checkin");
-				alert(checkout+"checkout");
-				alert(tag+"tag");
-				alert(price_from+"price_from");
-				alert(price_to+"price_to");
-				alert(end+"end");
-				
-			}				
-			
-			
-			// 4. ajax를 이용하여 현재 뿌려진 게시글의 마지막 end를 서버로 보내어 다음 20개의 게시물 데이터 받아오기
-			/* $.ajax({
-				type: 'post',
-				url : 'infiniteDown.do',
-				dataType: 'json',
-				data : JSON.stringfy
-			}); */
-		}
-	});
-</script>
-<!-- ////////////////////////////////////////////////////무한스크롤 끝 -->
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8c8c41484005696a06aceab619299c52&libraries=services"></script>
 <script>
@@ -628,7 +524,6 @@ geocoder.addressSearch(addr[i], function(result, status) {
 }; 
  */
 </script>
-<!-- /////////////////////무한스크롤 시작////////////////// -->
 
 </body>
 </html>

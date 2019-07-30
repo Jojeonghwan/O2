@@ -183,10 +183,10 @@ public class qna_controller {
 	
 	// 일반사용자일 때 비밀번호 확인 - 게시물수정
 	@RequestMapping("/qna/pass_right.aj")
-	public @ResponseBody String pass_right(@RequestParam String pass, int num, HttpServletResponse response) throws Exception
+	public @ResponseBody String pass_right(@RequestParam String pass,@RequestParam int num, HttpServletResponse response) throws Exception
 	{
 		System.out.println("문의글 onsubmit:"+num);
-		String pass1 = service.select_pw(num);
+		String pass1 = service.select_pw(num); //DB비번
 		System.out.println("원래 비번 :"+pass1);
 		String pass_right="";
 		if( pass.equals(pass1) ){ 					// dto의 pw와 입력한 pw가 같을 때 1 반환

@@ -67,7 +67,7 @@
 		and #{checkin} not between checkin and checkout
 		and #{checkout} not between checkin and checkout -->
 	</select>
-	<select id="search_data_list_filter" parameterType="se_dto" resultType="ho_dto">
+<!-- 	<select id="search_data_list_filter" parameterType="se_dto" resultType="ho_dto">
 		SELECT *
 		FROM (
 		    SELECT A.*, ROWNUM AS RNUM 
@@ -100,15 +100,152 @@
 					    ORDER BY price  
 					    ) A
 				<![CDATA[
-				WHERE ROWNUM <= 3 
+				WHERE ROWNUM <= #{end} 
 				)
-		WHERE RNUM > 0	
+		WHERE RNUM > #{end}-3	
 		]]>								  
+	</select> -->
+	<select id="search_tag" parameterType="se_dto" resultType="ho_dto">
+		select a.* 
+			from (
+					select ROWNUM as RNUM, b.* 
+					from (
+							select * 
+							from o2_home
+							where
+							tag like '%'||#{tag}||'%'
+						 )b 
+					)a 
+			<![CDATA[
+			where a.RNUM>=#{startNum} and a.RNUM<=#{endNum}
+			]]>
 	</select>
-	<select id="search_tag" parameterType="String" resultType="ho_dto">
-		select * 
-		from o2_home
-		where
-		tag like '%'||#{tag}||'%'
+	<select id="search_tag_totalCount" parameterType="String" resultType="int">
+		select count(*) 
+		from (
+				select * 
+				from o2_home
+				where
+				tag like '%'||#{tag}||'%'
+			 )
+	</select>
+	
+	<select id="boardList_totalCount" parameterType="se_dto" resultType="int">
+	    SELECT count(*) 
+	    FROM (		
+				select 
+				    h.*
+				from 
+				    o2_home h
+				where 1=1
+				    and h.num not in (
+				        select distinct h_num 
+				        from o2_home_guest 
+				        where (
+				            checkin  between to_date(#{checkin})   and to_date(#{checkout})-1 or 
+				            checkout between to_date(#{checkin})+1 and to_date(#{checkout}) 
+				        )
+				    )
+				    and addr LIKE '%'||#{addr}||'%'
+				   <if test="person != null"> 
+				    <![CDATA[
+				    AND person >= #{person} 
+				    ]]>
+				    </if>
+				    <if test='!tag.equals("|")'> 
+				    AND REGEXP_LIKE (tag, #{tag})  
+				    </if>
+				    <if test="price_from != 0"> 
+				    AND price BETWEEN #{price_from} AND #{price_to}  
+				    </if> 
+				    ORDER BY price  
+				    ) 
+	</select>
+	<select id="boardList_pagingList" parameterType="se_dto" resultType="ho_dto">
+	    select a.* from(
+	    SELECT ROWNUM as RNUM, b.* 
+	    FROM (		
+				select 
+				    h.*
+				from 
+				    o2_home h
+				where 1=1
+				    and h.num not in 
+				    	(
+				        select distinct h_num 
+				        from o2_home_guest 
+				        where (
+				            checkin  between to_date(#{checkin})   and to_date(#{checkout})-1 or 
+				            checkout between to_date(#{checkin})+1 and to_date(#{checkout}) 
+				        		)
+				    	)
+				    and addr LIKE '%'||#{addr}||'%'
+				   <if test="person != null"> 
+				    <![CDATA[
+				    AND person >= #{person} 
+				    ]]>
+				    </if>
+				    <if test='!tag.equals("|")'> 
+				    AND REGEXP_LIKE (tag, #{tag})  
+				    </if>
+				    <if test="price_from != 0"> 
+				    AND price BETWEEN #{price_from} AND #{price_to}  
+				    </if> 
+				    ORDER BY price  
+				    ) b
+		) a
+		<![CDATA[
+		where a.RNUM>=#{startNum} and a.RNUM<=#{endNum}
+		]]>
+	</select>
+	
+	<select id="search_data_pagingList" parameterType="se_dto" resultType="ho_dto">
+		<![CDATA[
+		select a.* from
+		(
+		    SELECT ROWNUM as RNUM, b.* 
+		    FROM (
+			select 
+			    h.*
+			from 
+			    o2_home h
+			where 
+			    h.num not in 
+			    	(
+			        select distinct h_num 
+			        from o2_home_guest
+			        where (
+				            checkin  between to_date(#{checkin})   and to_date(#{checkout})-1 or 
+				            checkout between to_date(#{checkin})+1 and to_date(#{checkout}) 
+			        	   )
+			    	)
+			    and addr LIKE '%'||#{addr}||'%' 
+			    AND person >= #{person} 
+				) b
+		) a
+		where a.RNUM>=#{startNum} and a.RNUM<=#{endNum}
+		    ]]>
+	</select>
+	<select id="search_data_totalCount" parameterType="se_dto" resultType="int">
+		<![CDATA[
+		SELECT count(*) 
+	    FROM (
+				select 
+				    h.*
+				from 
+				    o2_home h
+				where 
+				    h.num not in (
+				        select distinct h_num 
+				        from o2_home_guest
+				        where (
+				            checkin  between to_date(#{checkin})   and to_date(#{checkout})-1 or 
+				            checkout between to_date(#{checkin})+1 and to_date(#{checkout}) 
+				        )
+				    )
+				    and addr LIKE '%'||#{addr}||'%' 
+				    AND person >= #{person} 
+				)
+		    ]]>
 	</select>
 </mapper>

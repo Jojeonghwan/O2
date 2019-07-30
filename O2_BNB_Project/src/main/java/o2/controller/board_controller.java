@@ -28,11 +28,14 @@ import o2.service.member_service_imple;
 
 
 
+import o2.util.FileWriter;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -321,22 +324,35 @@ public class board_controller {
 	public ModelAndView review_page(@RequestParam int num) throws Exception
 	{
 		ModelAndView model = new ModelAndView();
-		List<home_review_dto> list= b_service.select_review(num);
+		List<home_review_dto> list= b_service.select_review(num); // 집번호로 리뷰list
 		model.addObject("list", list);
+		
+		int beStarRating = b_service.beStarRating(num);
+		double starRating = 0.0;
+		if(beStarRating==1){	// 별점이 있을 때 1 리턴
+			starRating = b_service.review_starRating(num); // 집번호로 총점리뷰
+		}else{
+			starRating = 0.0;
+		}
+		
+		model.addObject("starRating", starRating);
 		model.setViewName("o2_board/board_review");
 		return model;
 	}
 	
-	@RequestMapping("/board/review_list.do")
+/*	@RequestMapping("/board/review_list.do")
 	@ResponseBody
-	public List<home_review_dto> review_list(@RequestParam int num) throws Exception
+	public List<home_review_dto> review_list(@RequestParam String num) throws Exception
 	{
-		List<home_review_dto> list= b_service.select_review(num);
+		int h_num = Integer.parseInt(num);
+		List<home_review_dto> list= b_service.select_review(h_num);
 		return list;
-	}
+	}*/
 	
+	//리뷰 입력
 	@RequestMapping(value="/board/review_insert.do", method=RequestMethod.POST, produces="text/plain")
-	public ModelAndView upload(MultipartHttpServletRequest request) throws Exception {
+	public ModelAndView upload(MultipartHttpServletRequest request,
+								@RequestParam MultipartFile upfile) throws Exception {
 		JSONObject json = new JSONObject();
 		String PATH=request.getSession().getServletContext().getRealPath("/save");
 		System.out.println("path:"+PATH);
@@ -347,26 +363,40 @@ public class board_controller {
 		home_review_dto h_re_dto = new home_review_dto();
 		String content = request.getParameter("content");
 		h_re_dto.setContent(content);
-		System.out.println(content);
+		System.out.println(content+", content");
 		
 		double score = Double.parseDouble(request.getParameter("score"));
 		h_re_dto.setScore(score);
-		System.out.println(score);
+		System.out.println(score+", score");
 		
 		String myid = request.getParameter("id");
-		System.out.println(myid);
+		System.out.println(myid+", myid");
 		h_re_dto.setId(myid);
 		
-		
+		// 썸네일저장
 		String thumb_nail = m_service.select_dto(myid).getThumb_nail();
 		h_re_dto.setThumb_nail(thumb_nail);
 		
-		String imgname = request.getParameter("upfile");
-		System.out.println(imgname);
-		if(imgname == null){ // 사진을 선택하지 않았을 때 noimg 저장
-			h_re_dto.setImg_name("noimg");
-		}else{
-			h_re_dto.setImg_name(imgname);
+		String imagename="";
+		FileWriter fileWriter = new FileWriter();
+		// 이미지저장
+//		if(upfile.getOriginalFilename().length() == 0) {
+//			h_re_dto.setImg_name("noimg"); // null 이면 noimg
+//		}else { //빈문자열이 아닌 경우 img 저장
+//			for(MultipartFile f:dto.getUpfile())
+//			{ //upfile만큼 반복
+//				imagename+=f.getOriginalFilename()+",";
+//				fileWriter.writeFile(f, PATH, f.getOriginalFilename());
+//			}
+//			h_re_dto.setImg_name(imagename); //dto에 이미지이름 저장
+//		}
+
+		if(upfile.getOriginalFilename().length() == 0) {
+			h_re_dto.setImg_name("noimg"); // null 이면 noimg
+		}else { //빈문자열이 아닌 경우 img 저장
+			fileWriter.writeFile(upfile, PATH, upfile.getOriginalFilename());
+			// 새로운 dto에 이미지 저장
+			h_re_dto.setImg_name(upfile.getOriginalFilename());
 		}
 		
 		int h_num = Integer.parseInt(request.getParameter("h_num"));
@@ -374,31 +404,10 @@ public class board_controller {
 		
 		b_service.insert_review(h_re_dto);
 		
-		Iterator<String> itr =  request.getFileNames();
-		
-        if(itr.hasNext()) {
-        	System.out.println("참");
-        	List<MultipartFile> mpf = request.getFiles(itr.next());
-            // 임시 파일을 복사한다.
-            for(int i = 0; i < mpf.size(); i++) {
 
-                File file = new File(PATH +"\\"+ mpf.get(i).getOriginalFilename());
-                //logger.info(file.getAbsolutePath());
-                mpf.get(i).transferTo(file);
-                
-            }
-
-            json.put("code", "true");
-            model.addObject("result", json);
-            return model;
-            
-        } else {
-        	System.out.println("거짓");
-            json.put("code", "false");
-            model.addObject("result", json);
-            return model;
-            
-        }
+        json.put("code", "true");
+        model.addObject("result", json);
+        return model;
        
 	}
 	
@@ -413,6 +422,68 @@ public class board_controller {
 	       } catch (IOException e) {
 	           e.printStackTrace();
 	       } 
+	}
+	
+	///////////////////////////리뷰수정 윈도우팝업
+	@RequestMapping("/board/boardReview_update.do")
+	public ModelAndView reviewDTO(@RequestParam int r_num
+									, @RequestParam int h_num
+									, @RequestParam int pageNum) throws Exception
+	{
+		home_review_dto r_dto = b_service.selectReview_dto(r_num);
+		ModelAndView model = new ModelAndView();
+		model.addObject("r_dto", r_dto);
+		model.addObject("h_num", h_num);
+		model.addObject("pageNum", pageNum);
+		model.setViewName("o2_board/boardReview_update");
+		return model;
+	}
+	
+	////////////////////////////리뷰수정
+	@RequestMapping("/board/review_update.do")
+	public ModelAndView review_update(@RequestParam MultipartFile upfile
+									, MultipartHttpServletRequest request) throws Exception
+	{
+		JSONObject json = new JSONObject();
+		String PATH=request.getSession().getServletContext().getRealPath("/save");
+		System.out.println("path:"+PATH);
+		ModelAndView model = new ModelAndView();
+		model.setView(jsonView);
+		
+		// dto 저장
+		home_review_dto h_re_dto = new home_review_dto();
+		String content = request.getParameter("content");
+		h_re_dto.setContent(content);
+		System.out.println(content+", content");
+		
+		double score = Double.parseDouble(request.getParameter("score"));
+		h_re_dto.setScore(score);
+		System.out.println(score+", score");
+	
+		
+		// 이미지저장
+		FileWriter fileWriter = new FileWriter();
+		if(upfile.getOriginalFilename().length() == 0) {
+			h_re_dto.setImg_name(null); // null 이면 원래img_name 저장
+		}else { //빈문자열이 아닌 경우 img 저장
+			fileWriter.writeFile(upfile, PATH, upfile.getOriginalFilename());
+			// 새로운 dto에 이미지 저장
+			h_re_dto.setImg_name(upfile.getOriginalFilename());
+		}
+	
+		int num = Integer.parseInt(request.getParameter("num"));
+		h_re_dto.setNum(num);
+		System.out.println("리뷰number"+num);
+
+		b_service.update_review(h_re_dto);
+		System.out.println("dto.content"+h_re_dto.getContent());
+		System.out.println("dto.score"+h_re_dto.getScore());
+		System.out.println("dto.num"+h_re_dto.getNum());
+		System.out.println("dto.img"+h_re_dto.getImg_name());
+
+        json.put("code", "true");
+        model.addObject("result", json);
+        return model;
 	}
 
 }

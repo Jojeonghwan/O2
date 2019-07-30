@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -392,6 +393,7 @@ public class member_controller {
 		
 		content = "메일 인증 번호 : " + tempo_pw;
 		
+		
 		// 메일발송
 	    try {
 	    	MimeMessage message = mailSender.createMimeMessage();
@@ -402,7 +404,9 @@ public class member_controller {
 	    	messageHelper.setTo(email);    
 	    	messageHelper.setSubject(title); 
 	    	messageHelper.setText(content); 
-	 
+	    	
+	    	System.out.println("메일 인증번호 : " + tempo_pw);
+	    	
 	    	mailSender.send(message);
 	    	model.addObject("result", "1");
 	    } catch(Exception e){
@@ -446,6 +450,7 @@ public class member_controller {
 		return "redirect:../index.jsp";
 	}
 	
+	
 	// 회원정보 수정폼
 	@RequestMapping("/member/update_member.do")
 	public String change_member(HttpServletRequest request, Model model) throws Exception
@@ -458,19 +463,18 @@ public class member_controller {
 	}
 	
 	// 회원정보 수정
-	@RequestMapping(value = "/member/update_action.do", method=RequestMethod.POST)
+	@RequestMapping(value = "/member/m_update_action.do", method=RequestMethod.POST)
 	public String change_up(@ModelAttribute member_dto dto, 
 							HttpServletRequest request, 
 							@RequestParam MultipartFile thumb_nail_img
 							) throws Exception
 	{
-		System.out.println("aa");
+		System.out.println("update_action.do 진입");
 		// 아이디는 바뀌지않게 하기로함
 		HttpSession session = request.getSession();
 		String myid = (String)session.getAttribute("login_id");
 		dto.setId(myid);
 		System.out.println("bb");
-		ModelAndView model = new ModelAndView();
 		
 		// path
 		String path=request.getSession().getServletContext().getRealPath("/save");
@@ -495,19 +499,63 @@ public class member_controller {
 			// 새로운 dto에 썸네일 저장
 			dto.setThumb_nail(thumb_nail_img.getOriginalFilename());
 		}
-		System.out.println(dto.getEmail());
-		System.out.println(dto.getId());
-		System.out.println(dto.getName());
-		System.out.println(dto.getPassword());
-		System.out.println(dto.getTel());
-		System.out.println(dto.getThumb_nail());
+		
+		// 비밀번호 null 일때 dto에 널값 저장
+		if(dto.getPassword()==null){
+			dto.setPassword("");
+		}else{
+			dto.setPassword(dto.getPassword());
+		}
+		
+		System.out.println(dto.getEmail()+"이메일");
+		System.out.println(dto.getId()+", 아이디");
+		System.out.println(dto.getName()+", 이름");
+		System.out.println(dto.getPassword()+", 비번");
+		System.out.println(dto.getTel()+", 전화번호");
+		System.out.println(dto.getThumb_nail()+", 썸네일");
 		System.out.println("파일업로드");
 		service.update_member(dto);
 		System.out.println("회원정보 업데이트");
 
 		return "redirect:/member/mypage.do";
 	}
+	
+	
+	/////////////////////////////////회원정보수정 / 비밀번호 확인
+	
+	
+	@RequestMapping("/member/update.do")
+	public String update_pass() throws Exception
+	{
+		return "o2_member/update_pass";
+	}
+	
+	@RequestMapping("/member/passright.do")
+	@ResponseBody
+	public String passright(@RequestParam String mypass, HttpServletRequest request) throws Exception
+	{
+		HttpSession session = request.getSession();
+		System.out.println("컨트롤러 진입");
+		
+		String login_id = (String)session.getAttribute("login_id");
+		String password = service.select_pw(login_id);	// DB 비번 가져오기
+		
+		System.out.println("입력한 비번 : "+mypass);
+		System.out.println("DB비번 : "+password);
+		
+		String right = "";						//right으로 반환
+		if ( password.equals(mypass) ){	//DB 비번과 같을때 1 리턴
+			right = "1";
+			System.out.println("right = 1");
+		}else{							// DB 비번과 다를때 2 리턴
+			right = "2";
+			System.out.println("right = 2");			
+		}
+		return right;
+	}
+	
 }
+
 
 
 

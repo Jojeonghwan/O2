@@ -8,10 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../js/qna_sy.js"></script>
+
 </head>
 <body>
 <div>
-
 	<table class="table table-bordered" style="width: 600px;">
 		<caption>문 의 내 역 ${pageNum }</caption>
 		<tr>
@@ -31,14 +32,14 @@
 			<td colspan="2">
 			<c:if test="${ dto.id == sessionScope.login_id }">
 				<a href="qna_update_form.do?num=${dto.num}&pageNum=${pageNum}">수정하기</a><br>
-				<a href="qna_delete.do?num=${dto.num}&pageNum=${pageNum}">삭제하기</a>
+				<a href="qna_delete.do?num=${dto.num}&pageNum=${pageNum}" onclick="return confirm('문의사항을 삭제하시겠습니까?');">삭제하기</a>		
 			</c:if>
 			</td>
 		</tr>
 	</table>
 
 <c:if test="${sessionScope.user_type == '3'}">
-	<a href="qna_update_form.do?num=${dto.num}&pageNum=${pageNum}">수정하기</a>
+	<a href="qna_update_form.do?num=${dto.num}&pageNum=${pageNum}">관리자용수정하기</a>
 </c:if>
 
 <br><br>

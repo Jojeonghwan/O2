@@ -12,6 +12,8 @@ public class search_dto {
 	private String tag; // theme
 	private int price_from;
 	private int price_to;
+	private int startNum;
+	private int endNum;
 	private int end;
 
 	public int getEnd() {
@@ -19,6 +21,18 @@ public class search_dto {
 	}
 	public void setEnd(int end) {
 		this.end = end;
+	}
+	public int getStartNum() {
+		return startNum;
+	}
+	public void setStartNum(int startNum) {
+		this.startNum = startNum;
+	}
+	public int getEndNum() {
+		return endNum;
+	}
+	public void setEndNum(int endNum) {
+		this.endNum = endNum;
 	}
 	public String getTag() {
 		return tag;
