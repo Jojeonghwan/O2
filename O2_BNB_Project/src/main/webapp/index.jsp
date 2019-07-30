@@ -41,7 +41,6 @@
 			<a href="qna/qna_list.do?id=${sessionScope.login_id}">QnA</a>
 		</div>
 		</c:if>
-		
 	</body>
 </head>
 </html>

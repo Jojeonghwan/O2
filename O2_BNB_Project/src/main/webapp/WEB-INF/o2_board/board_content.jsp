@@ -330,11 +330,9 @@ $(".scrap").click(function() {
 			success : function(redata) {
 				var sc_ch = $(redata).find("scrap_result").text();
 				if(sc_ch=='1') {
-					alert("스크랩이 완료 되었습니다.");
 					$(".scrap").attr("src", "../image/heart_in.png");
 					$("#scrap_n").val($(redata).find("sc_num").text());
 				} else {
-					alert("스크랩이 해제 되었습니다.");
 					$(".scrap").attr("src", "../image/heart_out.png");
 				}
 			},

@@ -6,7 +6,7 @@ public class scrap_dto {
 	private String id;
 	private String home_name;
 	private String img_name;
-	private int score;
+	private double score;
 	public String getNum() {
 		return num;
 	}
@@ -37,10 +37,10 @@ public class scrap_dto {
 	public void setImg_name(String img_name) {
 		this.img_name = img_name;
 	}
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
-	public void setScore(int score) {
+	public void setScore(double score) {
 		this.score = score;
 	}
 }

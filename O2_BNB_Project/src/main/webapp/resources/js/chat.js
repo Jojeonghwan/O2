@@ -1,17 +1,16 @@
 $(function() {
-	/*alert($("#out_ch").val());*/
-/*	if($("#out_ch").val()!='') {
-		alert("사용자가 나가지 않았기 때문에 삭제가 불가능 합니다.");
-	}*/
+	if($("#room").val()) {
+		$("select#chat_room_list").val($("#room").val()).prop("selected",true);
+	}
 	
-	$(".ch_dto").click(function() {
-		var room_name = $(this).attr("room_name");
+	$("#chat_room_list").change(function() {
+		var room_name = $(this).val();
 		location.href = "ch_con.do?room_name="+room_name;
 	});
 	
-	$(".chat_exit").click(function() {
+	$("#chat_exit").click(function(event) {
+		event.preventDefault();
 		var room_name = $(this).attr("room_name");
-		//location.href = "ch_exit.do?room_name="+room_name;
 		
 		$.ajax({
 			type : "post",
@@ -24,7 +23,10 @@ $(function() {
 				if(data == "0") {
 					alert("사용자가 아직 나가지 않아 삭제가 불가능");
 				} else if(data == "1") {
-					location.href = "ch_exit.do?room_name="+room_name;
+					var re = exit(room_name);
+					if(re) {
+						location.href = "ch_exit.do?room_name="+room_name;
+					}
 				}
 			},
 			error : function(e) {
@@ -33,7 +35,13 @@ $(function() {
 		});
 	});
 	
-//	function ch_room_exit(room) {
-//		location.href = "ch_exit.do?room_name="+room;
-//	}
+	function exit(room) {
+		var ch = confirm("채팅방을 나가시겠습니까??");
+		if(ch) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 });

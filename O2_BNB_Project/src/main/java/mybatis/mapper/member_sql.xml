@@ -68,10 +68,26 @@
 	<select id="scrap_list" resultType="sc_dto" parameterType="HashMap">
     	select * 
     	from (select rownum rnum, b.* 
-    		  from (select * 
-    		  		from o2_scrap 
-    		  		where id = #{id}
-    		  		order by num desc
+    		  from (select 
+                    s.num,
+                    s.h_num,
+                    s.id,
+                    s.home_name,
+                    s.img_name,
+                    nvl(re.score, 0.0) as score 
+    		  		from o2_scrap s, 
+                        (select h_num, avg(score) as score
+                         from o2_review
+                         group by h_num
+                         having h_num in
+                                      (select h_num
+                                       from o2_scrap
+                                       where id=#{id}
+                                      ) 
+                        ) re
+    		  		where s.id = #{id}
+                    and s.h_num = re.h_num(+)
+    		  		order by s.num desc
     		  	   ) b
     		 ) a 
     	<![CDATA[

@@ -139,11 +139,11 @@ public class member_controller {
 	
 	
 	// 아이디/비밀번호 찾기 폼 선택
-	@RequestMapping("/member/find") 
-	public String find() throws Exception{
-		return "/o2_member/find";
-	}
-	
+//	@RequestMapping("/member/find") 
+//	public String find() throws Exception{
+//		return "/o2_member/find";
+//	}
+//	
 	// 아이디/비밀번호 찾기 폼 로드
 	@RequestMapping("/member/{path_find}") 
 	public ModelAndView find_form( @PathVariable() String path_find ) throws Exception {
@@ -220,6 +220,7 @@ public class member_controller {
 		 
 		    	mailSender.send(message);
 		    	model.addObject("result", "1");
+		    	model.addObject("email", email.split("@")[1]);
 		    } catch(Exception e){
 		      System.out.println(e);
 		    }

@@ -7,6 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 </head> 
 <body>
-<embed src="http://localhost:3000" style="width: 100%; height: 100%;">
+<a href="../index.jsp">Main</a>
+<div id="admin_page_list" style="text-align: center;">
+	<embed src="http://localhost:3000" style="width: 50%; height: 500px;">
+</div>
 </body>
 </html>
