@@ -29,13 +29,24 @@ font{
 div div{
 	text-align: center;
 }
+label{
+font-weight: bold;
+}
+.main_font{
+color: #ff5a5f;
+font-weight:bold;
+}
+.icon{
+width: 50px;
+height: 50px;
+}
 
 </style>
 </head>
 <body>
 <div class="container margin_60">
-	<h1 class="my-5 font">
-		Home Guest List
+	<h1 class="my-5 font main_font">
+		<img class="icon mr-3" src="../image/guestM.png">Home Guest List
 	</h1>
 	<c:forEach var="dto" items="${list}" varStatus="status">
 		<h5>
@@ -74,6 +85,9 @@ div div{
 				<pre class="font my-5">${dto.guest_email}</pre>
 			</div>
 			<div class="col form-group my-5">
+				<pre></pre>
+				<pre></pre>
+				<pre></pre>
 				<input type="button" class="cancel font" value="취소" 
 				h_num="${dto.h_num}" checkin="${dto.checkin}" checkout="${dto.checkout}"
 				guest_email="${dto.guest_email}" guest_name="${dto.guest_name}"
@@ -115,7 +129,9 @@ div div{
 			</div>
 			<div class="form-group">
 				<pre></pre>
-				<pre class="font my-5">취소 처리된 예약입니다.</pre>
+				<pre></pre>
+				<pre></pre>
+				<pre class="font my-5">   취소 처리된 예약입니다.</pre>
 			</div>
 		</c:if>
 		</div>	

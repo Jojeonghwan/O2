@@ -30,16 +30,34 @@
 		overflow:hidden;
 		text-overflow:ellipsis;
 	}
+.avg{
+width:250px;
+height:200px;
+}
 .image{
-	width:200px;
-	height:200px;
+	width:100%;
+	height:100%;
+}
+.center{
+	text-align: center;
+}
+label{
+	font-weight:bold;
+}
+.main_font{
+color: #ff5a5f;
+font-weight:bold;
+}
+.icon{
+width: 50px;
+height: 50px;
 }
 </style>
 </head>
 <body>
 <div class="container margin_60">
-	<h1 class="my-5 font">
-		Room List
+	<h1 class="my-5 font main_font">
+		<img class="icon mr-3" src="../image/houseM1.png">Room List
 	</h1>
 	<div class="row">
 		<c:forEach var="dto" items="${host_list}" varStatus="status">
@@ -61,11 +79,11 @@
 					<label class="font">Intro :</label>
 					<pre class="font ellip">${dto.intro}</pre>
 				</div>
-				<div class="form-group">
+				<div class="form-group avg">
 					<c:set var="img" value="${dto.img}"/>
 					<img class="image" src="../save/${fn:split(img,',')[0]}">
 				</div>
-				<div class="form-group">
+				<div class="form-group center">
 					<button type="button" class="btn btn-danger btn-sm font"
 						style="width: 60px;"onclick="location.href='delete.do?num=${dto.num}&pageNum=${currentPage}'">삭제</button>
 					<button type="button" class="btn btn-info btn-sm font"
