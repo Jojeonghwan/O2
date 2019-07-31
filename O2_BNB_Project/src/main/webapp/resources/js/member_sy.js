@@ -110,8 +110,10 @@ $(function(){
 		
 		// 이메일 변경했을 때 1
 		$("#mail1").change(function(){
-	         $("input[name=mailsend_con]").val("1");
-	      });
+			$("input[name=mailsend_con]").val("1");
+		});
+		
+
 		
 		// 비번 변경했을 때 1
 		$("#mypass1").change(function(){
@@ -129,6 +131,7 @@ $(function(){
 		 // 중복 아니면 idright=1
 		 if( $("#idright").val() == "2"){
 			 alert("아이디 중복확인 버튼을 눌러주세요");
+			 return false;
 		 }
 		 
 		
@@ -152,7 +155,7 @@ $(function(){
 	    if(!phoneCheck.test(check.tel.value))
 	    {
 	        alert("전화번호 형식에 맞지 않습니다 ");
-	        check.tel.focus()
+	        check.tel.focus();
 	        return false;
 	    }
 	    
@@ -172,7 +175,8 @@ $(function(){
 			return false;
 		}
 	    
-	 
+		else
+			return true;
 
 	} 
 	 

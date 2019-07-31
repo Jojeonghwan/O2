@@ -95,6 +95,7 @@
 		<div class="form-group" style="display: inline-block;">
 			<input type="submit" class="btn btn-primary" id="join" style="width: 110px; height: 35px;" value="가입하기">
 		</div>
+
 	</form>
 </div>
 

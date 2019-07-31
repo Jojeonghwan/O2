@@ -47,14 +47,22 @@ font-weight: bold;
 	border-radius: 20px;
  }
  
- .price {
- 	background-color: white;
+.price {
+ 	background-color: black;
  	border-radius: 5px;
  	color : #484848;
  	padding: 10px;
  }
  
- .filebox label { 
+ .contentprice {
+ 	background-color: #ff5a5f;
+ 	border-radius: 5px;
+ 	color : white;
+ 	padding: 10px;
+ }
+ 
+ 
+.filebox label { 
 display: inline-block; 
 padding: .3em .50em; 
 font-size: inherit; 
