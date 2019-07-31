@@ -72,9 +72,25 @@ border-radius: .25em;
  }
 .font{
 font-family: 'Noto Sans KR', sans-serif;
+font-weight: bold;
+}
+.main_font{
+color: #ff5a5f;
+font-weight:bold;
+}
+.btn_green{
+background-color: rgb(0, 132, 137);
+color:white;
+}
+.background_color{
+background-color: #fffefc;
 }
 .resize{
 resize:none;
+}
+.icon{
+width: 50px;
+height: 50px;
 }
 </style>
 <script type="text/javascript">
@@ -95,9 +111,9 @@ $(function(){
 <body>
 
 <form action="update.do" method="post" enctype="multipart/form-data" id="frm" name="frm"  onsubmit="return validate();" >
-<div class="container margin_60">
-<h1 class="my-5 font">
-	Accommodation Registration
+<div class="container margin_60 background_color">
+<h1 class="my-5 font main_font">
+	<img class="icon mr-3" src="../image/pencilM1.png">Accommodation Registration
 </h1>
 <div class="row my-2">
 	<div class="col-sm-3">
@@ -122,7 +138,7 @@ $(function(){
          			<input type="text" id="postcode" name="repostcode" class="form-control font" placeholder="우편번호" >
          		</div>
          		<div class="col">
-         			<input type="button" name="postcode" onClick="execDaumPostcode(); return false;" class="btn btn-block btn-success font" value="우편번호 찾기">
+         			<input type="button" name="postcode" onClick="execDaumPostcode(); return false;" class="btn btn-block btn-block btn_green" value="우편번호 찾기">
          		</div>
          	</div>
          </div>

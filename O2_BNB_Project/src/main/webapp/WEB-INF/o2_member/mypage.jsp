@@ -16,7 +16,9 @@
 <a href="../index.jsp">메인페이지</a><br>
 <a href="scrap_list">스크랩</a><br>
 <!-- <button id="send_ticket">표받기</button> -->
+<c:if test="${sessionScope.user_type==1}">
 <a href="user_type_change.do">user_type_change</a><br>
+</c:if>
 <a href="../host/roomlist.do">room list</a><br>
 <input type="button" value="채팅창" id="ch_list">
 ${sessionScope.login_id}
@@ -24,7 +26,9 @@ ${sessionScope.login_id}
 	<a href="../board/content.do?num=8">room_info</a>
 </c:if>
 <a href="../board/pay_list.do">pay_list</a><br>
+<c:if test="${sessionScope.user_type==2}">
 <a href="../host/home_guest_list.do">home_guest_list</a><br>
-<a href="../host/host_review.do">host_review</a><br>
+</c:if>
+<!-- <a href="../host/host_review.do">host_review</a><br> -->
 </body>
 </html>

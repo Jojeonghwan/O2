@@ -55,6 +55,10 @@ body{
   width: 100%;
   padding: 1em;
 }	
+.icon{
+width: 50px;
+height: 50px;
+}
 
 </style>
 </head>
@@ -76,7 +80,7 @@ body{
 	                </div>
 	                <div class="row">
 	                	<div class="col-12 form-group">
-	                		<input type="submit" value="전환">
+	                		<input type="image" name="submit" src="../image/transformM1.png" class="icon" value="" />
 	                	</div>
 	                </div>
 	            </form>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
@@ -39,12 +39,23 @@ hr{
 div div{
 text-align: center;
 }
+label{
+font-weight: bold;
+}
+.main_font{
+color: #ff5a5f;
+font-weight:bold;
+}
+.icon{
+width: 50px;
+height: 50px;
+}
 </style>
 </head>
 <body>
 <div class="container margin_60">
-	<h1 class="my-5 font">
-		Pay List
+	<h1 class="my-5 font main_font">
+		<img class="icon mr-3" src="../image/paymentM1.png">Pay List
 	</h1>
 	<c:forEach var="dto" items="${list}" varStatus="status">
 		<h5>

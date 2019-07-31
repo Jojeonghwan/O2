@@ -75,17 +75,14 @@ border-radius: .25em;
  }
 .font{
 font-family: 'Noto Sans KR', sans-serif;
-font-weight: bold
+font-weight: bold;
 }
 .main_font{
-color: rgba( 255, 90, 95, 0.7 );
+color: #ff5a5f;
+font-weight:bold;
 }
 .btn_green{
 background-color: rgb(0, 132, 137);
-color:white;
-}
-.btn_gray{
-background-color:#484848;
 color:white;
 }
 .background_color{
@@ -93,6 +90,10 @@ background-color: #fffefc;
 }
 .resize{
 resize:none;
+}
+.icon{
+width: 50px;
+height: 50px;
 }
 
 </style>
@@ -157,7 +158,7 @@ $(function(){
 <form action="form.do" method="post" enctype="multipart/form-data" id="frm" name="frm"  onsubmit="return validate();">
 <div class="container margin_60 background_color">
 <h1 class="my-5 font main_font">
-	Accommodation Registration
+	<img class="icon mr-3" src="../image/pencilM1.png">Accommodation Registration
 </h1>
 <div class="row my-2">
 	<div class="col-sm-3">
@@ -324,22 +325,16 @@ $(function(){
 			<input type="text" name="sub_facilities" value=" " class="form-control font">
 		</div>
 		<hr>
-		<div style="display: inline;">
 		<div class="form-group">
-		<ul>
-			<li style="display: inline;">
-				<label class="font">person</label>
-				<select id="people" class="font form-control" style="width:100px; height:40px; border-radius:3px;" >
-		 		<option value="1" class="font">1명</option>
-		 		<option value="2" class="font">2명</option>
-		 		<option value="3" class="font">3명</option>
-		 		<option value="4" class="font">4명</option>
-		 		<option value="5" class="font">5명</option>
-		 		<option value="6" class="font">6명</option>
-		 		</select>
-			</li>
-		</ul>
-		</div>
+			<label class="font">person</label>
+			<select id="people" class="font form-control" style="width:100px; height:40px; border-radius:3px;" >
+	 		<option value="1" class="font">1명</option>
+	 		<option value="2" class="font">2명</option>
+	 		<option value="3" class="font">3명</option>
+	 		<option value="4" class="font">4명</option>
+	 		<option value="5" class="font">5명</option>
+	 		<option value="6" class="font">6명</option>
+	 		</select>
 		</div>
 	</div>
 </div>

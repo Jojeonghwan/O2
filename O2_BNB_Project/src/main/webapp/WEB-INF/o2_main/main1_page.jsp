@@ -35,6 +35,10 @@ font-family: 'Noto Sans KR', sans-serif;
 .font_black{
 font-family: 'Noto Sans KR', sans-serif;
 }
+.icon{
+width: 40px;
+height: 40px;
+}
 </style>
 </head>
 <body>
@@ -82,12 +86,12 @@ font-family: 'Noto Sans KR', sans-serif;
 	<input type="hidden" name="from_main" value="1"> 
 	<input type="hidden" id="person" name="person" value="">
 	<div class="form-group">
-		<input type="submit" value="Search" class="btn-default font"style="height:45px; width:100px; border-radius:10px;background-color:#ff5a5f">
+		<input type="image" name="submit" src="image/searchM1.png" class="icon" style="z-index: 1" value="" />
 	</div>
 </form>
 <br>
 <div>
-	<label class="font" style="font-size:15pt;">해시태그 :</label>
+	<label class="font" style="font-size:15pt;">추천 테마 :</label>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" name="tag" value="#가족과 함께" class="font" onclick="location.href='main/tag.do?tag=가족과 함께'">
 	&nbsp;&nbsp;
