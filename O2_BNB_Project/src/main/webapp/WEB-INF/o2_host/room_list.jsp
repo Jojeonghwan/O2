@@ -60,8 +60,14 @@ height: 50px;
 	<h1 class="my-5 font main_font">
 		<img class="icon mr-3" src="../image/houseM1.png">Room List
 	</h1>
+	<%
+	 int cnt=0;
+	%>
 	<div class="row">
 		<c:forEach var="dto" items="${host_list}" varStatus="status">
+		<%
+		cnt++;
+		%>
 			<div class="col-3 rounded border my-3 mx-4">
 				<div class="form-group">
 					<label class="font">no.${status.index+1}</label>
@@ -92,6 +98,11 @@ height: 50px;
 				</div>
 			</div>
 		</c:forEach>
+		<c:if test="<%=cnt==0%>">
+		<h3 class="font">
+			<label>등록한 숙소가 없습니다</label>
+		</h3>
+	</c:if>
 	</div>
 </div>
 </body>

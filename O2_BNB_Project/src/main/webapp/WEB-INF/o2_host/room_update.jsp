@@ -304,11 +304,11 @@ $(function(){
 <div class="row">
 	<div class="col-sm-6 col-sm-6 form-group">
 		<div class="form-group">
-			<label class="font">연락처 :</label><input type="text" id="hp" name="hp" class="form-control my-3 font" value="${dto.hp}" >
+			<label class="font">연락처 :</label><input type="text" id="hp" name="hp" placeholder="하이픈(-)을 빼고 입력해주세요" class="form-control my-3 font" value="${dto.hp}" >
 		</div>
 		<hr>
 		<div class="form-group">
-			<label class="font">비상 연락처 :</label><input type="text" id="emer_hp" name="emer_hp" class="form-control my-3 font" value="${dto.emer_hp}" >
+			<label class="font">비상 연락처 :</label><input type="text" id="emer_hp" placeholder="하이픈(-)을 빼고 입력해주세요" name="emer_hp" class="form-control my-3 font" value="${dto.emer_hp}" >
 		</div>
 		<hr>
 		<div class="form-group">

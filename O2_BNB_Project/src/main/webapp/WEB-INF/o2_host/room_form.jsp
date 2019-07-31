@@ -123,33 +123,7 @@ $(function(){
 			   
 			   $("#person").val($("#people option:selected").val());
 	   });	   
-	   
-	   $("#test").click(function(){
-		   var tag="";
-		   $("input[name=hashtag]:checked").each(function() {
-			   tag+=$(this).val()+",";
-			 });
-		   tag=tag.substr(0, tag.length-1);
-		   $("#tag").val(tag);	
-		   			   
-		   
-		   var facilities="";
-		   $("input[name=goods]:checked").each(function() {
-			   facilities+=$(this).val()+",";
-			 });
-		   facilities=facilities.substr(0, facilities.length-1);
-		   $("#facilities").val(facilities);	
-		   
-		   $("#person").val($("#people option:selected").val());
-		   
-		   $("#aa").prop("checked");
-		   
-		   alert($("#people option:selected").val());
-		   alert(tag);
-		   alert(facilities);
-		   alert($("#aa").prop("checked"));
-	   });
-	   
+	  
 });
 </script>
 </head>
@@ -214,11 +188,11 @@ $(function(){
 <div class="row">
 	<div class="col-sm-6 col-sm-6 form-group">
 		<div class="form-group">
-			<label class="font">연락처 :</label><input type="text" id="hp" name="hp" class="form-control my-3 font" >
+			<label class="font">연락처 :</label><input type="text" id="hp" name="hp" placeholder="하이픈(-)을 빼고 입력해주세요" class="form-control my-3 font" >
 		</div>
 		<hr>
 		<div class="form-group">
-			<label class="font">비상 연락처 :</label><input type="text" id="emer_hp" name="emer_hp" class="form-control my-3 font" >
+			<label class="font">비상 연락처 :</label><input type="text" id="emer_hp" name="emer_hp" placeholder="하이픈(-)을 빼고 입력해주세요" class="form-control my-3 font" >
 		</div>
 		<hr>
 		<div class="form-group">

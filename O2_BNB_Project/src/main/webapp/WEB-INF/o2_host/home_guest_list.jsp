@@ -49,7 +49,13 @@ height: 50px;
 	<h1 class="my-5 font main_font">
 		<img class="icon mr-3" src="../image/guestM.png">Home Guest List
 	</h1>
+	<%
+	 int cnt=0;
+	%>
 	<c:forEach var="dto" items="${list}" varStatus="status">
+	<%
+	cnt++;
+	%>
 		<h5>
 			<label class="font mr-5">no.${status.index+1}</label>
 			<%-- <a class="font ml-5" href="../board/content.do?num=${dto.num}">숙소 정보보기</a> --%>
@@ -136,7 +142,12 @@ height: 50px;
 			</div>
 		</c:if>
 		</div>	
-	</c:forEach> 
+	</c:forEach>
+	<c:if test="<%=cnt==0%>">
+		<h3 class="font">
+			<label>예약한 게스트가 없습니다</label>
+		</h3>
+	</c:if>
 </div>
 </body>
 </html>

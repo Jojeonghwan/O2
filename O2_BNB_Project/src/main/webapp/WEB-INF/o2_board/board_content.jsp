@@ -128,6 +128,7 @@ border:1px inset gray;
 				</c:forTokens>
 			</div>
 		</div><!-- left 끝  -->
+		<c:if test="${sessionScope.user_type}=2">
 		<div class="col-sm-6 col-sm-6 form-group back"><!-- 열 2 -->
 		<br>
 			<div class="form-group">
@@ -165,22 +166,22 @@ border:1px inset gray;
 			 		<option value="6" class="font">6명</option>
 			 	</select>
 			 </div>
+				 <div class="form-group font">
+						<br><b>결제방법</b>
+					<br>
+						계좌이체&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="3">
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						카드결제&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="2">
+						<a id="paybtn" ><!-- href="javascript:popup()" -->결제</a>
+				</div>
 
-			 <div class="form-group font">
-					<br><b>결제방법</b>
-				<br>
-					계좌이체&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="3">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					카드결제&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="2">
-					<a id="paybtn" ><!-- href="javascript:popup()" -->결제</a>
-			</div>
 			<div class="form-group my-4">
 				<span class="price">
 				 가격  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${dto.price} 
 				</span>
 			</div>
-			
 		</div>
+		</c:if>
 	</div>
 </div>
 <hr>
