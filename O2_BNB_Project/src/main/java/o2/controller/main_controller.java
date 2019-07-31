@@ -43,6 +43,18 @@ public class main_controller {
 		return "/o2_main/header";
 	}
 	
+	// 헤더 - main
+	@RequestMapping("/header_black.do")
+	public String header_black() {
+		return "/o2_main/header_black";
+	}
+	
+	// 헤더 - main
+	@RequestMapping("/header_black2.do")
+	public String header_black2() {
+		return "/o2_main/header_black_2";
+	}
+	
 	// 헤더 - main 제외
 	@RequestMapping("/on_header.do") 
 	public ModelAndView on_header(@RequestParam String adr) {
@@ -50,6 +62,12 @@ public class main_controller {
 		model.addObject("adr", adr);
 		model.setViewName("/o2_main/on_header");
 		return model;
+	}
+	
+	// all header 
+	@RequestMapping("/all_header.do")
+	public String all_header() {
+		return "/o2_main/all_header";
 	}
 	
 	// 실시간 인기 순위 결과 뿌릴 페이지

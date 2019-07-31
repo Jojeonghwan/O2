@@ -9,6 +9,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="../js/chat.js"></script>
 <link rel="stylesheet" href="../css/chat.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <%-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -16,14 +17,14 @@
 <script type="text/javascript" src="<c:url value='../js/sockjs-0.3.4.js'/>"></script> --%>
 </head> 
 <body>
+
 	<!-- 유저 아이디 -->
 	<input type="hidden" id="login_id" value="${id}">
 	<!-- 현재 유저가 접속한 방이름 -->
 	<input type="hidden" id="room" value="${room}">
 	<!-- 호스트 아이디 -->
 	<input type="hidden" id="host_id" value="${host_id}">
-	<a href="../index.jsp">Main</a>
-	
+<c:import url="/all_header.do"/>	
 <div id="chat_form" class="container" >
 	<c:if test="${room_ch==null}">
 		<h2>방이름&lt;<b>${room}</b>&gt;</h2>

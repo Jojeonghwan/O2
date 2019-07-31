@@ -11,8 +11,13 @@
 	height: 30px;
 }
 
-#main_top {
+#main_top,#main_top_black{
 	text-align: right;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#main_top_black{
+	height: 50px;
 }
 
 #main1 {
@@ -21,12 +26,15 @@
 	height: i
 }
 
-#main_top,#on_header_div{
+#main_top,#on_header_div,#all_header_div{
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-#on_header_div {
+
+#all_header_div {
 	height: 50px;
+	text-align: center;
+	padding-top: 10px;
 }
 
 .not_login {
@@ -46,17 +54,48 @@
 	font-weight: 500;
 }
 
-hr#header_hr {
+.not_login_black {
+	margin-right: 70px;
+    padding-top: 30px;
+	height: 50px;
+}
+
+.not_login_black a{
+	text-decoration : none;
+	color : white;
+}
+
+.not_login_black a:hover {
+	text-decoration : none;
+	color : white;
+	font-weight: 500;
+}
+
+hr#header_hr{
 	border : solid 0.5px white;
 	align : center;
 	width: 90%;
 }
+
+hr#header_black_hr{
+	border : solid 0.5px #484848;
+	align : center;
+	width: 90%;
+}
+
 
 .login {
 	margin-right: 70px;
     padding-top: 30px;
 	height: 50px;
 	color: white;
+}
+
+.login_black {
+	margin-right: 70px;
+    padding-top: 30px;
+	height: 50px;
+	color: #484848;
 }
 
 img#noimg {
@@ -72,6 +111,17 @@ img#noimg {
 .login a:hover{
 	text-decoration : none;
 	color : white;
+	font-weight: 500;
+}
+
+.login_black a{
+	text-decoration : none;
+	color : #484848;
+}
+
+.login_black a:hover{
+	text-decoration : none;
+	color : #484848;
 	font-weight: 500;
 }
 
@@ -131,4 +181,22 @@ img#on_header_menu {
 	float: right;
 	padding-top : 10px;
 	margin-right: 25%;
+}
+
+#all_header_img {
+	width: 50px;
+	padding-bottom: 25px;
+	cursor: pointer;
+}
+
+hr#all_hr{
+	border : solid 0.5px #484848;
+	align : center;
+	width: 90%;
+}
+
+b#title {
+	font-weight: 700;
+	font-size: 2em;
+	cursor: pointer;
 }

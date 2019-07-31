@@ -44,6 +44,7 @@ height: 50px;
 </style>
 </head>
 <body>
+<c:import url="/header_black2.do"/>
 <div class="container margin_60">
 	<h1 class="my-5 font main_font">
 		<img class="icon mr-3" src="../image/guestM.png">Home Guest List

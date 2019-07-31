@@ -62,6 +62,7 @@ $(function(){
 		$("#ismail").click(function(){
 			var mail1 = $("#mail1").val();
 			var btn1 = "";
+			var btn2 = "";
 			$.ajax({
 				type : 'post',
 				url : 'mail_confirm.aj',
@@ -77,11 +78,12 @@ $(function(){
 							alert("메일발송실패 : 메일주소를 확인해주세요");
 						}else{
 							var result = $(redata).find("encryption").text();	// 메일발송 후 암호 받아오기
-							btn1 += "<input type='text' size='10' placeholder='이메일 인증번호' class='confirm_text'>";
+							btn1 += "<input type='text' size='10' placeholder='이메일 인증번호' class='confirm_text form-control' style='width: 223px;'>";
 							btn1 += "<input type='hidden' class='encryption' value='"+ result +"'>"
-							btn1 += "<button type='button' class='confirm_btn'>이메일 인증</button>";
+							btn2 = "<button type='button' class='confirm_btn' style='width: 110px;'>이메일 인증</button>";
 							
-							$("#ismail").next().html(btn1);
+							$("#span3").html(btn1);
+							$("#span4").html(btn2);
 							$("#mailsend_con").val("2");	// 메일주소 인증했는지 확인 2
 						}						
 					}
@@ -108,10 +110,8 @@ $(function(){
 		
 		// 이메일 변경했을 때 1
 		$("#mail1").change(function(){
-			$("#mailsend_con").val("1");
-			alert($("mailsend_con").val());
-		});
-		
+	         $("input[name=mailsend_con]").val("1");
+	      });
 		
 		// 비번 변경했을 때 1
 		$("#mypass1").change(function(){
@@ -257,6 +257,6 @@ function update_checkform(check){
 	        location.href('m_update_action.do');
 	    }
 	 
-
+	 
 }
 	 

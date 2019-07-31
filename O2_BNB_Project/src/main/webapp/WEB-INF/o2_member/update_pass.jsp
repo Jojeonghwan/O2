@@ -9,19 +9,29 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+<link rel="stylesheet" type="text/css" href="../css/member.css" />
 </head>
 <body>
-<form action="update_member.do" method="post" onsubmit="return update_pass_checkform();">
-	비밀번호 확인<br>
-	<input type="text" size="20" id="pass1" name="pass1" required="required">
-	<span style="color: gray; font-size:8pt">회원가입 시 입력한 비밀번호를 입력해주세요</span>
-	<br>
-	<!-- hidden -->
+<c:import url="/all_header.do"/>
+
+<div id="update_pw_div" class="container">
+<br><br><br><br><br><br>
+	<form action="update_member.do" method="post" onsubmit="return update_pass_checkform();">
+	회원가입 시 입력한 비밀번호를 입력해주세요
+	<hr>
+	<div class="form-group" style="display: inline-block; width: 250px;">
+		<input type="password" class="form-control" id="pass1" name="pass1" required="required">
+	</div>
 	<input type="hidden" id="samepass" value="0">
-	<input type="submit" value="확인">
+	&nbsp;&nbsp;
+	<div class="form-group" style="display: inline-block; width: 50px;">
+		<input type="submit" value="Click" id="update_pw_btn">
+	</div>
 </form>
+</div>
+
 </body>
 </html>

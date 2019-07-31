@@ -16,11 +16,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head> 
 <body>
-<div>
-	<a href="../index.jsp">Main</a>
-</div>
+<c:import url="/header_black.do"/>
 <div class="container" id="scrap_list">
-<p id="scrap_p">Scrap</p>  
+<h1 class="my-5 font main_font" style="color : #ff5a5f;">
+	Scrap
+</h1>
 	<c:if test="${cnt==0}">
 		<table class="table table-hover">
 		<thead>

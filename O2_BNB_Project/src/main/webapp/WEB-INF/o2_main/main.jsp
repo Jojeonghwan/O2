@@ -125,11 +125,11 @@ div#background_img img.show {
             </div>
         </div>
     </div>
-    <c:if test="${sessionScope.login_id != null }">
+    <%-- <c:if test="${sessionScope.login_id != null }">
 		<div>
 			<a href="qna/qna_list.do?id=${sessionScope.login_id}">QnA</a>
 		</div>
-	</c:if>
+	</c:if> --%>
 </div>
 </body>
 </html>

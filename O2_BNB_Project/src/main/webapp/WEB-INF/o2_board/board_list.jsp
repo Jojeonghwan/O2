@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <!-- 시작 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
@@ -182,9 +181,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<br><br><br><br><br><br><br><br><br> -->
 </div>
 <!-- 출력부 %로 바꾸자-->
-<div id="map" style="width:500px; height:500px; float:right;"></div>
+<div id="map" style="width:400px; height:400px; float:right; 
+ position: absolute; left: 60%; top:38%;"></div>
 
-<div class="container" >
+<div class="container" style="width: 800px; float: left; margin-left: 115px;">
 <!-- style="position:absolute; top: 40%;" -->
 
 	<div class="row">
@@ -204,7 +204,7 @@
 			</div>
 			<div class="form-group">
 				<c:set var="img" value="${dto.img}"/>
-				<img class="image" src="../save/${fn:split(img,',')[0]}" style="width: 150px; height: 80px;">
+				<img class="image" src="../save/${fn:split(img,',')[0]}" style="width: 168px; height: 80px;">
 			</div>
 			<span class="price_tag" style=" border-bottom: 1px solid gray;">${dto.price}</span>
 		</div>

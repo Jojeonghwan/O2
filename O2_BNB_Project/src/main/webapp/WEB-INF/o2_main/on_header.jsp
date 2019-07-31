@@ -10,7 +10,7 @@
 </head> 
 <body>
 	<input type="hidden" id="main_addr" value="${adr}">
-	<div id="on_header_div">
+	<div id="on_header_div" style="height: 50px;">
 		<c:if test="${sessionScope.login_id == null}">
 			<div class="on_header_not_login">
 				<a href="../member/login.do">Login</a> 
@@ -39,6 +39,10 @@
 				</div>
 			</div>
 		</c:if>
+		<div onclick="location.href='../index.jsp'" style="position:absolute; left:46%; margin-bottom: 50px; top:2%;">
+		<img src="../image/wind.png" id="all_header_img">&nbsp;&nbsp;
+		<b id="title">B&B</b>
+	</div>
 	</div>
 	<hr id="on_header_hr">
 	<div id="main2" style="display: none;">

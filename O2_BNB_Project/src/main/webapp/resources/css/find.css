@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
 
+#login_from_div{
+	font-family: 'Noto Sans KR', sans-serif;
+	text-align: center;
+	position: absolute;
+    top: 35%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
 a,a.id_pw_result_a{
 	font-family: 'Noto Sans KR', sans-serif;
 	text-decoration : none;
@@ -32,6 +43,11 @@ a.id_pw_result_a:hover {
 	border-radius : 10px;
 	margin: auto;
 	text-align: center;
+	position: absolute;
+    top: 11%;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .id_pw_find_img {
@@ -39,14 +55,14 @@ a.id_pw_result_a:hover {
 	height: 150px;
 }
 
-#id_pw_find_btn {
+#id_pw_find_btn,#login_btn {
 	background-color: white;
 	color : #484848;
 	border: 1px solid #484848;
 	border-radius : 5px;
 	height: 38px;
 }
-#id_pw_find_btn:hover {
+#id_pw_find_btn:hover,#login_btn:hover {
 	background-color : #ff5a5f;
 	color : white;
 	border: 1px solid #484848;

@@ -8,7 +8,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <%-- <!-- 시작 -->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -69,6 +68,7 @@ border:1px inset gray;
 </head>
 <body>
 
+<c:import url="/all_header.do"/>
 
 <form action="content.do">
 <div class="container margin_60">

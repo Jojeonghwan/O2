@@ -70,4 +70,15 @@ $(function() {
 		$("#dialog").hide();
 	});
 	
+/*	$("#all_header_img").click(function() {
+    	location.href = "../index.jsp";
+    });
+    
+	$("#title").click(function() {
+    	location.href = "../index.jsp";
+    });*/
+	
+	$("#all_header_div").click(function() {
+    	location.href = "../index.jsp";
+    });
 });

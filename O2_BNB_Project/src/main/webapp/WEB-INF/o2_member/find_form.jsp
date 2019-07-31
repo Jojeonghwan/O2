@@ -14,9 +14,7 @@
 <link rel="stylesheet" href="../css/find.css">
 </head> 
 <body>
-<div>
-	<a href="../index.jsp">Main</a>
-</div>
+<c:import url="/all_header.do"/>
 	<div id="id_pw_find_form" class="container">
 		<br><br><br>
 		<form action="find_action" method="post">
