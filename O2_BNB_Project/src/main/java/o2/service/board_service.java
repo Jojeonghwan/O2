@@ -19,5 +19,5 @@ public interface board_service {
 	public void update_review(home_review_dto dto);
 	public double review_starRating(int h_num);
 	public int beStarRating(int h_num);
-
+	public int reviewCnt(int h_num);
 }

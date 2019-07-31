@@ -58,4 +58,7 @@ public class board_service_imple implements board_service{
 		return dao.beStarRating(h_num);
 	}
 	
+	public int reviewCnt(int h_num){
+		return dao.reviewCnt(h_num);
+	}
 }

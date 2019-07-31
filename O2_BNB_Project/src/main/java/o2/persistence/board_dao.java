@@ -45,7 +45,21 @@ public interface board_dao {
 	 * */
 	public void update_review(home_review_dto dto);
 	
+	/* 생성일자 : 2019.07.30
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 집 별점평균 구하기
+	 * */
 	public double review_starRating(int h_num);
 	
+	/* 생성일자 : 2019.07.30
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 별점이 있으면 1 반환
+	 * */
 	public int beStarRating(int h_num);
+	
+	/* 생성일자 : 2019.07.28
+	 * 생 성 자 : 박소윤
+	 * 용    도 : 리뷰 갯수 반환
+	 * */
+	public int reviewCnt(int h_num);
 }

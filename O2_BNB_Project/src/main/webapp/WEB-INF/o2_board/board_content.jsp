@@ -165,12 +165,8 @@ border:1px inset gray;
 			 		<option value="6" class="font">6명</option>
 			 	</select>
 			 </div>
-			<div class="form-group my-4">
-				<span class="price">
-				 가격  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${dto.price} 
-				</span>
-			</div>
-			<div class="form-group font">
+
+			 <div class="form-group font">
 					<br><b>결제방법</b>
 				<br>
 					계좌이체&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="3">
@@ -178,6 +174,12 @@ border:1px inset gray;
 					카드결제&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="2">
 					<a id="paybtn" ><!-- href="javascript:popup()" -->결제</a>
 			</div>
+			<div class="form-group my-4">
+				<span class="price">
+				 가격  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${dto.price} 
+				</span>
+			</div>
+			
 		</div>
 	</div>
 </div>
@@ -203,7 +205,7 @@ $("#paybtn").click(function(){
 <!-- review 출력 ////////////////////////////-->
 <div id="board_review">
 	<c:import url="/board/board_review.do" charEncoding="utf-8">
-		<c:param name="num" value="${dto.num}"/>
+		<c:param name="num" value="${num}"/>
 	</c:import>
 </div>
 <!-- review 출력끝//////////////////////////// -->

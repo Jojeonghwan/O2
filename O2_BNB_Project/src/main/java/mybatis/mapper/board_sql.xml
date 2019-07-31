@@ -70,6 +70,12 @@
 		WHERE h_num = #{h_num}
 		GROUP BY h_num
 	</select>
+	<!-- 리뷰 갯수 확인 -->
+	<select id="reviewCnt" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM o2_review
+		WHERE h_num = #{h_num}
+	</select>
 </mapper>
 
 
