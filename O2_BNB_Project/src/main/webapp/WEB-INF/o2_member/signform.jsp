@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="page-container">
-	<form action="signup.do" method="post" enctype="multipart/form-data" ><!-- onsubmit="return member_sign_checkform();" -->
+	<form action="signup.do" method="post" enctype="multipart/form-data" onsubmit="return member_sign_checkform();"><!--  -->
 		<table style="width: 600px;" class="table table-bordered">
 			<caption>회원가입 폼</caption>
 			<tr>
@@ -86,7 +86,7 @@
 				</td>
 			</tr>
 		</table>
-		<input type="button" class="btn btn-primary" id="join"  value="가입하기" onclick="if(!member_sign_checkform(this.form)){return false;}">
+		<input type="submit" class="btn btn-primary" id="join"  value="가입하기" ><!-- onclick="if(!member_sign_checkform(this.form)){return false;}" -->
 	</form>
 </div>
 

@@ -174,12 +174,11 @@ border:1px inset gray;
 					카드결제&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="2">
 					<a id="paybtn" ><!-- href="javascript:popup()" -->결제</a>
 			</div>
-			<div class="form-group my-4">
-				<span class="price">
-				 가격  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${dto.price} 
-				</span>
+			<div class="form-group" style="margin-bottom: 0;">
+				<span class="contentprice">
+				 가격   ${dto.price} 
+				 </span>
 			</div>
-			
 		</div>
 	</div>
 </div>

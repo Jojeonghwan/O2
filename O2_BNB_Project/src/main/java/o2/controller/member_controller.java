@@ -75,7 +75,7 @@ public class member_controller {
 	
 		model.addObject("dto", dto);
 		service.insert_member(dto);
-		System.out.println(dto.getId()+"dhkrlsd");
+		//System.out.println(dto.getId()+"dhkrlsd");
 		model.setViewName("/o2_member/sign_up");
 		return model;
 	}
