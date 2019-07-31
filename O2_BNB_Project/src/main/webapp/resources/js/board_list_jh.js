@@ -22,7 +22,7 @@ $("#datepicker2").on("dp.change", function (e) {
 }); 
 //datepicker end
 
-$("#date_val").click(function(){
+/*$("#date_val").click(function(){
 	var checkin = $('.dateTimePicker input[name=checkin]').val();
 	var checkout = $('.dateTimePicker input[name=checkout]').val();
 	
@@ -30,7 +30,7 @@ $("#date_val").click(function(){
 	$("#checkout_id").val(checkout);
 	$(".col-sm-9").css("display","none");
 });
-
+*/
 //datepicker end
 
 //person start

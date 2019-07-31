@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.text {
+	position: relative;
+	float: left;
+}
+
+.price_tag {
+	position: absolute;
+    right: 0;
+    top: 75%;
+    background-color: #BDBDBD;
+    color: white;
+    font-size: 20pt;
+    border-radius: 5px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.o2bnb_search{
+	display: none;
+}
+
+.theme, .person_cnt, .price, .col-sm-9 { display: none;}
+
 .font{
 font-family: 'Noto Sans KR', sans-serif;
 }
@@ -21,9 +48,9 @@ font-weight: bold;
  }
  
  .price {
- 	background-color: #ff5a5f;
+ 	background-color: white;
  	border-radius: 5px;
- 	color : white;
+ 	color : #484848;
  	padding: 10px;
  }
  
@@ -69,3 +96,42 @@ font-weight: bold;
 font-size: 12pt;
 } 
  
+ 
+#board_list_search_form {
+	text-align: center;
+} 
+
+#board_list_search_form #search_btn {
+	background-color: white;
+	color : #484848;
+	border: 1px solid #484848;
+	border-radius : 5px;
+	height: 34px;
+	width: 80px;
+}
+#board_list_search_form #search_btn:hover {
+	background-color : #ff5a5f;
+	color : white;
+	border: 1px solid #484848;
+	border-radius : 5px;
+	height: 34px;
+	width: 80px;
+}
+
+.o2bnb_search .o2bnb_sel span a{
+	font-family: 'Noto Sans KR', sans-serif;
+	text-decoration : none;
+	font-weight: 500;
+	color : #484848;
+}
+
+.o2bnb_search .o2bnb_sel span a:hover{
+	font-family: 'Noto Sans KR', sans-serif;
+	text-decoration : none;
+	font-weight: 700;
+	color :  #008489;
+}
+
+span.irs-min,span.irs-max {
+	display: none;
+}

@@ -14,7 +14,9 @@
 <link rel="stylesheet" href="http://bootstraptema.ru/plugins/2018/irs/ion.rangeSlider.css" />
 <link rel="stylesheet" href="http://bootstraptema.ru/plugins/2018/irs/ion.rangeSlider.skin.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
 <!-- datepicker start -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -27,66 +29,60 @@
 <script src="http://bootstraptema.ru/plugins/2018/irs/ion.rangeSlider.min.js"></script>
 <script type="text/javascript" src="../js/board_list_sy.js"></script>
 <script type="text/javascript" src="../js/board.js"></script>
-
+<link rel="stylesheet" href="../css/board_sy.css">
 <style>
-.text {
-	position: relative;
-	float: left;
+.font{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+	font-size: 1.5rem;
 }
-
-.price_tag {
-	position: absolute;
-    left: 100px;
-    bottom: 0.75em;
-    background-color: blue;
-    color: white;
-    font-size: 20pt;
-}
-
-.o2bnb_search{
-	display: none;
-}
-
-.theme, .person_cnt, .price, .col-sm-9 { display: none;}
-
+.ellip {
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+/* .image{
+	width:200px;
+	height:200px;
+} */
 </style>
 </head>
 <body>
 <c:import url="/on_header.do?adr=${addr}" charEncoding="utf-8"/>
-<form action="../board/list.do" method="post">
-<!-- 검색창 -->
-<div class="search_bar">
-	<input type="text" class="search_addr" name="addr" placeholder="지역" value="${addr}" 
-	style="height:30px;" size=50px; autocomplete="off"/>
-	<input type="submit" value="검색">
-	<!-- hidden -->
-	<input type="hidden" name="from_main" value="2">
-	<input type="hidden" id="person_id" name="person" value="${person}">
-	<input type="hidden" id="price_from_id" name="price_from" value="0">
-	<input type="hidden" id="price_to_id" name="price_to" value="1000000">
-	<input type="hidden" id="tag_id" name="tag" value="${tag}">
-	<input type="hidden" id="checkin_id" name="checkin" value="${checkin}">
-	<input type="hidden" id="checkout_id" name="checkout" value="${checkout}">
-	<input type="hidden" name="end" value="${end}">
-	<input type="hidden" value="${sessionScope.login_id }" name="login_id">
-	<div id="search_total"></div>
-</div>
-</form>
+<div id="board_list_search_form" style="height: 150px;">
+	<form action="../board/list.do" method="post">
+		<!-- 검색창 -->
+		<div class="search_bar form-group" style="display: inline-block;">
+			<input type="text" class="search_addr form-control" name="addr" placeholder="지역" value="${addr}" 
+			style="display: inline-block; width: 350px;" size=50px; autocomplete="off"/>
+			<input type="submit" value="검색" id="search_btn">
+			<!-- hidden -->
+			<input type="hidden" name="from_main" value="2">
+			<input type="hidden" id="person_id" name="person" value="${person}">
+			<input type="hidden" id="price_from_id" name="price_from" value="0">
+			<input type="hidden" id="price_to_id" name="price_to" value="1000000">
+			<input type="hidden" id="tag_id" name="tag" value="${tag}">
+			<input type="hidden" id="checkin_id" name="checkin" value="${checkin}">
+			<input type="hidden" id="checkout_id" name="checkout" value="${checkout}">
+			<input type="hidden" name="end" value="${end}">
+			<input type="hidden" value="${sessionScope.login_id }" name="login_id">
+			<div id="search_total"></div>
+		</div>
+	</form>
+
 <div class="o2bnb_search">
 	<div class="o2bnb_sel">
-		<span><a href="#" onclick="return_date()">날짜</a></span>
-		<span><a href="#" onclick="return_theme()">테마별</a></span>
-		<span><a href="#" onclick="return_person()">인원</a></span>
+		<span><a href="#" onclick="return_date()">날짜</a></span>&nbsp;&nbsp;
+		<span><a href="#" onclick="return_theme()">테마별</a></span>&nbsp;&nbsp;
+		<span><a href="#" onclick="return_person()">인원</a></span>&nbsp;&nbsp;
 		<span><a href="#" onclick="return_price()">가격</a></span>
 	</div>
-
 </div>
 
 <!-- 달력 -->
-<div class="form-group">
-    <br><br><br>
-    <div class="col-sm-9">
-       <div class='col-sm-5'>
+<!-- <div class="form-group">
+    <div class="col-sm-8" style="display: none;">
+       <div class='col-sm-3'>
             <div class="form-group">
                 <div class='input-group date dateTimePicker' id="datepicker1">
                     <input type='text' class="form-control" placeholder="CheckIn" name="checkin" required="required" autocomplete="off"/>
@@ -96,10 +92,10 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-2'>
+        <div class='col-sm-1'>
             <h4 align="center"><b>~</b></h4>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-3'>
             <div class="form-group">
                 <div class='input-group date dateTimePicker' id="datepicker2">
                     <input type='text' class="form-control" placeholder="CheckOut" name="checkout" required="required" autocomplete="off"/>
@@ -109,49 +105,66 @@
                 </div>
             </div>
         </div>
-        <input type="button" id="date_val" value="저장">
+        <div class='col-sm-1'>
+            <input type="button" id="date_val" value="저장">
+        </div>
     </div>
+</div> -->
+<div class="form-group calender" style="display: none; padding-top: 10px;">
+	<div class='input-group date dateTimePicker' id="datepicker1" style="float: left;">
+		<input type='text' class="form-control" placeholder="CheckIn" name="checkin" class="checkin" required="required" autocomplete="off"/>
+		<span class="input-group-addon">
+		    <span class="glyphicon glyphicon-calendar"></span>
+		</span>
+	</div>
+	<div style="float: left; margin-left: 45px; margin-right: 50px; text-align: center;
+	 padding-top: 4px;">
+		<b>~</b>
+	</div>	
+	<div class='input-group date dateTimePicker' id="datepicker2" style="float: left;">
+		<input type='text' class="form-control" placeholder="CheckOut" name="checkout" class="checkout" required="required" autocomplete="off"/>
+		<span class="input-group-addon">
+		    <span class="glyphicon glyphicon-calendar"></span>
+		</span>
+	</div>
 </div>
-
-
-
-
-
 
 <!-- 테마 -->
-<div class="theme">
-<div class="theme_sel" style="float:left;">
-	<input type="checkbox" name="theme_sel" value="가족과 함께">가족과 함께<br>
-	<input type="checkbox" name="theme_sel" value="힐링하기 좋은">힐링하기 좋은<br>
-	<input type="checkbox" name="theme_sel" value="아이와 함께">아이와 함께<br>
-	<input type="checkbox" name="theme_sel" value="혼자서">혼자서<br>
-	<input type="checkbox" name="theme_sel" value="경치가 좋은">경치가 좋은<br>
-	<input type="checkbox" name="theme_sel" value="사진찍기 좋은">사진찍기 좋은<br>
-	<input type="checkbox" name="theme_sel" value="계곡">계곡<br>
-	<input type="checkbox" name="theme_sel" value="드라이브">드라이브<br>
-	<input type="checkbox" name="theme_sel" value="친구와 함께">친구와 함께<br>
-	<input type="checkbox" name="theme_sel" value="야경이 좋은">야경이 좋은<br>
+<div class="theme" style="display: none; padding-top: 10px;">
+	<div class="theme_sel" style="float:left;">
+		<input type="checkbox" name="theme_sel" class="theme_value" value="가족과 함께">가족과 함께
+		<input type="checkbox" name="theme_sel" class="theme_value" value="힐링하기 좋은">힐링하기 좋은
+		<input type="checkbox" name="theme_sel" class="theme_value" value="아이와 함께">아이와 함께
+		<input type="checkbox" name="theme_sel" class="theme_value" value="혼자서">혼자서
+		<input type="checkbox" name="theme_sel" class="theme_value" value="경치가 좋은">경치가 좋은<br>
+		<input type="checkbox" name="theme_sel" class="theme_value" value="사진찍기 좋은">사진찍기 좋은
+		<input type="checkbox" name="theme_sel" class="theme_value" value="계곡">계곡
+		<input type="checkbox" name="theme_sel" class="theme_value" value="드라이브">드라이브
+		<input type="checkbox" name="theme_sel" class="theme_value" value="친구와 함께">친구와 함께
+		<input type="checkbox" name="theme_sel" class="theme_value" value="야경이 좋은">야경이 좋은
+		<!-- <input type="button" id="theme_value" value="저장"> -->
+	</div>
 </div>
-<input type="button" id="theme_value" value="저장">
-<script type="text/javascript">
-	
-</script>
-</div>
-	
-	
-	&nbsp;&nbsp;&nbsp;&nbsp;<br>
-	
+
 <!-- 인원수 -->
-<div class="person_cnt" >
+<!-- <div class="person_cnt" >
 	<button type="button" id="dec">-</button>
 	<input id="person" type="text" value="1" size="10">
 	<button type="button" id="inc">+</button>
 	<input type="button" id="person_value" value="저장">
-
-</div>
-	
+</div> -->
+<div class="person_cnt form-group" style="padding-top: 10px; ">
+ 	<select id="people" class="font_black" style="width:140px; height:33px; border-radius:3px;">
+ 		<option value="1" class="font_black">1명</option>
+ 		<option value="2" class="font_black">2명</option>
+ 		<option value="3" class="font_black">3명</option>
+ 		<option value="4" class="font_black">4명</option>
+ 		<option value="5" class="font_black">5명</option>
+ 		<option value="6" class="font_black">6명</option>
+ 	</select>
+</div>	
 <!-- 가격 -->
-<div class="price">
+<!-- <div class="price">
 	 <div class="col-md-12">
 	 <div class="form-group row">
 	 <label for="range_03" class="col-sm-2 control-label"><b>Prefix</b></label>
@@ -161,44 +174,46 @@
 	 </div>
 	 </div>
 	 <input type="button" id="range_value" value="저장">
-	 <script>
-		
-	</script>
+</div> -->
+<div class="price" style="width: 30%; zoom: 0.9;">
+	<input type="text" id="range_03">
 </div>
-	
-&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br><br><br><br><br><br><br>
+<!-- 	
+&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br><br><br><br><br><br><br> -->
+</div>
 <!-- 출력부 %로 바꾸자-->
 <div id="map" style="width:500px; height:500px; float:right;"></div>
 
-<c:forEach var="dto" items="${list}">
-<c:set var="ho_addr" value="${ho_addr}/${dto.addr}"/>
-<c:set var="home_name" value="${home_name},${dto.home_name}"/>
-<c:set var="price" value="${price},${dto.price}"/>
-<c:set var="num" value="${num},${dto.num}"/>
+<div class="container" >
+<!-- style="position:absolute; top: 40%;" -->
 
-	<div id="paging">
-		<div style="border: 1px solid gray; width: 300px; height: 200px;">		
-			<div class="text">
-				<span class="price_tag" style=" border-bottom: 1px solid gray;">${dto.price}</span>
-<br><br>
-				<c:set var="img" value="${dto.img}" />
-				<img src="../save/${fn:split(img,',')[0]}" width="100">
-			</div>	
-<br><br><br>			
-			<a href="#" class="loginConfirm">${dto.home_name}</a>
-			<!-- hidden -->
-			<input type="hidden" name="h_num" value="${dto.num}"> 
-<br><br>			
-			<!-- 평점, 리뷰갯수 출력// -->
+	<div class="row">
+		<c:forEach var="dto" items="${list}">
+		<c:set var="ho_addr" value="${ho_addr}/${dto.addr}"/>
+		<c:set var="home_name" value="${home_name},${dto.home_name}"/>
+		<c:set var="price" value="${price},${dto.price}"/>
+		<c:set var="num" value="${num},${dto.num}"/>
+		<input type="hidden" name="h_num" value="${dto.num}"> 
+		
+		<div class="col-3 rounded border my-3 mx-4">
+			<div class="form-group">
+				<a href="#" class="font ellip loginConfirm" h_num="${dto.num}">
+				<label class="font">Home_Name</label> <br>
+				<b style="color: #484848;">${dto.home_name}</b>
+				</a>
+			</div>
+			<div class="form-group">
+				<c:set var="img" value="${dto.img}"/>
+				<img class="image" src="../save/${fn:split(img,',')[0]}" style="width: 150px; height: 80px;">
+			</div>
+			<span class="price_tag" style=" border-bottom: 1px solid gray;">${dto.price}</span>
 		</div>
-		<br><br>
+		</c:forEach>
 	</div>
-</c:forEach>
-
 
 <!-- 페이지 번호 출력 -->
-<div style="width: 600px; text-align: center; " >
-	<ul class="pagination"><!-- 페이징처리 부트스트랩 -->
+<div style="width: 600px; text-align: center; position:absolute; top: 90%;" >
+	<ul class="pagination" style="justify-content: center;"><!-- 페이징처리 부트스트랩 -->
 	<c:if test="${startPage>1}">
 		<li>
 			<a href="list.do?pageNum=${startPage-1}">◀</a>
@@ -223,7 +238,7 @@
 		</c:if>
 	</ul>
 </div>
-
+</div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8c8c41484005696a06aceab619299c52&libraries=services"></script>
 <script type="text/javascript">
@@ -333,17 +348,17 @@ geocoder.addressSearch(addr, function(result, status) {
       	var markerImage = new kakao.maps.MarkerImage(avgstar, imageSize, imageOption);
       	console.log("searchprice:"+searchprice[index]+"avgprice:"+avgprice);
       }
-      else if(searchprice[index]<avgprice && searchprice[index]>=verylowprice)
+      else if( searchprice[index]>=verylowprice && searchprice[index]<avgprice )
       {
       	var markerImage = new kakao.maps.MarkerImage(avgstar, imageSize, imageOption);
       	console.log("searchprice:"+searchprice[index]+"avgprice:"+avgprice);	
       }
-      else if(searchprice[index]<verylowprice && searchprice[index]>=veryverylowprice)
+      else if( searchprice[index]>=veryverylowprice && searchprice[index]<verylowprice )
       {
       	var markerImage = new kakao.maps.MarkerImage(bluestar1, imageSize, imageOption);
       	console.log("searchprice:"+searchprice[index]+"vlp:"+verylowprice);
       }
-      else if(searchprice[index]<veryverylowprice && searchprice[index]>=veryveryverylowprice){
+      else if( searchprice[index]>=veryveryverylowprice && searchprice[index]<veryverylowprice ){
       	var markerImage = new kakao.maps.MarkerImage(bluestar2, imageSize, imageOption);
       	console.log("searchprice:"+searchprice[index]+"vvlp:"+veryverylowprice);
       }

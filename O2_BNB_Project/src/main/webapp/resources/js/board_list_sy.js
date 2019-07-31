@@ -3,15 +3,35 @@
  */
 
 $(function(){
-	
+
+	var adr_ch = false;
 	// 주소창에 커서
-	$(".search_addr").focus(function(){
+	$(".search_addr").click(function(){
 		event.preventDefault();
-		$(".o2bnb_search").css("display","block");
+		if(!adr_ch) {
+			$(".o2bnb_search").css("display","block");
+			adr_ch = true;
+		} else {
+			$(".o2bnb_search").css("display","none");
+			
+			if($(".person_cnt").css("display")== "block") {
+				$(".person_cnt").css("display", "none");
+			}
+			if($(".price").css("display")=="inline-block") {
+				$(".price").css("display", "none");
+			}
+			if($("div.calender").css("display")=="inline-block") {
+				$("div.calender").css("display","none");
+			}
+			if($(".theme").css("display")=="inline-block") {
+			    $(".theme").css("display","none");
+			}
+			adr_ch = false;
+		}
 	});
 	
 	// 테마 선택
-	$("#theme_value").click(function(){
+	/*$("#theme_value").click(function(){
 		var test="";
 		$("input:checkbox[name=theme_sel]:checked").each(function() {// checked값 반복 		
 			if($(this).is(':checked'))
@@ -20,10 +40,20 @@ $(function(){
 		$("#theme_id").val(test);
 		$(".theme").css("display","none");
 	});
-	
+	*/
+	var cnt = 0;
+	$(".theme_value").click(function() {
+		var test=$("#tag_id").val();
+		if(test=="|") {
+			test += $(this).val();
+		} else {
+			test += "|" + $(this).val();
+		}
+		$("#tag_id").val(test);
+	});
 	
 	// 인원수 
-	$("#inc").click(function(){ //6까지 증가
+	/*$("#inc").click(function(){ //6까지 증가
 		if(parseInt($('#person').val())<6)
 		{
 			$("#person").val(parseInt($('#person').val())+1);
@@ -39,8 +69,12 @@ $(function(){
 		var person_val= $("#person").val();
 		$("#person_id").val(person_val);
 		$(".person_cnt").css("display","none");
-	});
+	});*/
 	
+	$("#people").change(function() {
+		var people = $(this).val();
+		$("#person_id").val(people);
+	});
 	
 	// 가격 ionRangeSlider
 	 $("#range_03").ionRangeSlider({
@@ -52,7 +86,8 @@ $(function(){
 		 to: 250000,
 		 postfix: "원"
 	 });
-	 $("#range_value").click(function(){
+	 
+	 /*$("#range_value").click(function(){
 		var slider = $("#range_03").data("ionRangeSlider");
 		var from = slider.result.from;
 		var to = slider.result.to;
@@ -60,33 +95,59 @@ $(function(){
 		$("#price_from_id").val(from);
 		$("#price_to_id").val(to);
 		$(".price").css("display","none");
+	 });*/
+	 
+	 $("span.from").mouseup(function() {
+		 var slider = $("#range_03").data("ionRangeSlider");
+		 var from = slider.result.from;
+		 $("#price_from_id").val(from);
+	 });
+	 
+	 $("span.type_last").mouseup(function() {
+		 var slider = $("#range_03").data("ionRangeSlider");
+		 var to = slider.result.to;
+		 $("#price_to_id").val(to);
+	 });
+	 
+	 $("#datepicker1").on("dp.change", function (e) {
+	    var s = $('#datepicker2').data("DateTimePicker").minDate(e.date.add(1, 'days'));
+	    var checkin = $('.dateTimePicker input[name=checkin]').val();
+		$("#checkin_id").val(checkin);
+		
 	 });
 
+	 $("#datepicker2").on("dp.change", function (e) {
+	    $('#datepicker1').data("DateTimePicker").maxDate(e.date.add(-1, 'days'));
+		var checkout = $('.dateTimePicker input[name=checkout]').val();
+		$("#checkout_id").val(checkout);
+	 });
 });
 
 function return_theme(){
 	$(".person_cnt").css("display", "none");
 	$(".price").css("display", "none");
-	$(".col-sm-9").css("display", "none");
-	$(".theme").css("display", "block");
+	$("div.calender").css("display", "none");
+	$(".theme").css("display", "inline-block");
 }
 function return_person(){
 	$(".theme").css("display", "none");
 	$(".price").css("display", "none");
-	$(".col-sm-9").css("display", "none");
+	$("div.calender").css("display", "none");
 	$(".person_cnt").css("display", "block");
 }
 function return_price(){
 	$(".theme").css("display", "none");
 	$(".person_cnt").css("display", "none");
-	$(".col-sm-9").css("display", "none");
-	$(".price").css("display", "block");
+//	$(".col-sm-9").css("display", "none");
+	$("div.calender").css("display", "none");
+	$(".price").css("display", "inline-block");
 }
 function return_date(){
 	$(".person_cnt").css("display", "none");
 	$(".price").css("display", "none");
 	$(".theme").css("display", "none");
-	$(".col-sm-9").css("display", "block");
+	/*$(".col-sm-8").css("display", "block");*/
+	$("div.calender").css("display", "inline-block");
 }
 
 //////////////무한스크롤 실패/////////
