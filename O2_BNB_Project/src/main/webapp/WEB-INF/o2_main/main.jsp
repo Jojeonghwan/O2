@@ -93,7 +93,7 @@ div#background_img img.show {
         /* $("#background_img").css("background-image", "url(" + images[i] + ")"); */
         setInterval(function () {
             i++;
-            if (i == 6) {
+            if (i == 5) {
                 i = 0;
             }
             $("#background_img img").removeClass('show')
@@ -112,7 +112,6 @@ div#background_img img.show {
 		<img src="image/main_background3.jpg">
 		<img src="image/main_background4.jpg">
 		<img src="image/main_background5.jpg">
-		<img src="image/main_background6.jpg">
 		<img class="show" src="image/main_background1.jpg">
 	</div>
 	<c:import url="/header.do"/>

@@ -1,6 +1,5 @@
 //유효성 검사
 function validate() {
-alert("유효성 스타트");
 var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 		if(document.frm.home_name.value==null || document.frm.home_name.value==""){
 

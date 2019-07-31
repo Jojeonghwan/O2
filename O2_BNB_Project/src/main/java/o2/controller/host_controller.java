@@ -428,6 +428,8 @@ public class host_controller {
 		String id = (String)session.getAttribute("login_id");
 		home_dto dto = new home_dto();
 		dto.setId(id);
+		String path=request.getSession().getServletContext().getRealPath("/save");
+		System.out.println(path);
 		System.out.println("hohohohohoho");
 		System.out.println("hohohohohoho");
 		System.out.println("hohohohohoho");

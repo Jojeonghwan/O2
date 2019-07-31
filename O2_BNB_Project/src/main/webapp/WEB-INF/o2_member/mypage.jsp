@@ -19,7 +19,6 @@
 <c:if test="${sessionScope.user_type==1}">
 <a href="user_type_change.do">user_type_change</a><br>
 </c:if>
-<a href="../host/roomlist.do">room list</a><br>
 <input type="button" value="채팅창" id="ch_list">
 ${sessionScope.login_id}
 <c:if test="${sessionScope.login_id=='user1' || sessionScope.login_id=='admin'}">
@@ -27,6 +26,7 @@ ${sessionScope.login_id}
 </c:if>
 <a href="../board/pay_list.do">pay_list</a><br>
 <c:if test="${sessionScope.user_type==2}">
+<a href="../host/roomlist.do">room list</a><br>
 <a href="../host/home_guest_list.do">home_guest_list</a><br>
 </c:if>
 <!-- <a href="../host/host_review.do">host_review</a><br> -->
