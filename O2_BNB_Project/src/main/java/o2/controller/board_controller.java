@@ -112,6 +112,8 @@ public class board_controller {
 		model.addObject("dto", dto);
 		if(pageNum!=null) {
 			model.addObject("pageNum", pageNum);	
+		}else{ //pageNum이 null 이면
+			model.addObject("pageNum", 1);
 		}
 		
 		///////////////////////이 밑으로는 달력 disable 구현//////////////////////
@@ -431,7 +433,8 @@ public class board_controller {
 	@RequestMapping("/board/boardReview_update.do")
 	public ModelAndView reviewDTO(@RequestParam int r_num
 									, @RequestParam int h_num
-									, @RequestParam int pageNum) throws Exception
+									, @RequestParam(value="pageNum",defaultValue="1") int pageNum
+									) throws Exception
 	{
 		home_review_dto r_dto = b_service.selectReview_dto(r_num);
 		ModelAndView model = new ModelAndView();

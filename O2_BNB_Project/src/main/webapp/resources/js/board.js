@@ -26,7 +26,8 @@ $(function() {
 $(function(){
 	$(".loginConfirm").click(function(){
 		 var name = $('input[name=login_id]').val();
-		 var num = $('input[name=h_num]').val();
+		 var num = $(this).attr("num");
+		 //alert(num);
 		  if ( name == "") {
 		   alert("로그인을 해주세요. 확인을 누르시면 로그인페이지로 이동합니다");
 		   location.href="../member/login.do";

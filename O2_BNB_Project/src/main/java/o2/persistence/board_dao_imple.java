@@ -58,4 +58,8 @@ public class board_dao_imple extends SqlSessionDaoSupport implements board_dao
 	public int beStarRating(int h_num){
 		return getSqlSession().selectOne("beStarRating", h_num);
 	}
+	
+	public int reviewCnt(int h_num){
+		return getSqlSession().selectOne("reviewCnt", h_num);
+	}
 }

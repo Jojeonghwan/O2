@@ -1,3 +1,6 @@
+.font{
+font-family: 'Noto Sans KR', sans-serif;
+}
 
 .starR1{
     background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
@@ -35,3 +38,27 @@ background-position:left bottom;
 line-height:0; 
 vertical-align:top; 
 } /* 안쪽 span에만 적용 */
+
+
+ /* 댓글등록버튼 */
+.btn_update, .btn_delete {
+display: inline-block; 
+padding: .3em .50em; 
+font-size: inherit; 
+line-height: normal; 
+vertical-align: middle; 
+background-color:#c2c2c2;
+cursor: pointer; 
+border: 1px solid #ebebeb; 
+border-bottom-color: #e2e2e2; 
+border-radius: .25em; 
+color: white;
+font-weight: bold;
+font-size: 12pt;
+} 
+
+.background {
+	background-color: #fffefc;
+	border-radius: 20px;
+	padding: 20px;
+}

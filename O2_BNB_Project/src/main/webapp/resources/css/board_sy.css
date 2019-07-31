@@ -29,7 +29,7 @@ font-weight: bold;
  
  .filebox label { 
 display: inline-block; 
-padding: .5em .75em; 
+padding: .3em .50em; 
 font-size: inherit; 
 line-height: normal; 
 vertical-align: middle; 
@@ -68,4 +68,16 @@ color: white;
 font-weight: bold;
 font-size: 12pt;
 } 
+
+.text {
+	position: relative;
+	float: left;
+}
+
+
+.o2bnb_search{
+	display: none;
+}
+
+.theme, .person_cnt, .price, .col-sm-9 { display: none;}
  
