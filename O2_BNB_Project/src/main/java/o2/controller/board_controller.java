@@ -165,8 +165,11 @@ public class board_controller {
 	        @RequestParam int cancel_type
 			) throws Exception
 	{
+		System.out.println(cancel_type);
 		String checkin=request.getParameter("checkin").toString();
 		String checkout=request.getParameter("checkout").toString();	
+		System.out.println(checkin);
+		System.out.println(checkout);
 		SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date iDate = new Date(0);
@@ -179,7 +182,7 @@ public class board_controller {
         }
 
 
-        System.out.println(Integer.parseInt(request.getParameter("person").toString()));
+       /* System.out.println(Integer.parseInt(request.getParameter("person").toString()));*/
 		user_pay_dto udto=new user_pay_dto();
 		udto.setName(request.getParameter("name").toString());
 		udto.setId(request.getParameter("id").toString());

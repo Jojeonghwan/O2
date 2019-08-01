@@ -27,7 +27,7 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 .send{
-	background-color: rgba( 255, 90, 95, 0.7 );
+	background-color:#ff5a5f;
 	color:white;
 }
 hr{
@@ -58,7 +58,13 @@ height: 50px;
 	<h1 class="my-5 font main_font">
 		<img class="icon mr-3" src="../image/paymentM1.png">Pay List
 	</h1>
+	<%
+	 int cnt=0;
+	%>
 	<c:forEach var="dto" items="${list}" varStatus="status">
+	<%
+	cnt++;
+	%>
 		<h5>
 			<label class="font mr-5">no.${status.index+1}</label>
 		</h5>
@@ -121,13 +127,19 @@ height: 50px;
 				<p class="font">
 					<c:if test="${dto.send_ticket_ch=='1'}">
 						<c:if test="${dto.pay_check != '4'}">
-							<input type="button" class="font btn-lg send my-5" value="보내기" num="${dto.num}" class="send_ticket">
+							<input type="button" class="font btn-lg send send_ticket" value="보내기" num="${dto.num}">
 						</c:if>
 					</c:if>
 				</p>
 			</div>			
 		</div>
 	</c:forEach>
+	<c:if test="<%=cnt==0%>">
+		<h3 class="font">
+			<label>결제내역이 없습니다</label>
+		</h3>
+	</c:if>
 </div>
 </body>
+
 </html>

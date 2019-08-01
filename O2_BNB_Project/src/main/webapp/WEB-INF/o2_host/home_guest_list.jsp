@@ -40,7 +40,10 @@ font-weight:bold;
 width: 50px;
 height: 50px;
 }
-
+.cancel{
+background-color:#ff5a5f;
+color:white;
+}
 </style>
 </head>
 <body>
@@ -93,9 +96,7 @@ height: 50px;
 			</div>
 			<div class="col form-group my-5">
 				<pre></pre>
-				<pre></pre>
-				<pre></pre>
-				<input type="button" class="cancel font" value="취소" 
+				<input type="button" class="cancel font btn-lg" value="취소" 
 				h_num="${dto.h_num}" checkin="${dto.checkin}" checkout="${dto.checkout}"
 				guest_email="${dto.guest_email}" guest_name="${dto.guest_name}"
 				reserveday="${dto.reserveday}">
