@@ -63,11 +63,20 @@ input[type="number"]::-webkit-inner-spin-button {
 			<div class="form-group col-3">
 				<label class="font">카드번호 :</label>
 			</div>
-			<div class="form-group col-9">
-				<input type="number" class="form-control" id="canum1" style="width:50px;" maxlength="4" oninput="numberMaxLength(this)">-
-				<input type="number" class="form-control" id="canum2" style="width:50px;" maxlength="4" oninput="numberMaxLength(this)">-
-				<input type="number" class="form-control" id="canum3" style="width:50px;" maxlength="4" oninput="numberMaxLength(this)">-
-				<input type="number" class="form-control" id="canum4" style="width:50px;" maxlength="4" oninput="numberMaxLength(this)">
+			<div class="form-group col-2">
+				<input type="number" class="form-control" id="canum1" style="width:60px;" maxlength="4" oninput="numberMaxLength(this)">
+			</div>
+			-
+			<div class="form-group col-2">
+				<input type="number" class="form-control" id="canum2" style="width:60px;" maxlength="4" oninput="numberMaxLength(this)">
+			</div>
+			-
+			<div class="form-group col-2">	
+				<input type="number" class="form-control" id="canum3" style="width:60px;" maxlength="4" oninput="numberMaxLength(this)">
+			</div>
+			-
+			<div class="form-group col-2">
+				<input type="number" class="form-control" id="canum4" style="width:60px;" maxlength="4" oninput="numberMaxLength(this)">
 			</div>
 		</div>
 		<div class="row">
@@ -111,8 +120,8 @@ input[type="number"]::-webkit-inner-spin-button {
 		<input type="hidden" name="price" value="${dto.price}">
 		<input type="hidden" name="person" value="${person}"><!-- 인원 -->
 		<input type="hidden" name="reserveday">
-		<input type="hidden" name="checkin" value="">
-		<input type="hidden" name="checkout" value="">
+		<input type="hidden" name="checkin" value="${checkin}">
+		<input type="hidden" name="checkout" value="${checkout}">
 		<input type="hidden" name="h_num" value="${dto.num}">
 		<input type="hidden" name="addr" value="${dto.addr}">
 		<input type="hidden" name="pay_type" value="${pay_type}">

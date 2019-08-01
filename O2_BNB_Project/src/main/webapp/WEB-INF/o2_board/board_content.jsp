@@ -8,27 +8,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%-- <!-- 시작 -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<!-- datepicker start -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/ko.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
-<script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script> --%>
-<!-- datepicker start -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/ko.js"></script>
  <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -43,28 +22,25 @@
 
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
 
-<%-- <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.js">
-</script> --%>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.js">
+</script>
 <script type="text/javascript" src="../js/review.js"></script>
 <script type="text/javascript" src="../js/board.js"></script>
 <link rel="stylesheet" href="../css/review_sy.css">
 <link rel="stylesheet" href="../css/board_sy.css">
-<script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js">
-</script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400&display=swap&subset=korean" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/ko.js"></script> 
+<script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css"/>
+
+
 <!-- datepicker start -->
 
 <!-- datepicker 끝 -->
 
-<style>
-table{
-border:1px inset gray;
-}
-tr,td{
-border:1px inset gray;
-}
-</style>
 </head>
 <body>
 
@@ -77,7 +53,6 @@ border:1px inset gray;
 	</h4>
 	
 <hr class="my-4">
-	
 	<div class="form-group">
 		<c:if test="${dto.img!='noimage'}">
 		   <c:forTokens var="myimg" items="${dto.img}" delims=",">
@@ -88,9 +63,7 @@ border:1px inset gray;
 		   </c:forTokens>
 		</c:if>
 	</div>
-	
 <hr class="my-4">
-	
 	<div class="row"><!-- row 시작 -->
 		<div class="col-sm-6 col-sm-6 form-group"><!-- 열 1 -->
 			<div class="form-group">
@@ -116,7 +89,6 @@ border:1px inset gray;
 					</c:forTokens>
 				</div>
 			</div>
-			
 			<div class="form-group font">
 				<div class="boldweight">구비품목</div>
 				<div class="light">${dto.facilities}
@@ -128,7 +100,7 @@ border:1px inset gray;
 				</c:forTokens>
 			</div>
 		</div><!-- left 끝  -->
-		<c:if test="${sessionScope.user_type}=2">
+		<c:if test="${sessionScope.user_type==1}">
 		<div class="col-sm-6 col-sm-6 form-group back"><!-- 열 2 -->
 		<br>
 			<div class="form-group">
@@ -166,14 +138,6 @@ border:1px inset gray;
 			 		<option value="6" class="font">6명</option>
 			 	</select>
 			 </div>
-				 <div class="form-group font">
-						<br><b>결제방법</b>
-					<br>
-						계좌이체&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="3">
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						카드결제&nbsp;&nbsp;<input type="radio" id="pay" name="pay" value="2">
-						<a id="paybtn" ><!-- href="javascript:popup()" -->결제</a>
-				</div>
 			 <div class="form-group font">
 					<br><b>결제방법</b>
 				<br>
@@ -232,7 +196,6 @@ var getDateArray = function(start, end) {
 var dateArr = []
 </script>
 <c:forEach var="list" items="${list}">
-${list.checkin} ${list.checkout}
 <script>
 var startDate = new Date("${list.checkin}"); //YYYY-MM-DD
 var endDate = new Date("${list.checkout}"); //YYYY-MM-DD
@@ -242,29 +205,51 @@ dateArr = dateArr.concat(getDateArray(startDate, endDate));
 
 </script>
 </c:forEach>
-<script src="${pageContext.request.contextPath}/js/board_content_jh.js"></script>
-<script>
-//person start
-$("#inc").click(function(){
-	if(parseInt($('#people').val())<'${dto.person}')
-	{
-		$("#people").val(parseInt($('#people').val())+1);
-	}
-	});
-$("#dec").click(function(){
-	if(parseInt($('#people').val())>1)
-	{
-		$("#people").val(parseInt($('#people').val())-1);
-	}
-	});
-$("#person").val($('#people').val()); 
+<script type="text/javascript">
+//datepicker start
+//부트스트랩 datetimepicker 셋팅과 두개씩 링크
+ // minDate : 오늘 이후의 날짜값만 셋팅될 수 있도록
+$(document).ready(function(){
+ $('.dateTimePicker').datetimepicker({
+		format:"YYYY-MM-DD",
+		minDate : moment(),
+     useCurrent: false,
+     disabledDates: dateArr
+ });
+  $('.dateTimePicker input[type="text"]').focus(function(){
+ 	$(this).parent().data("DateTimePicker").show();
+ }) ; 
 
-//person end
+ $("#datepicker1").on("dp.change", function (e) {
+     $('#datepicker2').data("DateTimePicker").minDate(e.date.add(1, 'days'));
+ });
+
+ $("#datepicker2").on("dp.change", function (e) {
+     $('#datepicker1').data("DateTimePicker").maxDate(e.date.add(-1, 'days'));
+ });
+}); 
+//datepicker end
+
+
+//pay start
+$(document).ready(function(){
+	$("#paybtn").hide();
+});
+$("input[name='pay']").click(function(){
+	if($("input:radio[name=pay]:checked").val()=="3"){
+		$("#paybtn").show();
+	}else if($("input:radio[name=pay]:checked").val()=="2"){
+		$("#paybtn").show();
+	}
+})
+
+//pay end
+
 function popup(){
 	
 	var checkin=$("input[name='checkin']").val();
 	var checkout=$("input[name='checkout']").val();
-	var person=$('input[name="person"]').val();
+	var person=$("#people option:selected").val();
 	var pay_type=$("input:radio[name=pay]:checked").val();
     var url="pay_popup.do?num="+${dto.num}+"&checkin="+checkin+"&checkout="+checkout+"&pay_type="+pay_type+"&person="+person+"&id=${sessionScope.login_id}";
     var option="width=500, height=350, top=200 left=800"

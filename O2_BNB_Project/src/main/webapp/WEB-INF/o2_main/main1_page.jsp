@@ -11,8 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/ko.js"></script>
 ​<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
-<%-- <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.js">
-</script> --%>
+
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js">
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
@@ -130,20 +129,6 @@ $("#datepicker2").on("dp.change", function (e) {
 //person start
 $("#person").val($("#people option:selected").val());
 
-/* $("#inc").click(function(){
-	if(parseInt($('#person').val())<6)
-	{
-		$("#person").val(parseInt($('#person').val())+1);
-	}
-	});
-$("#dec").click(function(){
-	if(parseInt($('#person').val())>1)
-	{
-		$("#person").val(parseInt($('#person').val())-1);
-	}
-	}); */
-
-//person end
 </script>
 
 </body>

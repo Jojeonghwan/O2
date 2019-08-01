@@ -4,11 +4,10 @@ function numberMaxLength(e){
     }
 }
 
-
-var checkin='${checkin}';
+/*var checkin='${dto.checkin}';
 var checkout='${checkout}';
 $("input[name='checkin']").val(checkin);
-$("input[name='checkout']").val(checkout);
+$("input[name='checkout']").val(checkout);*/
 $("#payment").click(function(){
 	if($("#canum1").val()==null || $("#canum1").val()==""){
 		alert("카드번호를 입력해주세요");
