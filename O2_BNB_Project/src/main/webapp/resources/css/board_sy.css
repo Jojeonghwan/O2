@@ -157,3 +157,22 @@ span.irs-min,span.irs-max {
 .theme, .person_cnt, .price, .col-sm-9 { display: none;}
   */
 
+a#paybtn{
+	font-family: 'Noto Sans KR', sans-serif;
+	border : 1px solid #484848;
+	border-radius : 5px;
+	padding : 0 20px 0 20px;
+	text-decoration : none;
+	color : #484848;
+	margin-left: 20px;
+}
+a#paybtn:hover {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-decoration : none;
+	border : 1px solid #484848;
+	border-radius : 5px;
+	font-weight: 500;
+	padding :  0 20px 0 20px;
+	color : #ff5a5f;
+	margin-left: 20px;
+}

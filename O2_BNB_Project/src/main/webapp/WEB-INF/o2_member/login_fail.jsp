@@ -4,11 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+<link rel="stylesheet" type="text/css" href="../css/member.css" />
 </head>
 <body>
-아이디, 비밀번호가 맞지 않거나 회원가입 내역이 없습니다
-<a href="login.do">Login</a>
+<c:import url="/all_header.do"/>
+<br>
+<div id="update_pw_div" class="container">
+<br><br><br><br><br><br>
+	아이디, 비밀번호가 맞지 않거나 회원가입 내역이 없습니다
+	<hr>
+	<a href="login.do">Login</a>
+</div>
 </body>
 </html>
 
