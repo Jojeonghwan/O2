@@ -36,9 +36,6 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css"/>
 
-
-<!-- datepicker start -->
-
 <!-- datepicker 끝 -->
 
 </head>
