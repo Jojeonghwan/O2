@@ -64,9 +64,20 @@ img{
 
 
 
+a.btn_a{
+	display:inline-block; 
+	text-align:center; 
+	vertical-align:middle; 
+	text-decoration:none; 
+	font-size:12px; 
+	color:#008489; 
+/* 	border:1px solid #008489;  */
+	width:130px; 
+	height:35px; 
+	line-height:35px; 
+	font-family: 'Noto Sans KR', sans-serif;
 
-
-
+}
 
 
 
