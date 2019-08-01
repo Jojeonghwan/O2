@@ -49,11 +49,11 @@
 <script type="text/javascript" src="../js/board.js"></script>
 <link rel="stylesheet" href="../css/review_sy.css">
 <link rel="stylesheet" href="../css/board_sy.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400&display=swap&subset=korean" rel="stylesheet">
+<!-- datepicker start -->
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js">
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datetimepickerstyle.css" />
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400&display=swap&subset=korean" rel="stylesheet">
-<!-- datepicker start -->
 
 <!-- datepicker 끝 -->
 
@@ -128,7 +128,6 @@ border:1px inset gray;
 				</c:forTokens>
 			</div>
 		</div><!-- left 끝  -->
-		<c:if test="${sessionScope.user_type}=2">
 		<div class="col-sm-6 col-sm-6 form-group back"><!-- 열 2 -->
 		<br>
 			<div class="form-group">
@@ -188,7 +187,6 @@ border:1px inset gray;
 				 </span>
 			</div>
 		</div>
-		</c:if>
 	</div>
 </div>
 <hr>
