@@ -14,7 +14,7 @@
 		<div id="subject" onclick="location.href='../index.jsp'" 
 		 style="display: inline-block; padding-top: 10px; margin-right: 59%;">
 			<img src="../image/wind.png" id="all_header_img">&nbsp;&nbsp;
-			<b id="title">B&B</b>
+			<b id="title" style="color:whtie;">B&B</b>
 		</div>
 		<c:if test="${sessionScope.login_id != null }">
 			<div class="login_black" style="float: right;">

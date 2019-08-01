@@ -11,12 +11,17 @@
 	height: 30px;
 }
 
-#main_top,#main_top_black{
+#main_top,#main_top_black,#on_header_div{
 	text-align: right;
 	font-family: 'Noto Sans KR', sans-serif;
 }
+/* #on_header_div,#main_top {
+	text-align: left;
+	height: 50px;
+	padding-top: 10px;
+} */
 
-#main_top_black{
+#main_top_black,#on_header_div,#main_top{
 	height: 50px;
 }
 
@@ -183,10 +188,16 @@ img#on_header_menu {
 	margin-right: 25%;
 }
 
-#all_header_img {
+#all_header_img,#on_header_img,#header_img {
 	width: 50px;
 	padding-bottom: 25px;
 	cursor: pointer;
+}
+b#title_no {
+	font-weight: 700;
+	font-size: 2em;
+	cursor: pointer;
+	color: white;
 }
 
 hr#all_hr{
