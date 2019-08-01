@@ -35,7 +35,7 @@ public class qna_controller {
 	public String insert_qna(qna_dto dto) throws Exception
 	{
 		service.insert_qna(dto);
-		return "/o2_qna/qna_action";
+		return "redirect:qna_list.do";
 	}
 	
 	// 아이디( 유저타입별 ) 페이징
@@ -49,7 +49,7 @@ public class qna_controller {
 		int totalCount=0;//총 데이타 갯수
 
 		HttpSession session = request.getSession();
-		String id1 = request.getParameter("login_id");
+		String id1 = (String)session.getAttribute("login_id");
 		String user_type = (String)session.getAttribute("user_type");
 		
 		//System.out.println(id);
@@ -58,11 +58,11 @@ public class qna_controller {
 		}else{											// 일반사용자일때 totalCount
 			totalCount=service.qna_cnt_by_id(id1);
 			System.out.println("1515의 totalCount:"+totalCount);
-			if(totalCount == 0)
+			/*if(totalCount == 0)
 			{
 				model.setViewName("/o2_qna/qna_list");
 				return model;
-			}
+			}*/
 		}
 		
 		//페이징 복사한거

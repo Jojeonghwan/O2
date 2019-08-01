@@ -51,6 +51,11 @@
 			</c:if>
 		</div>
 	</div>
+	<div class="row my-2">
+		<div class="col-sm-3" style="margin-left: 20px;">
+			<a href="../qna/qna_list.do">QNA</a>
+		</div>
+	</div>
 </div>
 </body>
 </html>

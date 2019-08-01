@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
-	<!-- 리뷰 등록 -->
-	<insert id="qna_reply_insert" parameterType="o2.data.qna_reply_dto">
-		INSERT INTO o2_qna_review 
-		VALUES (
-				seq1.nextval,
-				#{q_num},
-				#{id},
-				#{pw},
-				#{subject},
-				#{content},
-				sysdate
-				)
+	<!-- Qna 리뷰달기 -->
+	<insert id="qna_reivew_insert" parameterType="qr_dto">
+		insert into o2_qna_reivew
+		values(qna_reivew.nextval, #{id}, #{content}, sysdate, #{q_num})
 	</insert>
 	
-	<!-- qna당  -->
-	<select id="reply_totalCount" parameterType="HashMap" resultType="int">
-		select  count(*)
-		from o2_user_pay 
-		where h_num = #{h_num} 
-	</select> 
+	<!-- Qna 리부 가져오기 -->
+	<select id="qna_reivew_list" parameterType="String" resultType="qr_dto">
+		select *
+		from o2_qna_reivew
+		where q_num = #{q_num}
+		order by num desc
+	</select>
+	
+	<!-- Qna 리뷰 삭제 -->
+	<delete id="qna_reivew_delete" parameterType="String">
+		delete from o2_qna_reivew
+		where num = #{num}
+	</delete>
 </mapper>

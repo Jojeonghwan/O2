@@ -64,4 +64,23 @@ public class qna_service_imple implements qna_service {
 		dao.insert_review(qr_dto);
 	}
 
+	public List<qna_dto> admin_qna_list(String preItems, String items) throws Exception {
+		return dao.admin_qna_list(preItems, items);
+	}
+	
+	public qna_dto admin_qna_dto(String num) throws Exception {
+		return dao.admin_qna_dto(num);
+	}
+	
+	public void qna_reivew_insert(qna_reply_dto qr_dto) throws Exception {
+		dao.qna_reivew_insert(qr_dto);
+	}
+	
+	public List<qna_reply_dto> qna_reivew_list(String q_num) throws Exception {
+		return dao.qna_reivew_list(q_num);
+	}
+	
+	public void qna_reivew_delete(String num) throws Exception {
+		dao.qna_reivew_delete(num);
+	}
 }

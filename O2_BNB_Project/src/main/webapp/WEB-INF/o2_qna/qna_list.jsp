@@ -6,27 +6,94 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-
-
-
-li {float:left; list-style:none; margin:1px;}
-
-li a {display:block; width:50px;  background:lightblue; color:#fff; font-size:12px; font-family:"돋움";
-
- text-align:center; padding-top:10px; text-decoration:none;}
-
-li a span {display:block;}
-
-li a:hover {background:#099; text-decoration:none;}
-
-</style>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/qna_sy.js"></script>
+<link rel="stylesheet" href="../css/qna.css">
 </head>
 <body>
+<c:import url="/header_black2.do"/>
 
-<div>
-<table class="table table-bordered" style="width: 800px; ">
+<div class="container" id="qna_list" style="width: 800px;">
+	<h1 class="my-5 font main_font" style="color : #ff5a5f;">
+		QNA
+	</h1>
+	<div style="text-align: right;">
+		<a href="qna_form.do" id="qna_write">Write</a>
+	</div>
+	<c:if test="${totalCount==0}">
+		<table class="table table-hover" >
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>ID</th>
+				<th>Subject</th>
+				<th>WriteDay</th>
+			</tr>
+			<tr>
+				<th colspan="4" style="text-align: center;">문의사항이 없습니다.</th>
+			</tr>
+		</thead>
+		</table>
+	</c:if>
+	<c:if test="${totalCount!=0}">
+	<input type="hidden" id="currentPage" value="${currentPage}">
+		<table class="table table-hover">
+			<thead>
+			<tr>
+				<th>No</th>
+				<th>ID</th>
+				<th>Subject</th>
+				<th>WriteDay</th>
+			</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="dto" items="${qna_list}">
+				<tr class="qna_content" num="${dto.num}" pageNum="${currentPage}">
+					<td>${no}</td>
+					<c:set var="no" value="${no-1}"/>
+					<td>
+						${dto.id}
+					</td>
+					<td>
+						${dto.subject}
+					</td>
+					<td>
+						<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
+					</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		<div class="row">
+			<div class="col">
+			<ul class="pagination" style="justify-content: center;">
+				<c:if test="${startPage>1}">
+					<li class="page-item"><a class="page-link" href="qna_list.do?pageNum=${1}" style="colr: black;">＜＜</a></li>
+					<li class="page-item"><a class="page-link" href="qna_list.do?pageNum=${startPage-1}" style="colr: black;">◀</a></li>
+				</c:if>
+				<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+					<c:if test="${pp==currentPage}">
+						<li class="page-item"><a class="page-link" href="qna_list.do?pageNum=${pp}" style="color: red;">${pp}</a></li>
+					</c:if>
+					<c:if test="${pp!=currentPage}">
+						<li class="page-item"><a class="page-link" href="qna_list.do?pageNum=${pp}" style="colr: black;">${pp}</a></li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${endPage<totalCount && endPage!=totalPage}">
+					<li class="page-item"><a class="page-link" href="qna_list.do?pageNum=${endPage+1}" style="colr: black;">▶</a></li>
+					<li class="page-item"><a class="page-link" href="qna_list.do?pageNum=${totalPage}" style="colr: black;">＞＞</a></li>
+				</c:if>
+			</ul>
+			</div>
+		</div>
+	</c:if>
+</div>
+<%-- <table class="table table-bordered" style="width: 800px; ">
 	<caption><b>게시판 목록</b></caption>
 	<tr style="background: #f5f5dc;">
 		<td style="width: 60px;">번    호</td>
@@ -80,11 +147,11 @@ li a:hover {background:#099; text-decoration:none;}
 	</c:if>
 	</c:forEach>
 	
-</table>
-</div>
+</table> --%>
+
 
 <!-- 페이지 번호 출력 -->
-<div style="width: 600px; text-align: center; " >
+<%-- <div style="width: 600px; text-align: center; " >
 	<ul class="pagination"><!-- 페이징처리 부트스트랩 -->
 	<c:if test="${startPage>1}">
 		<li>
@@ -107,11 +174,6 @@ li a:hover {background:#099; text-decoration:none;}
 		</li>
 	</c:if>
 	</ul>
-</div>
-<br><br>
-<a href="qna_form.do">글쓰기</a>
-
-&nbsp;&nbsp;
-<a href="../index.jsp">메인으로 가기</a>
+</div> --%>
 </body>
 </html>

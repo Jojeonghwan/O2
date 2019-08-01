@@ -89,4 +89,22 @@
 	   	where q_type = 1
 	</select>
 	
+	<!-- 관리자 qna 불러오기 -->
+	<select id="admin_qna_list" parameterType="HashMap" resultType="q_dto">
+		select q.*
+		from
+		    (
+		        select o.*, rownum as rNum 
+		        from o2_qna o
+		        order by num desc
+		    ) q
+		where rNum between #{preItems} and #{items}
+	</select>
+	
+	<!-- 관리자 qna 정보 보기 -->
+	<select id="admin_qna_dto" parameterType="String" resultType="q_dto">
+		select *
+		from o2_qna
+		where num = #{num}
+	</select>
 </mapper>

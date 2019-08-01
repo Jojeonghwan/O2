@@ -59,4 +59,34 @@ public interface qna_dao {
 	 * 용    도 : 문의글에 리뷰작성
 	 * */
 	public void insert_review(qna_reply_dto qr_dto) throws Exception;
+	
+	/* 생성일자 : 2019.07.31
+	 * 생 성 자 : 김보애
+	 * 용    도 : 관리자 페이지 문의사항 리스트 불러오기
+	 * */
+	public List<qna_dto> admin_qna_list(String preItems, String items) throws Exception;
+	
+	/* 생성일자 : 2019.07.31
+	 * 생 성 자 : 김보애
+	 * 용    도 : 관리자 페이지 문의사항 정보 불러오기
+	 * */
+	public qna_dto admin_qna_dto(String num) throws Exception;
+	
+	/* 생성일자 : 2019.08.01
+	 * 생 성 자 : 김보애
+	 * 용    도 : 관리자 페이지 문의사항 댓글 달기
+	 * */
+	public void qna_reivew_insert(qna_reply_dto qr_dto) throws Exception;
+	
+	/* 생성일자 : 2019.08.01
+	 * 생 성 자 : 김보애
+	 * 용    도 : 관리자 페이지 문의사항 댓글 리스트 가져오기
+	 * */
+	public List<qna_reply_dto> qna_reivew_list(String q_num) throws Exception;
+	
+	/* 생성일자 : 2019.08.01
+	 * 생 성 자 : 김보애
+	 * 용    도 : 관리자 페이지 문의사항 댓글 삭제
+	 * */
+	public void qna_reivew_delete(String num) throws Exception;
 }

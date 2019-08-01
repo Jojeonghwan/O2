@@ -12,31 +12,26 @@
 <body>
 	<div id="main_top_black">
 		<div id="subject" onclick="location.href='../index.jsp'" 
-		 style="display: inline-block; padding-top: 10px; margin-right: 825px;">
+		 style="display: inline-block; padding-top: 10px; margin-right: 59%;">
 			<img src="../image/wind.png" id="all_header_img">&nbsp;&nbsp;
 			<b id="title">B&B</b>
 		</div>
-		<c:if test="${sessionScope.login_id == null }">
-			<div class="not_login_black">
-				<a href="member/login.do">Login</a> 
-				&nbsp;&nbsp;&nbsp;
-				<a href="member/signform.do">sign</a>
-			</div>
-		</c:if>
 		<c:if test="${sessionScope.login_id != null }">
 			<div class="login_black" style="float: right;">
-				<c:if test="${sessionScope.thumb_nail=='noimg'}">
+				<c:if test="${sessionScope.thumb_nail=='noimg.png'}">
 					<img src="../image/user.png" id="noimg">
 				</c:if>
-				<c:if test="${sessionScope.thumb_nail!='noimg'}">
+				<c:if test="${sessionScope.thumb_nail!='noimg.png'}">
 					<img src="../save/${sessionScope.thumb_nail}" id="thumb_nail">
 				</c:if>
 				${sessionScope.login_id} 님&nbsp;&nbsp;&nbsp;
 				<a href="logout.do">Log out</a>&nbsp;&nbsp;&nbsp;
-				<a href="mypage.do">My Page</a>&nbsp;&nbsp;&nbsp;
+				<c:if test="${sessionScope.user_type!='3'}">
+					<a href="mypage.do">My Page</a>&nbsp;&nbsp;&nbsp;
+				</c:if>
 				<c:if test="${sessionScope.user_type=='3'}">
 					&nbsp;&nbsp;&nbsp;<a href="adminPage.do">Admin Page</a>
-			</c:if>
+				</c:if>
 			</div>
 		</c:if>
 	</div>	

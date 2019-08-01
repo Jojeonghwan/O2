@@ -1,22 +1,27 @@
 package o2.data;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class qna_reply_dto {
-	
-	private int num;
-	private int q_num;
+	private String num;
+	private String q_num;
 	private String id;
-	private String pw;
-	private String subject;
 	private String content;
 	private Timestamp writeday;
+	private String day;
 	
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
-	public void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
+	}
+	public String getQ_num() {
+		return q_num;
+	}
+	public void setQ_num(String q_num) {
+		this.q_num = q_num;
 	}
 	public String getId() {
 		return id;
@@ -24,23 +29,11 @@ public class qna_reply_dto {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPw() {
-		return pw;
-	}
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public int getQ_num() {
-		return q_num;
-	}
-	public void setQ_num(int q_num) {
-		this.q_num = q_num;
 	}
 	public Timestamp getWriteday() {
 		return writeday;
@@ -48,12 +41,12 @@ public class qna_reply_dto {
 	public void setWriteday(Timestamp writeday) {
 		this.writeday = writeday;
 	}
-	public String getSubject() {
-		return subject;
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
 	
-	
+	public String getDay() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		return sdf.format(getWriteday());
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
 }

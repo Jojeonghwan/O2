@@ -86,7 +86,7 @@
 						<img src="../image/user.png" style="width: 30px;">
 					</c:if>
 					<c:if test="${r_dto.thumb_nail != 'noimg' }">
-						<img src="/save/${r_dto.thumb_nail}" style="width: 30px;">						
+						<img src="../save/${r_dto.thumb_nail}" style="width: 30px;">						
 					</c:if>
 					${r_dto.id} 
 					<span style="color: gray; font-size: 9pt; padding: .5em;">

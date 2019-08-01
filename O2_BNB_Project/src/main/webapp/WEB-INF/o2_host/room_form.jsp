@@ -128,6 +128,7 @@ $(function(){
 </script>
 </head>
 <body>
+<c:import url="/header_black2.do"/>
 <form action="form.do" method="post" enctype="multipart/form-data" id="frm" name="frm"  onsubmit="return validate();">
 <div class="container margin_60 background_color">
 <h1 class="my-5 font main_font">

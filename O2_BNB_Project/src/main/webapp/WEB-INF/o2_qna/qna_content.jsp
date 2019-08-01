@@ -6,37 +6,59 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/qna_sy.js"></script>
-
-</head>
+<link rel="stylesheet" href="../css/qna.css"></head>
 <body>
-<div>
+<c:import url="/header_black2.do"/>
+
+<div id="qna_content_div" class="container">
+	<div>
+		<a href="qna_delete.do?num=${dto.num}&pageNum=${pageNum}" 
+		 id="qna_del" onclick="return confirm('문의사항을 삭제하시겠습니까?');">
+		 	Del
+		</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href="javascript:history.back();" id="qna_list">List</a>
+	</div>
 	<table class="table table-bordered" style="width: 600px;">
-		<caption>문 의 내 역 ${pageNum }</caption>
 		<tr>
-			<th style="width: 100px;"> 아 이 디 </th>
-			<td> ${dto.id} 
+			<th style="width: 100px;">ID</th>
+			<td> ${dto.id}</td>
+			<th style="width: 100px;">WriteDay</th>
+			<td>
+				<fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd"/>
 			</td>
 		</tr>
 		<tr>
-			<th> 제    목 </th>
-			<td> ${dto.subject} </td>
+			<th style="width: 100px;">Subject</th>
+			<td colspan="3"> ${dto.subject} </td>
 		</tr>
 		<tr>
-			<th> 내    용 </th>
-			<td> ${dto.content} </td>
+			<th colspan="4" style="text-align: center;">Content</th>
 		</tr>
 		<tr>
+			<td colspan="4">
+				<textarea rows="5" cols="60" style="resize:none; border: none;">${dto.content}</textarea>
+			</td>
+		</tr>
+		<%-- <tr>
 			<td colspan="2">
 			<c:if test="${ dto.id == sessionScope.login_id }">
 				<a href="qna_update_form.do?num=${dto.num}&pageNum=${pageNum}">수정하기</a><br>
 				<a href="qna_delete.do?num=${dto.num}&pageNum=${pageNum}" onclick="return confirm('문의사항을 삭제하시겠습니까?');">삭제하기</a>		
 			</c:if>
 			</td>
-		</tr>
+		</tr> --%>
 	</table>
+	<embed src="http://localhost:3000/qna/review?num=${dto.num}&id=${sessionScope.login_id}" style="width: 800px; height: 800px;">
+</div>
+<%-- 	
 
 <c:if test="${sessionScope.user_type == '3'}">
 	<a href="qna_update_form.do?num=${dto.num}&pageNum=${pageNum}">관리자용수정하기</a>
@@ -49,6 +71,6 @@
 <!-- 이클립스 내에서 보기위해 만드는 부분 -->
 <embed src="http://localhost:3000" style="width: 800px; height: 800px;">
 
-</div>
+</div> --%>
 </body>
 </html>

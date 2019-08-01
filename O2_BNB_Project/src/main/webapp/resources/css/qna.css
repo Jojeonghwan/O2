@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
+
+#qna_list{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+a#qna_write,a#qna_del,a#qna_list{
+	font-family: 'Noto Sans KR', sans-serif;
+	text-decoration : none;
+	font-weight: 500;
+	color : #484848;
+}
+
+a#qna_write:hover,a#qna_del:hover,a#qna_list:hover {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-decoration : none;
+	font-weight: 500;
+	color : #ff5a5f;
+}
+
+#qna_content_div,#qna_form_div{
+	font-family: 'Noto Sans KR', sans-serif;
+	position: absolute;
+    top: 20%;
+    bottom: 0;
+    left: 28%;
+    right: 0;
+}
+
+#qna_form_div{
+	font-family: 'Noto Sans KR', sans-serif;
+	position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 5%;
+    right: 0;
+}
+
+#qna_save {
+	background-color: white;
+	color : #484848;
+	border: 1px solid #484848;
+	border-radius : 5px;
+	height: 38px;
+}

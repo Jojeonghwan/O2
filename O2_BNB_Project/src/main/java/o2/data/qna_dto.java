@@ -1,6 +1,7 @@
 package o2.data;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 
 public class qna_dto {
@@ -14,6 +15,7 @@ public class qna_dto {
 	private String pw;
 	private int startNum;
 	private int endNum;
+	private String day;
 	
 	public int getStartNum() {
 		return startNum;
@@ -70,5 +72,11 @@ public class qna_dto {
 		this.pw = pw;
 	}
 	
-	
+	public String getDay() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		return sdf.format(getWriteday());
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
 }

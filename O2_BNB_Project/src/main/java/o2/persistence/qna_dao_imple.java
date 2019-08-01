@@ -2,6 +2,7 @@ package o2.persistence;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import o2.data.qna_dto;
 
@@ -66,5 +67,28 @@ public class qna_dao_imple extends SqlSessionDaoSupport implements qna_dao {
 	public void insert_review(qna_reply_dto qr_dto) throws Exception
 	{
 		getSqlSession().insert("qna_review_insert", qr_dto);
+	}
+	
+	public List<qna_dto> admin_qna_list(String preItems, String items) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("preItems", preItems);
+		map.put("items", items);
+		return getSqlSession().selectList("admin_qna_list", map);
+	}
+	
+	public qna_dto admin_qna_dto(String num) throws Exception {
+		return getSqlSession().selectOne("admin_qna_dto", num);
+	}
+	
+	public void qna_reivew_insert(qna_reply_dto qr_dto) throws Exception {
+		getSqlSession().insert("qna_reivew_insert", qr_dto);
+	}
+	
+	public List<qna_reply_dto> qna_reivew_list(String q_num) throws Exception {
+		return getSqlSession().selectList("qna_reivew_list", q_num);
+	}
+	
+	public void qna_reivew_delete(String num) throws Exception {
+		getSqlSession().delete("qna_reivew_delete", num);
 	}
 }

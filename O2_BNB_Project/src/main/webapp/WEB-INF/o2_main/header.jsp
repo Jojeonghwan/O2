@@ -18,10 +18,10 @@
 		</c:if>
 		<c:if test="${sessionScope.login_id != null }">
 			<div class="login">
-				<c:if test="${sessionScope.thumb_nail=='noimg'}">
+				<c:if test="${sessionScope.thumb_nail=='noimg.png'}">
 					<img src="image/user.png" id="noimg">
 				</c:if>
-				<c:if test="${sessionScope.thumb_nail!='noimg'}">
+				<c:if test="${sessionScope.thumb_nail!='noimg.png'}">
 					<img src="save/${sessionScope.thumb_nail}" id="thumb_nail">
 				</c:if>
 				${sessionScope.login_id} 님&nbsp;&nbsp;&nbsp;
