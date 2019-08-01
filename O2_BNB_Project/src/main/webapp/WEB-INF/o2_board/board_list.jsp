@@ -181,8 +181,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<br><br><br><br><br><br><br><br><br> -->
 </div>
 <!-- 출력부 %로 바꾸자-->
-<div id="map" style="width:400px; height:400px; float:right; 
- position: absolute; left: 60%; top:38%;"></div>
+<div id="map" style="width:400px; height:400px; float:right; position: absolute; left: 60%; top:38%;"></div>
 
 <div class="container" style="width: 800px; float: left; margin-left: 115px;">
 <!-- style="position:absolute; top: 40%;" -->
