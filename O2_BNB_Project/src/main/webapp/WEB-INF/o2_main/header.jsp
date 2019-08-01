@@ -27,7 +27,9 @@
 				${sessionScope.login_id} 님&nbsp;&nbsp;&nbsp;
 				<a href="member/logout.do">Log out</a>&nbsp;&nbsp;&nbsp;
 				<a href="member/mypage.do">My Page</a>&nbsp;&nbsp;&nbsp;
+				<c:if test="${sessionScope.user_type=='2'}">
 				<a href="host/roomform.do">Room Form</a>
+				</c:if>
 				<c:if test="${sessionScope.user_type=='3'}">
 					&nbsp;&nbsp;&nbsp;<a href="member/adminPage.do">Admin Page</a>
 			</c:if>

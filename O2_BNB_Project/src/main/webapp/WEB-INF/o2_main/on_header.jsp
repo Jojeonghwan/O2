@@ -22,10 +22,10 @@
 			<div class="on_header_login">
 				<img src="../image/menu.png" id="on_header_menu">&nbsp;&nbsp;
 				${sessionScope.login_id} 님
-				<c:if test="${sessionScope.thumb_nail=='noimg'}">
+				<c:if test="${sessionScope.thumb_nail=='noimg.png'}">
 					<img src="../image/user.png" id="noimg">
 				</c:if>
-				<c:if test="${sessionScope.thumb_nail!='noimg'}">
+				<c:if test="${sessionScope.thumb_nail!='noimg.png'}">
 					<img src="../save/${sessionScope.thumb_nail}" id="thumb_nail">
 				</c:if>
 				<div id="real"></div>

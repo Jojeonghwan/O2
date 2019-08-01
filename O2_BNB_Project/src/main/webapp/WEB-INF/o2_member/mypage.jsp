@@ -22,45 +22,45 @@
 					<div class="row" >
 						<div class="col-sm-3 col-sm-3 form-group mt-5" >
 								<div id="mypageId my-5 form-group">
-									<c:if test="${sessionScope.thumb_nail=='noimg'}">
+									<c:if test="${sessionScope.thumb_nail=='noimg.png'}">
 										<img src="../image/user.png" >
 									</c:if>
-									<c:if test="${sessionScope.thumb_nail!='noimg'}">
+									<c:if test="${sessionScope.thumb_nail!='noimg.png'}">
 										<img src="../save/${sessionScope.thumb_nail}">
 									</c:if>					
 								</div>
 							<div class="col-sm-3 ml-5 form-group" style="margin-left:3px; " >
 								<div style="width:100px;">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${sessionScope.login_id} 님<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="member/logout.do" style="color:gray; font-size:8pt;">Log out</a>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="logout.do" style="color:gray; font-size:8pt;">Log out</a>
 								</div>
 							</div>
 						</div><!-- col-sm-6 -->	
 						<div class="col-sm-3 col-sm-3 form-group" style="text-align: center" >
 							<div class="my-5">
-							<a href="delete_member.do" onclick="return confirm('모든 게시물과 결제내역 등이 사라집니다. 정말 탈퇴하시겠습니까?');">
-								회원탈퇴
-							</a>
-							<a href="update.do">회원정보수정</a>
+							<a href="update.do" class="btn_a">회원정보수정</a>
 							<br>
-							<a href="scrap_list">스크랩</a>
+							<a href="scrap_list" class="btn_a">스크랩</a>
 							<br>
 							<c:if test="${sessionScope.user_type==2}">
-							<a href="../host/home_guest_list.do">home_guest_list</a>
+							<a href="../host/home_guest_list.do" class="btn_a">home_guest_list</a>
 							<br>
-							<a href="../host/roomlist.do">room list</a>
+							<a href="../host/roomlist.do" class="btn_a">room list</a>
 							<br>
 							</c:if>
-							<a href="../chat/ch_con.do">Chatting</a>
+							<a href="../chat/ch_con.do" class="btn_a">Chatting</a>
 							<br>
-							<a href="../qna/qna_list.do">QNA</a>
+							<a href="../qna/qna_list.do" class="btn_a">QNA</a>
 							<br>
 							<c:if test="${sessionScope.user_type==1}">
-								<a href="../board/pay_list.do">pay_list</a>
+								<a href="../board/pay_list.do" class="btn_a">pay_list</a>
 								<br>
-								<a href="user_type_change.do">user_type_change</a>
+								<a href="user_type_change.do" class="btn_a">user_type_change</a>
 							</c:if>
-				
+							<br>
+							<a href="delete_member.do" onclick="return confirm('모든 게시물과 결제내역 등이 사라집니다. 정말 탈퇴하시겠습니까?');" class="btn_a">
+								회원탈퇴
+							</a>
 							</div>
 						</div><!-- col-sm-6 -->
 					</div><!-- row -->

@@ -66,7 +66,7 @@ public class member_controller {
 		//빈문자열인 경우 noimg 저장
 		if(thumb_nail_img.getOriginalFilename().length() == 0) {
 			// dto에 noimg넣어주기
-			dto.setThumb_nail("noimg");
+			dto.setThumb_nail("noimg.png");
 		}else { //빈문자열이 아닌 경우 img 저장
 			fileWriter.writeFile(thumb_nail_img, path, thumb_nail_img.getOriginalFilename());
 			// dto에 저장
@@ -113,6 +113,7 @@ public class member_controller {
 			session.setAttribute("u_num", u_num);				// 세션에 num 저장
 			session.setAttribute("login_id", login_id);			// 세션에 아이디 저장
 			session.setAttribute("user_type", user_type);		// 세션에 유저타입 저장
+			System.out.println("썸네일 이름 : " + service.select_dto(login_id).getThumb_nail());
 			session.setAttribute("thumb_nail", service.select_dto(login_id).getThumb_nail());
 			System.out.println(u_num);
 			System.out.println(login_id);
@@ -486,7 +487,7 @@ public class member_controller {
 		String imgname = service.select_dto(myid).getThumb_nail();
 		// 수정 전 dto에 썸네일이 존재하는지 확인
 		File file = new File(path+"\\"+imgname);
-		if(!imgname.equals("noimg")) {
+		if(!imgname.equals("noimg.png")) {
 			// noimg가 아니면 파일삭제
 			file.delete();
 		}
@@ -495,7 +496,7 @@ public class member_controller {
 		
 		// form에서 넘어온 이미지thumb_nail_img가 빈문자열인 경우 noimg 저장
 		if(thumb_nail_img.getOriginalFilename().length() == 0) {
-			dto.setThumb_nail("noimg");
+			dto.setThumb_nail("noimg.png");
 		}else { //빈문자열이 아닌 경우 img 저장
 			fileWriter.writeFile(thumb_nail_img, path, thumb_nail_img.getOriginalFilename());
 			// 새로운 dto에 썸네일 저장

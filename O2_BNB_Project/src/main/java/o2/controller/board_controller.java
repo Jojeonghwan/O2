@@ -400,7 +400,7 @@ public class board_controller {
 //		}
 
 		if(upfile.getOriginalFilename().length() == 0) {
-			h_re_dto.setImg_name("noimg"); // null 이면 noimg
+			h_re_dto.setImg_name("noimg.png"); // null 이면 noimg
 		}else { //빈문자열이 아닌 경우 img 저장
 			fileWriter.writeFile(upfile, PATH, upfile.getOriginalFilename());
 			// 새로운 dto에 이미지 저장
